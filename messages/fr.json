@@ -1,0 +1,70 @@
+{
+  "Hero": {
+    "title": "LES NÉGOCIANTS"
+  },
+  "Navigation": {
+    "info": "Informations",
+    "story": "Notre histoire",
+    "menu_carte": "Menu à la carte",
+    "menu_week": "Menu de la semaine",
+    "wine_list": "Carte des vins",
+    "privatization": "Privatisation",
+    "find_us": "Nous trouver",
+    "contact": "Contact",
+    "reserve": "Réserver une table"
+  },
+  "Info": {
+    "title": "Informations",
+    "subtitle1": "Découvrez notre cuisine élaborée en faveur des produits de saisons et locaux.",
+    "subtitle2": "Notre carte est pensée pour être conviviale, gourmande et gastronomique.",
+    "address_label": "Adresse",
+    "address_value": "3 rue de Guienne, 33000 Bordeaux",
+    "contact_label": "Contact",
+    "contact_email": "restaurant@lesnegociants.fr",
+    "contact_instagram": "@lesnegociants_bdx",
+    "hours_label": "Horaires",
+    "hours_value": "Ouvert du mardi au samedi\n12h00 à 13h30 / 19h30 à 21h30\nfermé le mercredi midi.\nFermé les dimanche et lundi."
+  },
+  "Story": {
+    "title": "Notre histoire",
+    "p1": "Situé dans le cœur historique de Bordeaux, face à la Grosse Cloche et à deux pas de la place Fernand Lafargue,",
+    "p2": "« Les Négociants » c'est la concrétisation du rêve de deux passionnés de restauration, Florian et Julien.",
+    "p3": "Notre établissement se distingue par un concept mêlant dégustation, sophistication et convivialité, offrant une expérience culinaire savoureuse et des plus gourmandes.",
+    "p4": "Chez « Les Négociants », nous mettons un point d'honneur à travailler avec des produits frais et de saison, soigneusement sélectionnés pour garantir une qualité exceptionnelle à chaque plat. Notre cuisine bistronomique ravira les palais les plus exigeants tout en respectant l’authenticité et la richesse des ingrédients.",
+    "p5": "Notre carte des vins, minutieusement élaborée avec 250 références, reflète notre amour pour le vin et notre désir de vous faire découvrir des trésors viticoles. Chaque bouteille a été choisie pour sublimer votre repas et vous offrir un accord parfait.",
+    "p6": "Rejoignez-nous chez Les Négociants et laissez-vous séduire par notre univers."
+  },
+  "MenuCarte": {
+    "title": "MENU À LA CARTE",
+    "subtitle": "( Servi uniquement le SOIR du Mardi au Samedi )",
+    "description": "Avec notre chef Antoine et son adjoint Louis, nous vous proposons une cuisine bistronomique avec des produits frais et de saisons. Dégustez une cuisine française et la passion de notre chef, animée par le plaisir de jouer avec les textures et les déclinaisons de produits.",
+    "starters": "LES ENTRÉES",
+    "mains": "LES PLATS",
+    "desserts": "LES DESSERTS"
+  },
+  "MenuWeek": {
+    "title": "NOTRE MENU DE LA SEMAINE",
+    "date_range": "DU 24 AU 28 MARS 2026",
+    "subtitle": "( Uniquement le MIDI du Mardi au Samedi )",
+    "closed_info": "Fermé le mercredi midi"
+  },
+  "Gallery": {
+    "title": "QUELQUES ASSIETTES À LA CARTE",
+    "privatization_info": "Notre salon en immersion totale dans la cave à vin qui peut être privatisé pour tout type d'évènement : jusqu'à 20 personnes pour une privatisation",
+    "terrace_info": "Notre terrasse, ombragée ou ensoleillée, à vous de choisir !"
+  },
+  "FindUs": {
+    "title": "Nous trouver",
+    "description": "Retrouvez-nous en plein coeur de Bordeaux au 3 rue de Guienne, proche de la place Fernand Lafargue et admirez la Grosse Cloche depuis \" LES NÉGOCIANTS \""
+  },
+  "Contact": {
+    "title": "Contactez-nous",
+    "description": "Vous avez des questions, des suggestions ou des commentaires ? Nous serions ravis de vous lire ! Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.",
+    "form_firstname": "Prénom",
+    "form_lastname": "Nom de famille",
+    "form_email": "Email",
+    "form_message": "Message",
+    "form_submit": "Envoyer",
+    "required": "(requis)"
+  }
+}
