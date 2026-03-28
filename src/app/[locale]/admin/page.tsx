@@ -5,11 +5,39 @@ import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, Trash2, Save, LayoutDashboard, Utensils, 
-  Calendar, Euro, ArrowLeft, LogOut, Settings 
+  Calendar, Euro, ArrowLeft, LogOut, Settings, Image as ImageIcon, FileText, Upload
 } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('carte');
+// ... (états existants)
+  const [media, setMedia] = useState({
+    storyImage: "https://lesnegociants.fr/wp-content/uploads/2024/08/IMG_4603.jpg",
+    gallery: [
+      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
+    ],
+    menuCartePdf: "/menu-carte.pdf",
+    menuWeekPdf: "/menu-semaine.pdf"
+  });
+
+  // État pour le nouvel item de la galerie
+  const [newGalleryItem, setNewGalleryItem] = useState({ url: "", title: "" });
+
+  const addGalleryItem = () => {
+    if (newGalleryItem.url && newGalleryItem.title) {
+      setMedia({
+        ...media,
+        gallery: [...media.gallery, newGalleryItem]
+      });
+      setNewGalleryItem({ url: "", title: "" });
+    }
+  };
+
+  const removeGalleryItem = (index: number) => {
+    const newGallery = media.gallery.filter((_, i) => i !== index);
+    setMedia({ ...media, gallery: newGallery });
+  };
+// ... (reste des fonctions)
 
   // États pour le Menu à la Carte (Simulés pour la structure)
   const [starters, setStarters] = useState([
@@ -203,8 +231,102 @@ export default function AdminDashboard() {
               </div>
             </motion.section>
           )}
+          {activeTab === 'media' && (
+            <motion.section 
+              key="media"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-12"
+            >
+              <header className="flex justify-between items-end">
+                <div>
+                  <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">Médias & Documents</h1>
+                  <p className="text-foreground/40 font-bold uppercase tracking-widest text-xs">Gérez vos images et vos menus PDF</p>
+                </div>
+                <button className="bg-primary text-white px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs flex items-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20">
+                  <Save size={16} /> Enregistrer
+                </button>
+              </header>
+
+              {/* Section PDFs */}
+              <div className="space-y-8">
+                <h3 className="text-xl font-black uppercase tracking-[0.2em] text-primary">Menus PDF</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <FileUploadCard 
+                    label="Carte Complète (PDF)" 
+                    fileName="menu-carte.pdf" 
+                    icon={<FileText size={24} />} 
+                  />
+                  <FileUploadCard 
+                    label="Menu de la Semaine (PDF)" 
+                    fileName="menu-semaine.pdf" 
+                    icon={<FileText size={24} />} 
+                  />
+                </div>
+              </div>
+
+              {/* Section Images */}
+              <div className="space-y-8">
+                <h3 className="text-xl font-black uppercase tracking-[0.2em] text-primary">Images du Site</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-muted p-8 rounded-3xl border border-border space-y-4">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block">Image Histoire</span>
+                    <div className="aspect-video bg-background rounded-2xl overflow-hidden mb-4 relative group">
+                      <img src={media.storyImage} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity" />
+                      <button className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Upload className="text-white" size={32} />
+                      </button>
+                    </div>
+                    <input 
+                      value={media.storyImage} 
+                      onChange={(e) => setMedia({...media, storyImage: e.target.value})}
+                      className="w-full bg-background border border-border px-4 py-2 rounded-lg text-xs"
+                      placeholder="URL de l'image"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Galerie */}
+              <div className="space-y-8">
+                <h3 className="text-xl font-black uppercase tracking-[0.2em] text-primary">Galerie Photo</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {media.gallery.map((img, i) => (
+                    <div key={i} className="aspect-square bg-muted rounded-2xl border border-border relative group overflow-hidden">
+                      <img src={img.url} className="w-full h-full object-cover" />
+                      <button className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                  <button className="aspect-square bg-muted border-2 border-dashed border-border rounded-2xl flex flex-col items-center justify-center gap-4 text-foreground/20 hover:text-primary hover:border-primary transition-all">
+                    <Plus size={32} />
+                    <span className="text-[10px] font-black uppercase tracking-widest">Ajouter</span>
+                  </button>
+                </div>
+              </div>
+            </motion.section>
+          )}
         </AnimatePresence>
       </main>
+    </div>
+  );
+}
+
+function FileUploadCard({ label, fileName, icon }: any) {
+  return (
+    <div className="bg-muted p-8 rounded-3xl border border-border flex flex-col items-center gap-6">
+      <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+        {icon}
+      </div>
+      <div className="text-center">
+        <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block mb-1">{label}</span>
+        <span className="text-sm font-bold text-foreground">{fileName}</span>
+      </div>
+      <button className="w-full bg-background border-2 border-border py-4 rounded-xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:border-primary hover:text-primary transition-all">
+        <Upload size={14} /> Remplacer le PDF
+      </button>
     </div>
   );
 }

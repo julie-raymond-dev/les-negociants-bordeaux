@@ -3,6 +3,7 @@
 import {useTranslations} from 'next-intl';
 import { motion } from 'framer-motion';
 import { Reveal, staggerContainer, fadeUp } from './Motion';
+import { FileText } from 'lucide-react';
 
 export default function MenuWeek() {
   const t = useTranslations('MenuWeek');
@@ -18,16 +19,35 @@ export default function MenuWeek() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           
-          {/* Header simple et centré */}
+          {/* Header avec bouton PDF à droite */}
           <Reveal>
-            <div className="text-center mb-16">
-              <h2 className="heading-section mb-4">{t('title')}</h2>
-              <p className="text-xl md:text-2xl font-bold uppercase tracking-widest mb-4">
-                {t('date_range')}
-              </p>
-              <p className="text-sm uppercase tracking-widest text-foreground/50">
-                {t('subtitle')} — {t('closed_info')}
-              </p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-24">
+              <div className="text-center md:text-left flex-1">
+                <h2 className="heading-section mb-4">{t('title')}</h2>
+                <p className="text-xl md:text-2xl font-bold uppercase tracking-widest mb-4">
+                  {t('date_range')}
+                </p>
+                <p className="text-sm uppercase tracking-widest text-foreground/50">
+                  {t('subtitle')} — {t('closed_info')}
+                </p>
+              </div>
+
+              <div className="shrink-0">
+                <a 
+                  href="/menu-semaine.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-6 px-10 py-6 bg-background border-2 border-primary/20 hover:border-primary rounded-[30px] transition-all duration-500 shadow-xl hover:shadow-primary/10"
+                >
+                  <div className="p-4 bg-primary/10 rounded-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    <FileText size={28} />
+                  </div>
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 text-foreground">Consulter le</span>
+                    <span className="text-lg font-black uppercase tracking-tighter text-foreground">Menu Semaine PDF</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </Reveal>
 

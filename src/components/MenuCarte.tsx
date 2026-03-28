@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Reveal, staggerContainer, fadeUp } from './Motion';
+import { FileText } from 'lucide-react';
 
 interface MenuItemProps {
   name: string;
@@ -62,12 +63,31 @@ export default function MenuCarte() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <div className="text-center mb-24">
-              <h2 className="heading-section mb-4">{t('title')}</h2>
-              <p className="text-sm font-bold uppercase tracking-widest text-foreground/40 mb-12">{t('subtitle')}</p>
-              <p className="text-2xl md:text-3xl font-medium max-w-3xl mx-auto leading-relaxed">
-                {t('description')}
-              </p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-24">
+              <div className="text-center md:text-left flex-1">
+                <h2 className="heading-section mb-4">{t('title')}</h2>
+                <p className="text-sm font-bold uppercase tracking-widest text-foreground/40 mb-8">{t('subtitle')}</p>
+                <p className="text-lg md:text-xl font-medium leading-relaxed opacity-70">
+                  {t('description')}
+                </p>
+              </div>
+
+              <div className="shrink-0">
+                <a 
+                  href="/menu-carte.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-6 px-10 py-6 bg-background border-2 border-primary/20 hover:border-primary rounded-[30px] transition-all duration-500 shadow-xl hover:shadow-primary/10"
+                >
+                  <div className="p-4 bg-primary/10 rounded-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    <FileText size={28} />
+                  </div>
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Consulter la</span>
+                    <span className="text-lg font-black uppercase tracking-tighter text-foreground">Carte PDF</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </Reveal>
 
