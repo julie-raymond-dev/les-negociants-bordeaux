@@ -64,7 +64,7 @@ export default function Gallery() {
             >
               <img 
                 src={img.url} 
-                alt={img.title}
+                alt={`${img.title} - Plat fait maison au restaurant Les Négociants Bordeaux`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
               />
               <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end">

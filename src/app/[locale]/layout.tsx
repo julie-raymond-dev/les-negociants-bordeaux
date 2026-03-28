@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/context/ThemeProvider';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
+import StructuredData from '@/components/StructuredData';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +19,56 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Les Négociants - Restaurant Bordeaux",
-  description: "Restaurant bistronomique au coeur du quartier historique bordelais.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  
+  const titles: Record<string, string> = {
+    fr: "Les Négociants | Restaurant Bistronomique Bordeaux Centre - Grosse Cloche",
+    en: "Les Négociants | Bistronomic Restaurant Bordeaux City Center",
+    es: "Les Négociants | Restaurante Bistronómico en el centro de Burdeos",
+  };
+
+  const descriptions: Record<string, string> = {
+    fr: "Découvrez Les Négociants, restaurant bistronomique au cœur de Bordeaux face à la Grosse Cloche. Cuisine de saison, produits frais et vins d'exception.",
+    en: "Discover Les Négociants, a bistronomic restaurant in the heart of Bordeaux facing the Grosse Cloche. Seasonal cuisine, fresh products and exceptional wines.",
+  };
+
+  const title = titles[locale] || titles.fr;
+  const description = descriptions[locale] || descriptions.fr;
+
+  return {
+    title,
+    description,
+    keywords: ["restaurant bordeaux", "bistronomie bordeaux", "grosse cloche bordeaux", "manger bordeaux centre", "vins bordeaux"],
+    authors: [{ name: "Les Négociants" }],
+    openGraph: {
+      title,
+      description,
+      url: 'https://les-negociants-bordeaux.vercel.app',
+      siteName: 'Les Négociants Bordeaux',
+      images: [
+        {
+          url: '/gallery/hero-bg.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Restaurant Les Négociants Bordeaux',
+        },
+      ],
+      locale: locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/gallery/hero-bg.jpg'],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    }
+  };
+}
 
 export default async function LocaleLayout({
   children,
@@ -31,17 +78,19 @@ export default async function LocaleLayout({
   params: Promise<{locale: string}>;
 }) {
   const {locale} = await params;
-  // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
  
-  // Receiving messages provided in `i18n/request.ts`
   const messages = await getMessages();
  
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <link rel="canonical" href={`https://les-negociants-bordeaux.vercel.app/${locale}`} />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <StructuredData />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ReservationProvider>

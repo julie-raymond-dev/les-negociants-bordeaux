@@ -30,7 +30,7 @@ export default function Story() {
                 whileInView={{ scale: 1, filter: 'blur(0px)' }}
                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 src={storyImage} 
-                alt="Restaurant Interior"
+                alt="Intérieur élégant du restaurant Les Négociants à Bordeaux - Ambiance bistronomique et conviviale"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
