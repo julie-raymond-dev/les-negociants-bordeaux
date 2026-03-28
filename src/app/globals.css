@@ -1,32 +1,80 @@
 @import "tailwindcss";
 
 :root {
+  /* Colors */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #11202f;
   --primary: #b78437;
+  --secondary: #575757;
+  --muted: #f8f9fa;
+  --border: rgba(17, 32, 47, 0.08);
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 2.25rem;   /* 36px */
+  --font-size-3xl: 3.5rem;    /* 56px */
+  --font-size-hero: 6rem;     /* 96px */
+
+  /* Spacing */
+  --section-py: 8rem;
 }
 
 .dark {
   --background: #0a0a0a;
-  --foreground: #ededed;
+  --foreground: #f8f9fa;
+  --muted: #1a1a1a;
+  --border: rgba(248, 249, 250, 0.1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  --spacing-section: var(--section-py);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* On garde les utilitaires de couleurs sémantiques */
-.text-dark-custom {
-  color: #11202f;
+/* Base Typography Classes for Consistency */
+@layer components {
+  .heading-hero {
+    @apply text-5xl md:text-8xl font-black tracking-tighter leading-none;
+  }
+  
+  .heading-section {
+    @apply text-[10px] font-black uppercase tracking-[0.6em] text-primary mb-8;
+  }
+  
+  .heading-title {
+    @apply text-3xl md:text-5xl font-bold tracking-tighter leading-tight;
+  }
+  
+  .text-menu-item {
+    @apply text-lg font-bold tracking-tight;
+  }
+  
+  .text-menu-desc {
+    @apply text-sm text-foreground/50 italic leading-relaxed;
+  }
+  
+  .nav-link {
+    @apply text-xs font-bold uppercase tracking-[0.2em] hover:text-primary transition-all duration-300;
+  }
 }

@@ -5,7 +5,9 @@ import {Link, usePathname, useRouter, routing} from '@/i18n/routing';
 import {useState, useEffect} from 'react';
 import { useTheme } from 'next-themes';
 import { Lightbulb, Menu, X, ChevronDown } from 'lucide-react';
-import ReservationButton from './ReservationButton';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useReservation } from '@/context/ReservationContext';
+import Image from 'next/image';
 
 const languageNames: Record<string, { name: string, flag: string }> = {
   fr: { name: 'Français', flag: '🇫🇷' },
@@ -25,137 +27,188 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+  const { openModal } = useReservation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Éviter les erreurs d'hydratation pour les icônes de thème
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const onLanguageChange = (newLocale: string) => {
-    router.replace(pathname, {locale: newLocale});
-  };
+  if (!mounted) return null;
 
   const navLinks = [
     { name: t('info'), href: '#informations' },
     { name: t('story'), href: '#notre-histoire' },
     { name: t('menu_carte'), href: '#menu-carte' },
     { name: t('menu_week'), href: '#menu-semaine' },
-    { name: t('find_us'), href: '#nous-trouver' },
     { name: t('contact'), href: '#contact' },
   ];
 
-  if (!mounted) return null;
+  // Logic: 
+  // In LIGHT mode: Header is ALWAYS WHITE with BLACK text/logo.
+  // In DARK mode: Header is ALWAYS TRANSPARENT (or semi-transp) with WHITE text/logo.
+  const isLight = theme === 'light';
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md shadow-sm z-50 transition-colors duration-300">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link href="/" className="text-xl md:text-2xl font-bold tracking-widest text-primary">
-          LES NÉGOCIANTS
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6 ${
+        isLight 
+          ? 'bg-white shadow-md text-black' 
+          : 'bg-black/20 backdrop-blur-sm text-white'
+      }`}
+    >
+      <div className="container mx-auto px-8 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-6 group">
+          <div className={`relative w-20 h-20 md:w-28 md:h-28 transition-all duration-500 ${isLight ? 'invert' : ''}`}>
+            <Image 
+              src="/logo-transparent-les-negociants.jpg" 
+              alt="Logo Les Négociants" 
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="text-2xl md:text-3xl font-black tracking-[0.3em] text-primary transition-transform group-hover:scale-105 hidden lg:block">
+            LES NÉGOCIANTS
+          </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          <div className="flex items-center space-x-6">
+        <nav className="hidden xl:flex items-center gap-10">
+          <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                className="nav-link text-sm tracking-[0.25em]"
               >
                 {link.name}
               </a>
             ))}
           </div>
           
-          <div className="flex items-center space-x-4 border-l pl-6 border-gray-200 dark:border-gray-800">
+          <div className={`h-6 w-px mx-2 transition-colors duration-500 ${isLight ? 'bg-black/10' : 'bg-white/20'}`}></div>
+
+          <div className="flex items-center gap-6">
             {/* Theme Switcher */}
             <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-primary"
+              onClick={() => setTheme(isLight ? 'dark' : 'light')}
+              className="p-3 rounded-full hover:bg-foreground/5 transition-colors group"
               aria-label="Toggle theme"
             >
-              <Lightbulb size={20} fill={theme === 'dark' ? 'currentColor' : 'none'} />
+              <Lightbulb size={24} className="text-primary transition-transform group-hover:scale-110" fill={!isLight ? 'currentColor' : 'none'} />
             </button>
 
             {/* Language Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center gap-2 text-sm font-bold uppercase py-2">
-                <span>{languageNames[locale].flag}</span>
-                <ChevronDown size={14} />
+            <div className="relative group text-current">
+              <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest py-2">
+                <span className="text-2xl">{languageNames[locale].flag}</span>
+                <span className="text-xs">{locale}</span>
+                <ChevronDown size={16} className="opacity-50 group-hover:rotate-180 transition-transform" />
               </button>
-              <div className="absolute right-0 mt-0 w-48 bg-background border border-border rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="py-1">
-                  {routing.locales.map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => onLanguageChange(l)}
-                      className={`w-full text-left px-4 py-2 text-sm flex items-center gap-3 hover:bg-primary hover:text-white transition-colors ${locale === l ? 'bg-gray-100 dark:bg-gray-800 font-bold' : ''}`}
-                    >
-                      <span className="text-lg">{languageNames[l].flag}</span>
-                      <span>{languageNames[l].name}</span>
-                    </button>
-                  ))}
-                </div>
+              <div className="absolute right-0 mt-2 w-56 bg-background border border-border rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden py-2">
+                {routing.locales.map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => router.replace(pathname, {locale: l})}
+                    className={`w-full text-left px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-4 hover:bg-primary hover:text-white transition-colors ${locale === l ? 'bg-foreground/5 text-primary' : 'text-foreground'}`}
+                  >
+                    <span className="text-2xl">{languageNames[l].flag}</span>
+                    <span>{languageNames[l].name}</span>
+                  </button>
+                ))}
               </div>
             </div>
 
-            <ReservationButton />
+            <button 
+              onClick={openModal}
+              className="bg-primary text-white text-xs font-black uppercase tracking-[0.3em] px-10 py-4 rounded-full hover:bg-black hover:text-white border-2 border-primary transition-all duration-500 shadow-xl hover:shadow-primary/20 active:scale-95"
+            >
+              {t('reserve')}
+            </button>
           </div>
         </nav>
 
         {/* Mobile controls */}
-        <div className="flex items-center space-x-4 lg:hidden">
+        <div className="flex items-center gap-6 xl:hidden">
           <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            onClick={() => setTheme(isLight ? 'dark' : 'light')}
             className="p-2 text-primary"
           >
-            <Lightbulb size={20} fill={theme === 'dark' ? 'currentColor' : 'none'} />
+            <Lightbulb size={28} fill={!isLight ? 'currentColor' : 'none'} />
           </button>
           
           <button
-            className="p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 transition-transform active:scale-90"
+            onClick={() => setIsMenuOpen(true)}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <Menu size={36} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav */}
-      {isMenuOpen && (
-        <nav className="lg:hidden bg-background border-t border-border p-6 space-y-6 animate-in slide-in-from-top duration-300">
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-bold uppercase tracking-widest border-b border-border pb-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-          
-          <div className="grid grid-cols-3 gap-2">
-            {routing.locales.map((l) => (
-              <button
-                key={l}
-                onClick={() => {
-                  onLanguageChange(l);
-                  setIsMenuOpen(false);
-                }}
-                className={`text-xs p-2 border rounded flex flex-col items-center gap-1 ${locale === l ? 'border-primary bg-primary/10 text-primary font-bold' : 'border-border'}`}
-              >
-                <span className="text-xl">{languageNames[l].flag}</span>
-                <span className="uppercase">{l}</span>
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[60] bg-background flex flex-col p-10"
+          >
+            <div className="flex justify-between items-center mb-16">
+              <span className="text-2xl font-black tracking-[0.2em] text-primary">MENU</span>
+              <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-foreground/5 rounded-full transition-colors text-foreground">
+                <X size={40} />
               </button>
-            ))}
-          </div>
+            </div>
 
-          <ReservationButton className="w-full" />
-        </nav>
-      )}
+            <div className="flex flex-col gap-10">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.1 }}
+                  key={link.href}
+                  href={link.href}
+                  className="text-3xl font-black uppercase tracking-tighter hover:text-primary transition-colors flex items-center gap-4 text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span className="text-primary text-sm tracking-widest">0{i+1}</span>
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
+
+            <div className="mt-auto pt-16 border-t border-border">
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/30 mb-6 uppercase">Choisir la langue</p>
+              <div className="grid grid-cols-3 gap-4 mb-10">
+                {routing.locales.map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => {
+                      router.replace(pathname, {locale: l});
+                      setIsMenuOpen(false);
+                    }}
+                    className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all ${locale === l ? 'border-primary bg-primary/10 text-primary font-bold' : 'border-border text-foreground active:bg-foreground/5'}`}
+                  >
+                    <span className="text-3xl">{languageNames[l].flag}</span>
+                    <span className="text-xs font-black uppercase tracking-widest">{l}</span>
+                  </button>
+                ))}
+              </div>
+              <button 
+                onClick={() => { openModal(); setIsMenuOpen(false); }}
+                className="w-full bg-primary text-white font-black uppercase tracking-[0.3em] py-6 rounded-2xl shadow-2xl shadow-primary/20 active:scale-[0.98] transition-transform"
+              >
+                {t('reserve')}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
