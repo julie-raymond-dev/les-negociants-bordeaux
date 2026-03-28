@@ -71,7 +71,7 @@ export default function Contact() {
                 </label>
                 <input 
                   type="text" 
-                  name="user_firstname"
+                  name="firstname"
                   id="firstname" 
                   className="w-full px-6 py-4 border-2 border-border bg-background focus:border-primary outline-none transition-colors rounded-xl font-bold text-sm"
                   required
@@ -84,7 +84,7 @@ export default function Contact() {
                 </label>
                 <input 
                   type="text" 
-                  name="user_lastname"
+                  name="lastname"
                   id="lastname" 
                   className="w-full px-6 py-4 border-2 border-border bg-background focus:border-primary outline-none transition-colors rounded-xl font-bold text-sm"
                   required
@@ -99,7 +99,7 @@ export default function Contact() {
               </label>
               <input 
                 type="email" 
-                name="user_email"
+                name="email"
                 id="email" 
                 className="w-full px-6 py-4 border-2 border-border bg-background focus:border-primary outline-none transition-colors rounded-xl font-bold text-sm"
                 required
