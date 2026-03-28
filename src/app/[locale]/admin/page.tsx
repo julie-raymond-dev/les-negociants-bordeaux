@@ -103,6 +103,12 @@ export default function AdminDashboard() {
             icon={<Calendar size={18} />}
             label="Menu Semaine"
           />
+          <TabButton 
+            active={activeTab === 'media'} 
+            onClick={() => setActiveTab('media')}
+            icon={<ImageIcon size={18} />}
+            label="Médias & PDFs"
+          />
         </nav>
 
         <div className="mt-auto pt-8 border-t border-border flex flex-col gap-4">
@@ -291,19 +297,51 @@ export default function AdminDashboard() {
               {/* Galerie */}
               <div className="space-y-8">
                 <h3 className="text-xl font-black uppercase tracking-[0.2em] text-primary">Galerie Photo</h3>
+                
+                {/* Formulaire d'ajout sécurisé */}
+                <div className="bg-muted p-8 rounded-3xl border border-border space-y-6">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block">Nouvel item de la galerie (Titre + URL requis)</span>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input 
+                      placeholder="Titre de l'assiette (ex: Noix de veau)" 
+                      value={newGalleryItem.title} 
+                      onChange={(e) => setNewGalleryItem({...newGalleryItem, title: e.target.value})}
+                      className="w-full bg-background border border-border px-6 py-4 rounded-xl outline-none focus:border-primary font-bold transition-all"
+                    />
+                    <input 
+                      placeholder="URL de l'image" 
+                      value={newGalleryItem.url} 
+                      onChange={(e) => setNewGalleryItem({...newGalleryItem, url: e.target.value})}
+                      className="w-full bg-background border border-border px-6 py-4 rounded-xl outline-none focus:border-primary font-bold transition-all"
+                    />
+                  </div>
+                  <button 
+                    disabled={!newGalleryItem.url || !newGalleryItem.title}
+                    onClick={addGalleryItem}
+                    className="w-full bg-primary text-white py-4 rounded-xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 disabled:opacity-30 disabled:grayscale transition-all shadow-lg shadow-primary/20"
+                  >
+                    <Plus size={18} /> Ajouter à la galerie
+                  </button>
+                </div>
+
+                {/* Liste de la galerie */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   {media.gallery.map((img, i) => (
-                    <div key={i} className="aspect-square bg-muted rounded-2xl border border-border relative group overflow-hidden">
-                      <img src={img.url} className="w-full h-full object-cover" />
-                      <button className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Trash2 size={16} />
-                      </button>
+                    <div key={i} className="flex flex-col gap-3 group">
+                      <div className="aspect-square bg-muted rounded-2xl border border-border relative overflow-hidden shadow-md">
+                        <img src={img.url} className="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                        <button 
+                          onClick={() => removeGalleryItem(i)}
+                          className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                      <div className="px-2">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block mb-1 truncate">{img.title}</span>
+                      </div>
                     </div>
                   ))}
-                  <button className="aspect-square bg-muted border-2 border-dashed border-border rounded-2xl flex flex-col items-center justify-center gap-4 text-foreground/20 hover:text-primary hover:border-primary transition-all">
-                    <Plus size={32} />
-                    <span className="text-[10px] font-black uppercase tracking-widest">Ajouter</span>
-                  </button>
                 </div>
               </div>
             </motion.section>
