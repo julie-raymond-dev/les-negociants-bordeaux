@@ -20,14 +20,17 @@ export const siteConfig = {
   
   assets: {
     logo: process.env.NEXT_PUBLIC_LOGO_PATH || "/logo-transparent-les-negociants.jpg",
-    heroBg: process.env.NEXT_PUBLIC_HERO_IMAGE || "https://lesnegociants.fr/wp-content/uploads/2024/07/IMG_1458-1-e1748335626467-1024x1014.jpeg",
-    storyImage: "/fallback-story.jpg",
+    heroBg: process.env.NEXT_PUBLIC_HERO_IMAGE || "/gallery/hero-bg.jpg",
+    storyImage: "/gallery/fallback-story.jpg",
     menuCartePdf: "/menu-carte.pdf",
     menuWeekPdf: "/menu-semaine.pdf",
     gallery: [
-      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
-      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1777.jpg", title: "Oeuf Parfait" },
-      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1952.jpg", title: "Noix de veau rôtie" },
+      { url: "/gallery/1.jpg", title: "Asperges des Landes" },
+      { url: "/gallery/2.jpg", title: "Oeuf Parfait" },
+      { url: "/gallery/3.jpg", title: "Noix de veau rôtie" },
+      { url: "/gallery/4.jpg", title: "Assiette de fromages" },
+      { url: "/gallery/5.jpg", title: "Espadon snacké" },
+      { url: "/gallery/6.jpg", title: "Notre Salon Privatisable" },
     ]
   },
 

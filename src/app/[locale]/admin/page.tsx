@@ -67,9 +67,9 @@ export default function AdminDashboard() {
   });
 
   const [media, setMedia] = useState({
-    storyImage: "https://lesnegociants.fr/wp-content/uploads/2024/08/IMG_4603.jpg",
+    storyImage: "/gallery/fallback-story.jpg",
     gallery: [
-      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
+      { url: "/gallery/1.jpg", title: "Asperges des Landes" },
     ] as GalleryItem[],
     menuCartePdf: "/menu-carte.pdf",
     menuWeekPdf: "/menu-semaine.pdf"
