@@ -7,7 +7,7 @@ export default function FindUs() {
     <section id="nous-trouver" className="py-20 bg-background text-foreground transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-widest text-primary mb-6">
+          <h2 className="heading-section mb-8">
             {t('title')}
           </h2>
           <p className="max-w-2xl mx-auto text-foreground/80 leading-relaxed italic">

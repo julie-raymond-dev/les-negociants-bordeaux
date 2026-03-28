@@ -21,10 +21,10 @@ export default function MenuWeek() {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
             <div className="text-left">
-              <h2 className="text-[10px] font-black uppercase tracking-[0.6em] mb-6 opacity-80">
+              <h2 className="heading-section text-white/80 !mb-6">
                 {t('title')}
               </h2>
-              <p className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase">
+              <p className="text-2xl md:text-4xl font-black tracking-tighter leading-none uppercase">
                 {t('date_range')}
               </p>
             </div>

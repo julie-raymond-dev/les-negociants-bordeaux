@@ -63,7 +63,7 @@ export default function MenuCarte() {
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="text-center mb-24">
-              <h2 className="heading-section">{t('title')}</h2>
+              <h2 className="heading-section mb-4">{t('title')}</h2>
               <p className="text-sm font-bold uppercase tracking-widest text-foreground/40 mb-12">{t('subtitle')}</p>
               <p className="text-2xl md:text-3xl font-medium max-w-3xl mx-auto leading-relaxed">
                 {t('description')}

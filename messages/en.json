@@ -65,7 +65,10 @@
     "form_email": "Email",
     "form_message": "Message",
     "form_submit": "Send",
-    "required": "(required)"
+    "required": "(required)",
+    "sending": "Sending...",
+    "success": "Thank you! Your message has been sent successfully.",
+    "error": "An error occurred while sending. Please try again or contact us directly."
   },
   "InstagramPopup": {
     "title": "Follow our news and discover our latest creations!",

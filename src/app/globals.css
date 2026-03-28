@@ -59,7 +59,11 @@ body {
   }
   
   .heading-section {
-    @apply text-[10px] font-black uppercase tracking-[0.6em] text-primary mb-8;
+    @apply text-lg md:text-xl font-black uppercase tracking-[0.6em] text-primary mb-8;
+  }
+
+  .text-label-caps {
+    @apply text-[10px] font-black uppercase tracking-[0.6em] text-primary;
   }
   
   .heading-title {

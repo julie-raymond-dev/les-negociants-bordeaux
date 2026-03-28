@@ -3,72 +3,75 @@
     "title": "LES NÉGOCIANTS"
   },
   "Navigation": {
-    "info": "店舗情報",
-    "story": "私たちの物語",
-    "menu_carte": "アラカルトメニュー",
-    "menu_week": "今週のメニュー",
-    "wine_list": "ワインリスト",
-    "privatization": "貸切について",
-    "find_us": "アクセス",
-    "contact": "お問い合わせ",
-    "reserve": "席を予約する"
+    "info": "Information",
+    "story": "Our Story",
+    "menu_carte": "A La Carte Menu",
+    "menu_week": "Weekly Menu",
+    "wine_list": "Wine List",
+    "privatization": "Privatization",
+    "find_us": "Find Us",
+    "contact": "Contact",
+    "reserve": "Book a table"
   },
   "Info": {
-    "title": "店舗情報",
-    "subtitle1": "旬の食材と地元の恵みを活かした、こだわりの料理をお楽しみください。",
-    "subtitle2": "親しみやすく、美食家の方にもご満足いただけるガストロノミーを目指しています。",
-    "address_label": "住所",
+    "title": "Information",
+    "subtitle1": "Discover our cuisine crafted with seasonal and local products.",
+    "subtitle2": "Our menu is designed to be convivial, gourmet, and gastronomic.",
+    "address_label": "Address",
     "address_value": "3 rue de Guienne, 33000 Bordeaux",
-    "contact_label": "連絡先",
+    "contact_label": "Contact",
     "contact_email": "restaurant@lesnegociants.fr",
     "contact_instagram": "@lesnegociants_bdx",
-    "hours_label": "営業時間",
-    "hours_value": "火曜日〜土曜日営業\n12:00〜13:30 / 19:30〜21:30\n水曜日のランチは休み\n日曜日・月曜日定休"
+    "hours_label": "Opening Hours",
+    "hours_value": "Open Tuesday to Saturday\n12:00 PM to 1:30 PM / 7:30 PM to 9:30 PM\nClosed Wednesday lunch.\nClosed Sunday and Monday."
   },
   "Story": {
-    "title": "私たちの物語",
-    "p1": "ボルドーの歴史的な中心地、大鐘楼（グロス・クロッシュ）の正面、フェルナン・ラファルグ広場からすぐの場所に位置する",
-    "p2": "「Les Négociants（レ・ネゴシアン）」は、レストランへの情熱に溢れるフロリアンとジュリアンの二人の夢が形になった場所です。",
-    "p3": "洗練された雰囲気と心地よさが融合し、テイスティングを楽しむというコンセプトのもと、心躍る美食体験を提供しています。",
-    "p4": "当店では、厳選された新鮮な旬の食材にこだわり、一皿一皿に最高の品質を追求しています。素材本来の味と豊かさを尊重したビストロノミー料理は、舌の肥えたお客様をも魅了することでしょう。",
-    "p5": "250種類もの銘柄を揃えたワインリストは、私たちのワインへの愛と、素晴らしいワインの宝庫をお客様に紹介したいという願いの結晶です。お食事をより一層引き立てる、完璧なマリアージュを提案いたします。",
-    "p6": "Les Négociantsへぜひお越しください。私たちの世界観を心ゆくまでお楽しみください。"
+    "title": "Our Story",
+    "p1": "Located in the historic heart of Bordeaux, facing the Grosse Cloche and a stone's throw from Place Fernand Lafargue,",
+    "p2": "« Les Négociants » is the realization of the dream of two restaurant enthusiasts, Florian and Julien.",
+    "p3": "Our establishment stands out with a concept blending tasting, sophistication, and conviviality, offering a flavorful and most gourmet culinary experience.",
+    "p4": "At « Les Négociants », we make it a point of honor to work with fresh and seasonal products, carefully selected to guarantee exceptional quality in every dish. Our bistronomic cuisine will delight the most demanding palates while respecting the authenticity and richness of the ingredients.",
+    "p5": "Our wine list, meticulously crafted with 250 references, reflects our love for wine and our desire to make you discover viticultural treasures. Each bottle has been chosen to enhance your meal and offer you a perfect pairing.",
+    "p6": "Join us at Les Négociants and let yourself be seduced by our universe."
   },
   "MenuCarte": {
-    "title": "アラカルトメニュー",
-    "subtitle": "（ 火曜日〜土曜日のディナーのみ提供 ）",
-    "description": "シェフのアントワンと副シェフのルイが、新鮮な旬の食材を使ったビストロノミー料理を提供します。素材の質感や変化を愉しむシェフの情熱が詰まった、フランス料理の神髄をご堪能ください。",
-    "starters": "前菜",
-    "mains": "メインディッシュ",
-    "desserts": "デザート"
+    "title": "A LA CARTE MENU",
+    "subtitle": "( Served only in the EVENING from Tuesday to Saturday )",
+    "description": "With our chef Antoine and his assistant Louis, we offer a bistronomic cuisine with fresh and seasonal products. Enjoy French cuisine and the passion of our chef, driven by the pleasure of playing with textures and product variations.",
+    "starters": "STARTERS",
+    "mains": "MAIN COURSES",
+    "desserts": "DESSERTS"
   },
   "MenuWeek": {
-    "title": "今週のメニュー",
-    "date_range": "2026年3月24日〜28日",
-    "subtitle": "（ 火曜日〜土曜日のランチのみ提供 ）",
-    "closed_info": "水曜ランチは定休日です"
+    "title": "OUR WEEKLY MENU",
+    "date_range": "FROM MARCH 24 TO 28, 2026",
+    "subtitle": "( LUNCH only from Tuesday to Saturday )",
+    "closed_info": "Closed Wednesday lunch"
   },
   "Gallery": {
-    "title": "アラカルト料理の紹介",
-    "privatization_info": "ワインセラーに囲まれた没入感のあるサロンは、各種イベントでの貸切も可能です（最大20名様まで）。",
-    "terrace_info": "日当たりの良いテラス席か、涼しい日陰の席か、お好みでお選びいただけます。"
+    "title": "SOME DISHES FROM THE MENU",
+    "privatization_info": "Our lounge in total immersion in the wine cellar can be privatized for any type of event: up to 20 people for privatization",
+    "terrace_info": "Our terrace, shaded or sunny, it's up to you!"
   },
   "FindUs": {
-    "title": "アクセス",
-    "description": "ボルドーの中心部、フェルナン・ラファルグ広場近くの 3 rue de Guienne にございます。「LES NÉGOCIANTS」から美しい大鐘楼の眺めをお楽しみください。"
+    "title": "Find Us",
+    "description": "Find us in the heart of Bordeaux at 3 rue de Guienne, near Place Fernand Lafargue and admire the Grosse Cloche from \" LES NÉGOCIANTS \""
   },
   "Contact": {
-    "title": "お問い合わせ",
-    "description": "ご質問やご提案などはございませんか？皆様からのメッセージをお待ちしております。以下のフォームよりお気軽にご連絡ください。早急に返信させていただきます。",
-    "form_firstname": "名",
-    "form_lastname": "姓",
-    "form_email": "メールアドレス",
-    "form_message": "メッセージ",
-    "form_submit": "送信",
-    "required": "(必須)"
+    "title": "Contact Us",
+    "description": "Do you have questions, suggestions, or comments? We would be delighted to hear from you! Fill out the form below and we will get back to you as soon as possible.",
+    "form_firstname": "First Name",
+    "form_lastname": "Last Name",
+    "form_email": "Email",
+    "form_message": "Message",
+    "form_submit": "Send",
+    "required": "(required)",
+    "sending": "Sending...",
+    "success": "Thank you! Your message has been sent successfully.",
+    "error": "An error occurred while sending. Please try again or contact us directly."
   },
   "InstagramPopup": {
-    "title": "最新ニュースや新作料理をチェック！",
-    "cta": "フォローする"
+    "title": "Follow our news and discover our latest creations!",
+    "cta": "Join us"
   }
 }

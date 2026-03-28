@@ -18,7 +18,7 @@ export default function Story() {
           </div>
           
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-widest text-primary mb-8">
+            <h2 className="heading-section mb-8">
               {t('title')}
             </h2>
             <p className="text-lg leading-relaxed text-foreground/80">{t('p1')}</p>

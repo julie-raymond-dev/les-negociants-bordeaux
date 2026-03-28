@@ -11,6 +11,13 @@ export const siteConfig = {
     googleMapsEmbed: process.env.NEXT_PUBLIC_MAPS_EMBED_URL || "",
   },
   
+  emailjs: {
+    serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+    publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "",
+    receiverEmail: process.env.NEXT_PUBLIC_CONTACT_RECEIVER_EMAIL || "restaurant@lesnegociants.fr",
+  },
+  
   assets: {
     logo: process.env.NEXT_PUBLIC_LOGO_PATH || "/logo-transparent-les-negociants.jpg",
     heroBg: process.env.NEXT_PUBLIC_HERO_IMAGE || "",

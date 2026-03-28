@@ -3,72 +3,75 @@
     "title": "LES NÉGOCIANTS"
   },
   "Navigation": {
-    "info": "Informationen",
-    "story": "Unsere Geschichte",
-    "menu_carte": "Menü à la carte",
-    "menu_week": "Wochenmenü",
-    "wine_list": "Weinkarte",
-    "privatization": "Privatisierung",
-    "find_us": "Anfahrt",
-    "contact": "Kontakt",
-    "reserve": "Einen Tisch reservieren"
+    "info": "Information",
+    "story": "Our Story",
+    "menu_carte": "A La Carte Menu",
+    "menu_week": "Weekly Menu",
+    "wine_list": "Wine List",
+    "privatization": "Privatization",
+    "find_us": "Find Us",
+    "contact": "Contact",
+    "reserve": "Book a table"
   },
   "Info": {
-    "title": "Informationen",
-    "subtitle1": "Entdecken Sie unsere Küche, die mit saisonalen und lokalen Produkten zubereitet wird.",
-    "subtitle2": "Unsere Karte ist auf Geselligkeit, Genuss und Gastronomie ausgelegt.",
-    "address_label": "Adresse",
+    "title": "Information",
+    "subtitle1": "Discover our cuisine crafted with seasonal and local products.",
+    "subtitle2": "Our menu is designed to be convivial, gourmet, and gastronomic.",
+    "address_label": "Address",
     "address_value": "3 rue de Guienne, 33000 Bordeaux",
-    "contact_label": "Kontakt",
+    "contact_label": "Contact",
     "contact_email": "restaurant@lesnegociants.fr",
     "contact_instagram": "@lesnegociants_bdx",
-    "hours_label": "Öffnungszeiten",
-    "hours_value": "Geöffnet von Dienstag bis Samstag\n12:00 bis 13:30 / 19:30 bis 21:30\nMittwochmittag geschlossen.\nSonntag und Montag geschlossen."
+    "hours_label": "Opening Hours",
+    "hours_value": "Open Tuesday to Saturday\n12:00 PM to 1:30 PM / 7:30 PM to 9:30 PM\nClosed Wednesday lunch.\nClosed Sunday and Monday."
   },
   "Story": {
-    "title": "Unsere Geschichte",
-    "p1": "Im historischen Herzen von Bordeaux gelegen, gegenüber der Grosse Cloche und nur wenige Schritte vom Place Fernand Lafargue entfernt,",
-    "p2": "ist « Les Négociants » die Verwirklichung des Traums zweier Gastronomie-Liebhaber, Florian und Julien.",
-    "p3": "Unser Haus zeichnet sich durch ein Konzept aus, das Verkostung, Raffinesse und Geselligkeit verbindet und ein schmackhaftes und höchst genussvolles kulinarisches Erlebnis bietet.",
-    "p4": "Bei « Les Négociants » legen wir grossen Wert darauf, mit frischen und saisonalen Produkten zu arbeiten, die sorgfältig ausgewählt wurden, um bei jedem Gericht eine aussergewöhnliche Qualität zu garantieren. Unsere bistronomische Küche wird selbst die anspruchsvollsten Gaumen verwöhnen und dabei die Authentizität und den Reichtum der Zutaten respektieren.",
-    "p5": "Unsere Weinkarte, die mit 250 Referenzen sorgfältig zusammengestellt wurde, spiegelt unsere Liebe zum Wein und unseren Wunsch wider, Sie Weinreichtümer entdecken zu lassen. Jede Flasche wurde ausgewählt, um Ihre Mahlzeit zu veredeln und Ihnen eine perfekte Begleitung zu bieten.",
-    "p6": "Besuchen Sie uns bei Les Négociants und lassen Sie sich von unserer Welt verzaubern."
+    "title": "Our Story",
+    "p1": "Located in the historic heart of Bordeaux, facing the Grosse Cloche and a stone's throw from Place Fernand Lafargue,",
+    "p2": "« Les Négociants » is the realization of the dream of two restaurant enthusiasts, Florian and Julien.",
+    "p3": "Our establishment stands out with a concept blending tasting, sophistication, and conviviality, offering a flavorful and most gourmet culinary experience.",
+    "p4": "At « Les Négociants », we make it a point of honor to work with fresh and seasonal products, carefully selected to guarantee exceptional quality in every dish. Our bistronomic cuisine will delight the most demanding palates while respecting the authenticity and richness of the ingredients.",
+    "p5": "Our wine list, meticulously crafted with 250 references, reflects our love for wine and our desire to make you discover viticultural treasures. Each bottle has been chosen to enhance your meal and offer you a perfect pairing.",
+    "p6": "Join us at Les Négociants and let yourself be seduced by our universe."
   },
   "MenuCarte": {
-    "title": "MENÜ À LA CARTE",
-    "subtitle": "( Nur ABENDS von Dienstag bis Samstag serviert )",
-    "description": "Zusammen mit unserem Küchenchef Antoine und seinem Stellvertreter Louis bieten wir Ihnen eine bistronomische Küche mit frischen und saisonalen Produkten. Geniessen Sie die französische Küche und die Leidenschaft unseres Chefs, die von der Freude am Spiel mit Texturen und Produktvariationen angetrieben wird.",
-    "starters": "VORSPEISEN",
-    "mains": "HAUPTGÄNGE",
+    "title": "A LA CARTE MENU",
+    "subtitle": "( Served only in the EVENING from Tuesday to Saturday )",
+    "description": "With our chef Antoine and his assistant Louis, we offer a bistronomic cuisine with fresh and seasonal products. Enjoy French cuisine and the passion of our chef, driven by the pleasure of playing with textures and product variations.",
+    "starters": "STARTERS",
+    "mains": "MAIN COURSES",
     "desserts": "DESSERTS"
   },
   "MenuWeek": {
-    "title": "UNSER WOCHENMENÜ",
-    "date_range": "VOM 24. BIS 28. MÄRZ 2026",
-    "subtitle": "( Nur MITTAGS von Dienstag bis Samstag )",
-    "closed_info": "Mittwochmittag geschlossen"
+    "title": "OUR WEEKLY MENU",
+    "date_range": "FROM MARCH 24 TO 28, 2026",
+    "subtitle": "( LUNCH only from Tuesday to Saturday )",
+    "closed_info": "Closed Wednesday lunch"
   },
   "Gallery": {
-    "title": "EINIGE GERICHTE VON DER KARTE",
-    "privatization_info": "Unser Salon, der ganz in den Weinkeller eintaucht, kann für jede Art von Veranstaltung privatisiert werden: bis zu 20 Personen für eine Privatisierung",
-    "terrace_info": "Unsere Terrasse, schattig oder sonnig, Sie haben die Wahl!"
+    "title": "SOME DISHES FROM THE MENU",
+    "privatization_info": "Our lounge in total immersion in the wine cellar can be privatized for any type of event: up to 20 people for privatization",
+    "terrace_info": "Our terrace, shaded or sunny, it's up to you!"
   },
   "FindUs": {
-    "title": "Anfahrt",
-    "description": "Sie finden uns im Herzen von Bordeaux in der 3 rue de Guienne, in der Nähe des Place Fernand Lafargue. Bewundern Sie die Grosse Cloche von \" LES NÉGOCIANTS \" aus."
+    "title": "Find Us",
+    "description": "Find us in the heart of Bordeaux at 3 rue de Guienne, near Place Fernand Lafargue and admire the Grosse Cloche from \" LES NÉGOCIANTS \""
   },
   "Contact": {
-    "title": "Kontaktieren Sie uns",
-    "description": "Haben Sie Fragen, Anregungen oder Kommentare? Wir freuen uns, von Ihnen zu hören! Füllen Sie das untenstehende Formular aus und wir werden Ihnen so schnell wie möglich antworten.",
-    "form_firstname": "Vorname",
-    "form_lastname": "Nachname",
-    "form_email": "E-Mail",
-    "form_message": "Nachricht",
-    "form_submit": "Absenden",
-    "required": "(erforderlich)"
+    "title": "Contact Us",
+    "description": "Do you have questions, suggestions, or comments? We would be delighted to hear from you! Fill out the form below and we will get back to you as soon as possible.",
+    "form_firstname": "First Name",
+    "form_lastname": "Last Name",
+    "form_email": "Email",
+    "form_message": "Message",
+    "form_submit": "Send",
+    "required": "(required)",
+    "sending": "Sending...",
+    "success": "Thank you! Your message has been sent successfully.",
+    "error": "An error occurred while sending. Please try again or contact us directly."
   },
   "InstagramPopup": {
-    "title": "Folgen Sie unseren Neuigkeiten und entdecken Sie unsere neuesten Kreationen!",
-    "cta": "Besuchen Sie uns"
+    "title": "Follow our news and discover our latest creations!",
+    "cta": "Join us"
   }
 }

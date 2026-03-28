@@ -14,12 +14,12 @@ export default function Gallery() {
 
   return (
     <section className="py-20 bg-background transition-colors duration-300">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center uppercase tracking-widest text-primary mb-16">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="heading-section mb-16">
           {t('title')}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
           {images.map((img, i) => (
             <div key={i} className="group relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800">
               <img 

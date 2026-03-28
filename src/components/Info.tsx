@@ -15,7 +15,7 @@ const InfoItem = ({ icon: Icon, label, children }: InfoItemProps) => (
   <motion.div variants={fadeUp} className="space-y-6">
     <div className="flex items-center gap-4 text-primary">
       <Icon size={20} />
-      <span className="heading-section mb-0">{label}</span>
+      <span className="text-label-caps">{label}</span>
     </div>
     <div className="text-xl font-bold leading-snug">
       {children}
@@ -32,7 +32,7 @@ export default function Info() {
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <div className="text-center mb-24">
-              <h2 className="heading-section">{t('title')}</h2>
+              <h2 className="heading-section mb-6">{t('title')}</h2>
               <p className="heading-title mb-8">{t('subtitle1')}</p>
               <p className="text-lg text-foreground/60 italic max-w-2xl mx-auto font-light">
                 "{t('subtitle2')}"
