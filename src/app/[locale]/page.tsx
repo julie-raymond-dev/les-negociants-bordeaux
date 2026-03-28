@@ -9,6 +9,7 @@ import FindUs from '@/components/FindUs';
 import Contact from '@/components/Contact';
 import TheForkReservation from '@/components/TheForkReservation';
 import FloatingActions from '@/components/FloatingActions';
+import { Github, Globe } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -25,11 +26,32 @@ export default function HomePage() {
       <TheForkReservation />
       <FloatingActions />
       
-      <footer className="py-10 bg-dark text-white text-center border-t border-gray-800">
-        <div className="container mx-auto px-4">
-          <p className="text-sm uppercase tracking-widest text-gray-500">
-            © {new Date().getFullYear()} LES NÉGOCIANTS - Restaurant Bordeaux
+      <footer className="py-12 bg-background text-foreground text-center border-t border-border">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
+            © {new Date().getFullYear()} LES NÉGOCIANTS — Restaurant Bordeaux
           </p>
+          
+          <div className="flex items-center gap-8">
+            <a 
+              href={process.env.NEXT_PUBLIC_GITHUB_URL} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 hover:text-primary transition-all group"
+            >
+              <Github size={14} className="group-hover:scale-110 transition-transform" />
+              <span>julie-raymond-dev</span>
+            </a>
+            <a 
+              href={process.env.NEXT_PUBLIC_PORTFOLIO_URL} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 hover:text-primary transition-all group"
+            >
+              <Globe size={14} className="group-hover:scale-110 transition-transform" />
+              <span>Pichaud Studio</span>
+            </a>
+          </div>
         </div>
       </footer>
     </main>

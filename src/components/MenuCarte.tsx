@@ -58,7 +58,7 @@ export default function MenuCarte() {
   ];
 
   return (
-    <section id="menu-carte" className="py-section bg-muted transition-colors duration-500">
+    <section id="menu-carte" className="py-section bg-muted">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal>

@@ -4,7 +4,7 @@ import {useTranslations, useLocale} from 'next-intl';
 import {Link, usePathname, useRouter, routing} from '@/i18n/routing';
 import {useState, useEffect} from 'react';
 import { useTheme } from 'next-themes';
-import { Lightbulb, Menu, X, ChevronDown } from 'lucide-react';
+import { Lightbulb, Menu, X, ChevronDown, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReservation } from '@/context/ReservationContext';
 import Image from 'next/image';
@@ -88,6 +88,15 @@ export default function Header() {
           <div className={`h-6 w-px mx-2 ${isLight ? 'bg-black/10' : 'bg-white/20'}`}></div>
 
           <div className="flex items-center gap-6">
+            {/* Admin Access */}
+            <Link
+              href="/login"
+              className="p-3 rounded-full hover:bg-foreground/5 transition-colors group"
+              aria-label="Admin access"
+            >
+              <ShieldCheck size={24} className="text-primary transition-transform group-hover:scale-110" />
+            </Link>
+
             {/* Theme Switcher */}
             <button
               onClick={() => setTheme(isLight ? 'dark' : 'light')}

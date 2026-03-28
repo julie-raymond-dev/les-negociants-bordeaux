@@ -58,18 +58,26 @@ export default function MenuWeek() {
             ))}
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-20 flex items-center gap-8"
-          >
+          <div className="mt-20 flex flex-wrap items-center gap-12 border-t border-white/10 pt-12">
             <div className="flex flex-col">
               <span className="text-5xl font-black tracking-tighter">24€</span>
               <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Formule Complète</span>
             </div>
-            <div className="h-px flex-1 bg-white/10"></div>
-          </motion.div>
+            
+            <div className="hidden md:block h-12 w-px bg-white/10"></div>
+            
+            <div className="flex flex-col">
+              <span className="text-5xl font-black tracking-tighter">19€</span>
+              <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Entrée + Plat</span>
+            </div>
+
+            <div className="hidden md:block h-12 w-px bg-white/10"></div>
+
+            <div className="flex flex-col">
+              <span className="text-5xl font-black tracking-tighter">19€</span>
+              <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Plat + Dessert</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
