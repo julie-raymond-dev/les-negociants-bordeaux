@@ -2,82 +2,90 @@
 
 import {useTranslations} from 'next-intl';
 import { motion } from 'framer-motion';
+import { Reveal, staggerContainer, fadeUp } from './Motion';
 
 export default function MenuWeek() {
   const t = useTranslations('MenuWeek');
 
   const menu = [
-    { type: "Entrée", name: "Velouté de potimarron, graines de courge et huile de truffe" },
-    { type: "Plat", name: "Filet de lieu noir, écrasé de pommes de terre à l'aneth, sauce vierge" },
-    { type: "Dessert", name: "Tartelette aux noix du Périgord, caramel beurre salé" }
+    { type: "Entrée", name: "Velouté de potimarron", description: "Graines de courge et huile de truffe" },
+    { type: "Plat", name: "Filet de lieu noir", description: "Écrasé de pommes de terre à l'aneth, sauce vierge" },
+    { type: "Dessert", name: "Tartelette aux noix", description: "Caramel beurre salé" }
   ];
 
   return (
-    <section id="menu-semaine" className="py-32 bg-primary text-white overflow-hidden relative">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-white/[0.03] skew-x-12 translate-x-20"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="menu-semaine" className="py-section bg-muted">
+      <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
-            <div className="text-left">
-              <h2 className="heading-section text-white/80 !mb-6">
-                {t('title')}
-              </h2>
-              <p className="text-2xl md:text-4xl font-black tracking-tighter leading-none uppercase">
+          
+          {/* Header simple et centré */}
+          <Reveal>
+            <div className="text-center mb-16">
+              <h2 className="heading-section mb-4">{t('title')}</h2>
+              <p className="text-xl md:text-2xl font-bold uppercase tracking-widest mb-4">
                 {t('date_range')}
               </p>
-            </div>
-            <div className="text-right flex flex-col items-end">
-              <p className="text-[10px] font-black uppercase tracking-widest bg-white text-primary px-4 py-2 rounded-full mb-4">
-                {t('subtitle')}
-              </p>
-              <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">
-                {t('closed_info')}
+              <p className="text-sm uppercase tracking-widest text-foreground/50">
+                {t('subtitle')} — {t('closed_info')}
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="space-y-1">
+          {/* Liste des plats épurée */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="space-y-8 mb-16"
+          >
             {menu.map((item, i) => (
               <motion.div 
-                key={i}
-                initial={{ x: -50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-12 py-10 border-b border-white/10 last:border-0"
+                key={i} 
+                variants={fadeUp} 
+                className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-border pb-8 last:border-0"
               >
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 w-24">
-                  {item.type}
-                </span>
-                <p className="text-2xl md:text-4xl font-bold tracking-tight group-hover:translate-x-4 transition-transform duration-500">
-                  {item.name}
-                </p>
+                <div className="md:w-32 shrink-0">
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">
+                    {item.type}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-foreground/60 italic">
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-20 flex flex-wrap items-center gap-12 border-t border-white/10 pt-12">
-            <div className="flex flex-col">
-              <span className="text-5xl font-black tracking-tighter">24€</span>
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Formule Complète</span>
-            </div>
-            
-            <div className="hidden md:block h-12 w-px bg-white/10"></div>
-            
-            <div className="flex flex-col">
-              <span className="text-5xl font-black tracking-tighter">19€</span>
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Entrée + Plat</span>
-            </div>
+          {/* Prix simples et clairs */}
+          <Reveal>
+            <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-border">
+              <div className="text-center">
+                <span className="text-3xl font-black block mb-1">24€</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Formule Complète</span>
+              </div>
+              
+              <div className="hidden md:block w-px bg-border"></div>
+              
+              <div className="text-center">
+                <span className="text-2xl font-black block mb-1 mt-1">19€</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Entrée + Plat</span>
+              </div>
 
-            <div className="hidden md:block h-12 w-px bg-white/10"></div>
+              <div className="hidden md:block w-px bg-border"></div>
 
-            <div className="flex flex-col">
-              <span className="text-5xl font-black tracking-tighter">19€</span>
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Plat + Dessert</span>
+              <div className="text-center">
+                <span className="text-2xl font-black block mb-1 mt-1">19€</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Plat + Dessert</span>
+              </div>
             </div>
-          </div>
+          </Reveal>
+
         </div>
       </div>
     </section>

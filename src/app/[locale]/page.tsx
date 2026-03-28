@@ -9,6 +9,7 @@ import FindUs from '@/components/FindUs';
 import Contact from '@/components/Contact';
 import TheForkReservation from '@/components/TheForkReservation';
 import FloatingActions from '@/components/FloatingActions';
+import SectionSeparator from '@/components/SectionSeparator';
 import { Github, Globe } from 'lucide-react';
 
 export default function HomePage() {
@@ -16,12 +17,19 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <SectionSeparator />
       <Info />
+      <SectionSeparator />
       <Story />
+      <SectionSeparator />
       <MenuCarte />
+      <SectionSeparator />
       <MenuWeek />
+      <SectionSeparator />
       <Gallery />
+      <SectionSeparator />
       <FindUs />
+      <SectionSeparator />
       <Contact />
       <TheForkReservation />
       <FloatingActions />

@@ -66,9 +66,6 @@ export default function Header() {
               priority
             />
           </div>
-          <span className="text-2xl md:text-3xl font-black tracking-[0.3em] text-primary transition-transform group-hover:scale-105 hidden lg:block">
-            LES NÉGOCIANTS
-          </span>
         </Link>
 
         {/* Desktop Nav */}
