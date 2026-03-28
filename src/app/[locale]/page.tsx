@@ -8,6 +8,7 @@ import Gallery from '@/components/Gallery';
 import FindUs from '@/components/FindUs';
 import Contact from '@/components/Contact';
 import TheForkReservation from '@/components/TheForkReservation';
+import FloatingActions from '@/components/FloatingActions';
 
 export default function HomePage() {
   return (
@@ -22,7 +23,8 @@ export default function HomePage() {
       <FindUs />
       <Contact />
       <TheForkReservation />
-
+      <FloatingActions />
+      
       <footer className="py-10 bg-dark text-white text-center border-t border-gray-800">
         <div className="container mx-auto px-4">
           <p className="text-sm uppercase tracking-widest text-gray-500">

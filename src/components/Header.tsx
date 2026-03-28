@@ -45,14 +45,11 @@ export default function Header() {
     { name: t('contact'), href: '#contact' },
   ];
 
-  // Logic: 
-  // In LIGHT mode: Header is ALWAYS WHITE with BLACK text/logo.
-  // In DARK mode: Header is ALWAYS TRANSPARENT (or semi-transp) with WHITE text/logo.
   const isLight = theme === 'light';
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-6 ${
+      className={`fixed top-0 left-0 right-0 z-50 py-6 ${
         isLight 
           ? 'bg-white shadow-md text-black' 
           : 'bg-black/20 backdrop-blur-sm text-white'
@@ -60,7 +57,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-6 group">
-          <div className={`relative w-20 h-20 md:w-28 md:h-28 transition-all duration-500 ${isLight ? 'invert' : ''}`}>
+          <div className={`relative w-24 h-24 md:w-32 md:h-32 ${isLight ? 'invert' : ''}`}>
             <Image 
               src="/logo-transparent-les-negociants.jpg" 
               alt="Logo Les Négociants" 
@@ -76,7 +73,7 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden xl:flex items-center gap-10">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-8 text-current">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -88,7 +85,7 @@ export default function Header() {
             ))}
           </div>
           
-          <div className={`h-6 w-px mx-2 transition-colors duration-500 ${isLight ? 'bg-black/10' : 'bg-white/20'}`}></div>
+          <div className={`h-6 w-px mx-2 ${isLight ? 'bg-black/10' : 'bg-white/20'}`}></div>
 
           <div className="flex items-center gap-6">
             {/* Theme Switcher */}
@@ -120,13 +117,6 @@ export default function Header() {
                 ))}
               </div>
             </div>
-
-            <button 
-              onClick={openModal}
-              className="bg-primary text-white text-xs font-black uppercase tracking-[0.3em] px-10 py-4 rounded-full hover:bg-black hover:text-white border-2 border-primary transition-all duration-500 shadow-xl hover:shadow-primary/20 active:scale-95"
-            >
-              {t('reserve')}
-            </button>
           </div>
         </nav>
 
@@ -140,7 +130,7 @@ export default function Header() {
           </button>
           
           <button
-            className="p-2 transition-transform active:scale-90"
+            className="p-2 text-current"
             onClick={() => setIsMenuOpen(true)}
           >
             <Menu size={36} />
@@ -199,12 +189,6 @@ export default function Header() {
                   </button>
                 ))}
               </div>
-              <button 
-                onClick={() => { openModal(); setIsMenuOpen(false); }}
-                className="w-full bg-primary text-white font-black uppercase tracking-[0.3em] py-6 rounded-2xl shadow-2xl shadow-primary/20 active:scale-[0.98] transition-transform"
-              >
-                {t('reserve')}
-              </button>
             </div>
           </motion.div>
         )}

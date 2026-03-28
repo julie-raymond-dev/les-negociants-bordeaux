@@ -6,8 +6,6 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   const t = useTranslations('Hero');
-  const nt = useTranslations('Navigation');
-  const { openModal } = useReservation();
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
@@ -22,7 +20,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
       </motion.div>
 
-      <div className="relative z-10 text-center px-4">
+      {/* Added pt-24 to move content down */}
+      <div className="relative z-10 text-center px-4 pt-32">
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -36,15 +35,9 @@ export default function Hero() {
           </h1>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <button 
-              onClick={openModal}
-              className="bg-primary text-white text-[10px] font-black uppercase tracking-[0.3em] px-12 py-5 rounded-full hover:bg-white hover:text-primary transition-all duration-500 shadow-2xl hover:scale-105 active:scale-95"
-            >
-              {nt('reserve')}
-            </button>
             <a 
               href="#informations"
-              className="text-white/80 hover:text-white text-[10px] font-black uppercase tracking-[0.3em] px-8 py-5 border border-white/20 rounded-full backdrop-blur-sm transition-all hover:bg-white/10"
+              className="text-white hover:text-primary text-[10px] font-black uppercase tracking-[0.3em] px-12 py-5 border-2 border-white hover:border-primary rounded-full backdrop-blur-sm transition-all duration-300"
             >
               Découvrir
             </a>
