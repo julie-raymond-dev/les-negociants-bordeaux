@@ -53,7 +53,7 @@ export default function MenuWeek() {
               <div className="text-center md:text-left flex-1">
                 <h2 className="heading-section mb-4">{t('title')}</h2>
                 <p className="text-xl md:text-2xl font-bold uppercase tracking-widest mb-4">
-                  {data?.date_range || t('date_range')}
+                  {(!data?.date_range || data?.date_range === 'À VENIR') ? t('coming_soon') : data.date_range}
                 </p>
                 <p className="text-sm uppercase tracking-widest text-foreground/50">
                   {t('subtitle')} — {t('closed_info')}
@@ -71,8 +71,8 @@ export default function MenuWeek() {
                     <FileText size={28} />
                   </div>
                   <div className="flex flex-col items-start text-left">
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 text-foreground">Consulter le</span>
-                    <span className="text-lg font-black uppercase tracking-tighter text-foreground">Menu Semaine PDF</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 text-foreground">{t('pdf_label')}</span>
+                    <span className="text-lg font-black uppercase tracking-tighter text-foreground">{t('pdf_button')}</span>
                   </div>
                 </a>
               </div>
@@ -115,21 +115,21 @@ export default function MenuWeek() {
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-border">
               <div className="text-center">
                 <span className="text-3xl font-black block mb-1">{data?.price_full || '24'}€</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Formule Complète</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">{t('formula_full')}</span>
               </div>
               
               <div className="hidden md:block w-px bg-border"></div>
               
               <div className="text-center">
                 <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half || '19'}€</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Entrée + Plat</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">{t('formula_starter_main')}</span>
               </div>
 
               <div className="hidden md:block w-px bg-border"></div>
 
               <div className="text-center">
                 <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half || '19'}€</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Plat + Dessert</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">{t('formula_main_dessert')}</span>
               </div>
             </div>
           </Reveal>

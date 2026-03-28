@@ -1,77 +1,87 @@
 {
   "Hero": {
-    "title": "LES NÉGOCIANTS"
+    "title": "LES NÉGOCIANTS",
+    "discover": "探索我们的世界"
   },
   "Navigation": {
-    "info": "Information",
-    "story": "Our Story",
-    "menu_carte": "A La Carte Menu",
-    "menu_week": "Weekly Menu",
-    "wine_list": "Wine List",
-    "privatization": "Privatization",
-    "find_us": "Find Us",
-    "contact": "Contact",
-    "reserve": "Book a table"
+    "info": "餐厅资讯",
+    "story": "品牌故事",
+    "menu_carte": "单点菜单",
+    "menu_week": "每周套餐",
+    "wine_list": "酒单",
+    "privatization": "私人包场",
+    "find_us": "交通指南",
+    "contact": "联系我们",
+    "reserve": "立即预约"
   },
   "Info": {
-    "title": "Information",
-    "subtitle1": "Discover our cuisine crafted with seasonal and local products.",
-    "subtitle2": "Our menu is designed to be convivial, gourmet, and gastronomic.",
-    "address_label": "Address",
+    "title": "餐厅资讯",
+    "subtitle1": "探索我们以当地时令食材为核心精心打造的佳肴。",
+    "subtitle2": "我们的菜单旨在为您营造一个亲切、精致且充满美食艺术的餐饮空间。",
+    "address_label": "地址",
     "address_value": "3 rue de Guienne, 33000 Bordeaux",
-    "contact_label": "Contact",
+    "contact_label": "联系方式",
     "contact_email": "restaurant@lesnegociants.fr",
     "contact_instagram": "@lesnegociants_bdx",
-    "hours_label": "Opening Hours",
-    "hours_value": "Open Tuesday to Saturday\n12:00 PM to 1:30 PM / 7:30 PM to 9:30 PM\nClosed Wednesday lunch.\nClosed Sunday and Monday."
+    "hours_label": "营业时间",
+    "hours_value": "周二至周六营业\n午餐 12:00 - 13:30 / 晚餐 19:30 - 21:30\n周三午间休息\n周日及周一不营业"
   },
   "Story": {
-    "title": "Our Story",
-    "p1": "Located in the historic heart of Bordeaux, facing the Grosse Cloche and a stone's throw from Place Fernand Lafargue,",
-    "p2": "« Les Négociants » is the realization of the dream of two restaurant enthusiasts, Florian and Julien.",
-    "p3": "Our establishment stands out with a concept blending tasting, sophistication, and conviviality, offering a flavorful and most gourmet culinary experience.",
-    "p4": "At « Les Négociants », we make it a point of honor to work with fresh and seasonal products, carefully selected to guarantee exceptional quality in every dish. Our bistronomic cuisine will delight the most demanding palates while respecting the authenticity and richness of the ingredients.",
-    "p5": "Our wine list, meticulously crafted with 250 references, reflects our love for wine and our desire to make you discover viticultural treasures. Each bottle has been chosen to enhance your meal and offer you a perfect pairing.",
-    "p6": "Join us at Les Négociants and let yourself be seduced by our universe."
+    "title": "品牌故事",
+    "p1": "餐厅坐落于波尔多历史核心区，正对著名的大钟门 (Grosse Cloche)，距 Fernand Lafargue 广场仅几步之遥。",
+    "p2": "“Les Négociants”是两位餐饮爱好者 Florian 和 Julien 共同实现的梦想。",
+    "p3": "我们的餐厅以融合品鉴、典雅与亲和力的独特理念而闻名，旨在为您提供美味且极具品味的感官体验。",
+    "p4": "在 “Les Négociants”，我们坚持选用精心挑选的新鲜时令食材，以确保每一道菜品的卓越品质。我们的主理厨师以尊重食材本味为前提，通过精湛的现代法式厨艺，满足每一位饕客挑剔的味蕾。",
+    "p5": "我们精心编制的酒单包含 250 款精选佳酿，体现了我们对葡萄酒的热爱，以及与您分享产区珍宝的愿望。每一瓶酒都经过严格筛选，旨在升华您的用餐体验，实现完美的餐酒搭配。",
+    "p6": "诚邀您莅临 Les Négociants，沉浸在我们的美食世界中。"
   },
   "MenuCarte": {
-    "title": "A LA CARTE MENU",
-    "subtitle": "( Served only in the EVENING from Tuesday to Saturday )",
-    "description": "With our chef Antoine and his assistant Louis, we offer a bistronomic cuisine with fresh and seasonal products. Enjoy French cuisine and the passion of our chef, driven by the pleasure of playing with textures and product variations.",
-    "starters": "STARTERS",
-    "mains": "MAIN COURSES",
-    "desserts": "DESSERTS"
+    "title": "单点菜单",
+    "subtitle": "（ 仅限周二至周六晚间供应 ）",
+    "description": "主厨 Antoine 及其副手 Louis 为您呈献以新鲜时令食材打造的高级小馆料理 (Bistronomy)。在这里，您可以品味到地道的法式餐饮文化，以及主厨对食材纹理与层次变化的无限热情。",
+    "starters": "前菜",
+    "mains": "主菜",
+    "desserts": "甜点",
+    "pdf_label": "查看",
+    "pdf_button": "单点菜单 (PDF)"
   },
   "MenuWeek": {
-    "title": "OUR WEEKLY MENU",
-    "date_range": "FROM MARCH 24 TO 28, 2026",
-    "subtitle": "( LUNCH only from Tuesday to Saturday )",
-    "closed_info": "Closed Wednesday lunch"
+    "title": "每周午间套餐",
+    "date_range": "2026 年 3 月 24 日至 28 日",
+    "subtitle": "（ 仅限周二至周六午间供应 ）",
+    "closed_info": "周三午间不营业",
+    "coming_soon": "敬请期待",
+    "formula_full": "完整套餐",
+    "formula_starter_main": "前菜 + 主菜",
+    "formula_main_dessert": "主菜 + 甜点",
+    "pdf_label": "查看",
+    "pdf_button": "每周套餐 (PDF)"
   },
   "Gallery": {
-    "title": "SOME DISHES FROM THE MENU",
-    "privatization_info": "Our lounge in total immersion in the wine cellar can be privatized for any type of event: up to 20 people for privatization",
-    "terrace_info": "Our terrace, shaded or sunny, it's up to you!"
+    "title": "经典菜品赏析",
+    "swipe_instruction": "滑动以探索我们的菜品",
+    "privatization_info": "我们的酒窖沉浸式用餐空间可供私人包场，举办各类活动：最高可容纳 20 人。",
+    "terrace_info": "您可以自由选择在阳光充足或阴凉舒适的露台用餐！"
   },
   "FindUs": {
-    "title": "Find Us",
-    "description": "Find us in the heart of Bordeaux at 3 rue de Guienne, near Place Fernand Lafargue and admire the Grosse Cloche from \" LES NÉGOCIANTS \""
+    "title": "交通指南",
+    "description": "餐厅位于波尔多市中心 3 rue de Guienne，邻近 Fernand Lafargue 广场。欢迎莅临 “LES NÉGOCIANTS”，在用餐之余欣赏大钟门的迷人风采。"
   },
   "Contact": {
-    "title": "Contact Us",
-    "description": "Do you have questions, suggestions, or comments? We would be delighted to hear from you! Fill out the form below and we will get back to you as soon as possible.",
-    "form_firstname": "First Name",
-    "form_lastname": "Last Name",
-    "form_email": "Email",
-    "form_message": "Message",
-    "form_submit": "Send",
-    "required": "(required)",
-    "sending": "Sending...",
-    "success": "Thank you! Your message has been sent successfully.",
-    "error": "An error occurred while sending. Please try again or contact us directly."
+    "title": "联系我们",
+    "description": "如果您有任何疑问、建议或反馈，欢迎通过下方表格与我们联系，我们将尽快为您回复。",
+    "form_firstname": "名字",
+    "form_lastname": "姓氏",
+    "form_email": "电子邮箱",
+    "form_message": "留言内容",
+    "form_submit": "提交",
+    "required": "(必填项)",
+    "sending": "正在发送...",
+    "success": "感谢！您的信息已成功发送。",
+    "error": "发送过程中出错。请稍后重试或直接通过其他方式联系我们。"
   },
   "InstagramPopup": {
-    "title": "Follow our news and discover our latest creations!",
-    "cta": "Join us"
+    "title": "关注我们的最新动态，探索更多创意之作！",
+    "cta": "立即关注"
   }
 }

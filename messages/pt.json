@@ -1,77 +1,87 @@
 {
   "Hero": {
-    "title": "LES NÉGOCIANTS"
+    "title": "LES NÉGOCIANTS",
+    "discover": "Descubra o nosso universo"
   },
   "Navigation": {
-    "info": "Information",
-    "story": "Our Story",
-    "menu_carte": "A La Carte Menu",
-    "menu_week": "Weekly Menu",
-    "wine_list": "Wine List",
-    "privatization": "Privatization",
-    "find_us": "Find Us",
-    "contact": "Contact",
-    "reserve": "Book a table"
+    "info": "Informações",
+    "story": "A Nossa História",
+    "menu_carte": "Menu à la carte",
+    "menu_week": "Menu da semana",
+    "wine_list": "Carta de vinhos",
+    "privatization": "Privatização",
+    "find_us": "Onde estamos",
+    "contact": "Contacto",
+    "reserve": "Reservar uma mesa"
   },
   "Info": {
-    "title": "Information",
-    "subtitle1": "Discover our cuisine crafted with seasonal and local products.",
-    "subtitle2": "Our menu is designed to be convivial, gourmet, and gastronomic.",
-    "address_label": "Address",
-    "address_value": "3 rue de Guienne, 33000 Bordeaux",
-    "contact_label": "Contact",
+    "title": "Informações",
+    "subtitle1": "Descubra a nossa cozinha elaborada com produtos sazonais e locais.",
+    "subtitle2": "O nosso menu foi concebido para ser de convívio, gourmet e gastronómico.",
+    "address_label": "Morada",
+    "address_value": "3 rue de Guienne, 33000 Bordéus",
+    "contact_label": "Contacto",
     "contact_email": "restaurant@lesnegociants.fr",
     "contact_instagram": "@lesnegociants_bdx",
-    "hours_label": "Opening Hours",
-    "hours_value": "Open Tuesday to Saturday\n12:00 PM to 1:30 PM / 7:30 PM to 9:30 PM\nClosed Wednesday lunch.\nClosed Sunday and Monday."
+    "hours_label": "Horário",
+    "hours_value": "Aberto de terça-feira a sábado\n12h00 às 13h30 / 19h30 às 21h30\nfechado à quarta-feira ao almoço.\nFechado domingo e segunda-feira."
   },
   "Story": {
-    "title": "Our Story",
-    "p1": "Located in the historic heart of Bordeaux, facing the Grosse Cloche and a stone's throw from Place Fernand Lafargue,",
-    "p2": "« Les Négociants » is the realization of the dream of two restaurant enthusiasts, Florian and Julien.",
-    "p3": "Our establishment stands out with a concept blending tasting, sophistication, and conviviality, offering a flavorful and most gourmet culinary experience.",
-    "p4": "At « Les Négociants », we make it a point of honor to work with fresh and seasonal products, carefully selected to guarantee exceptional quality in every dish. Our bistronomic cuisine will delight the most demanding palates while respecting the authenticity and richness of the ingredients.",
-    "p5": "Our wine list, meticulously crafted with 250 references, reflects our love for wine and our desire to make you discover viticultural treasures. Each bottle has been chosen to enhance your meal and offer you a perfect pairing.",
-    "p6": "Join us at Les Négociants and let yourself be seduced by our universe."
+    "title": "A Nossa História",
+    "p1": "Localizado no coração histórico de Bordéus, frente à Grosse Cloche e a dois passos da Place Fernand Lafargue,",
+    "p2": "« Les Négociants » é a concretização do sonho de dois apaixonados pela restauração, Florian e Julien.",
+    "p3": "O nosso estabelecimento distingue-se por um conceito que alia degustação, sofisticação e convívio, oferecendo uma experiência culinária saborosa e requintada.",
+    "p4": "No « Les Négociants », fazemos questão de trabalhar com produtos frescos e sazonais, cuidadosamente selecionados para garantir uma qualidade excecional em cada prato. A nossa cozinha bistronómica deliciará os paladares mais exigentes, respeitando a autenticidade e a riqueza dos ingredientes.",
+    "p5": "A nossa carta de vinhos, minuciosamente elaborada com 250 referências, reflete o nosso amor pelo vinho e o nosso desejo de lhe dar a descobrir tesouros vitivinícolas. Cada garrafa foi escolhida para sublimar a sua refeição e oferecer-lhe uma harmonização perfeita.",
+    "p6": "Junte-se a nós no Les Négociants e deixe-se seduzir pelo nosso universo."
   },
   "MenuCarte": {
-    "title": "A LA CARTE MENU",
-    "subtitle": "( Served only in the EVENING from Tuesday to Saturday )",
-    "description": "With our chef Antoine and his assistant Louis, we offer a bistronomic cuisine with fresh and seasonal products. Enjoy French cuisine and the passion of our chef, driven by the pleasure of playing with textures and product variations.",
-    "starters": "STARTERS",
-    "mains": "MAIN COURSES",
-    "desserts": "DESSERTS"
-  },
-  "MenuWeek": {
-    "title": "OUR WEEKLY MENU",
-    "date_range": "FROM MARCH 24 TO 28, 2026",
-    "subtitle": "( LUNCH only from Tuesday to Saturday )",
-    "closed_info": "Closed Wednesday lunch"
-  },
-  "Gallery": {
-    "title": "SOME DISHES FROM THE MENU",
-    "privatization_info": "Our lounge in total immersion in the wine cellar can be privatized for any type of event: up to 20 people for privatization",
-    "terrace_info": "Our terrace, shaded or sunny, it's up to you!"
-  },
+    "title": "MENU À LA CARTE",
+    "subtitle": "( Servido apenas ao JANTAR de terça-feira a sábado )",
+    "description": "Com o nosso chef Antoine e o seu adjunto Louis, propomos-lhe uma cozinha bistronómica com produtos frescos e sazonais. Desfrute da cozinha francesa e da paixão do nosso chef, movido pelo prazer de brincar com texturas e variações de produtos.",
+    "starters": "ENTRADAS",
+    "mains": "PRATOS PRINCIPAIS",
+    "desserts": "SOBREMESAS",
+    "pdf_label": "Consulte a",
+    "pdf_button": "Carta em PDF"
+    },
+    "MenuWeek": {
+    "title": "O NOSSO MENU DA SEMANA",
+    "date_range": "DE 24 A 28 DE MARÇO DE 2026",
+    "subtitle": "( Apenas ao ALMOÇO de terça-feira a sábado )",
+    "closed_info": "Fechado à quarta-feira ao almoço",
+    "coming_soon": "BREVEMENTE",
+    "formula_full": "Menu Completo",
+    "formula_starter_main": "Entrada + Prato",
+    "formula_main_dessert": "Prato + Sobremesa",
+    "pdf_label": "Consulte o",
+    "pdf_button": "Menu Semanal em PDF"
+    },
+    "Gallery": {
+    "title": "ALGUNS PRATOS DA CARTA",
+    "swipe_instruction": "Deslize para explorar os nossos pratos",
+    "privatization_info": "A nossa sala em imersão total na garrafeira, que pode ser privatizada para todo o tipo de eventos: até 20 pessoas para uma privatização",
+    "terrace_info": "A nossa esplanada, com sombra ou sol, a escolha é sua!"
+    },
   "FindUs": {
-    "title": "Find Us",
-    "description": "Find us in the heart of Bordeaux at 3 rue de Guienne, near Place Fernand Lafargue and admire the Grosse Cloche from \" LES NÉGOCIANTS \""
+    "title": "Onde estamos",
+    "description": "Encontre-nos no coração de Bordéus, no n.º 3 da rue de Guienne, perto da Place Fernand Lafargue e admire a Grosse Cloche a partir do \" LES NÉGOCIANTS \""
   },
   "Contact": {
-    "title": "Contact Us",
-    "description": "Do you have questions, suggestions, or comments? We would be delighted to hear from you! Fill out the form below and we will get back to you as soon as possible.",
-    "form_firstname": "First Name",
-    "form_lastname": "Last Name",
+    "title": "Contacte-nos",
+    "description": "Tem dúvidas, sugestões ou comentários? Teremos todo o prazer em lê-los! Preencha o formulário abaixo e responderemos o mais brevemente possível.",
+    "form_firstname": "Nome",
+    "form_lastname": "Apelido",
     "form_email": "Email",
-    "form_message": "Message",
-    "form_submit": "Send",
-    "required": "(required)",
-    "sending": "Sending...",
-    "success": "Thank you! Your message has been sent successfully.",
-    "error": "An error occurred while sending. Please try again or contact us directly."
+    "form_message": "Mensagem",
+    "form_submit": "Enviar",
+    "required": "(obrigatório)",
+    "sending": "A enviar...",
+    "success": "Obrigado! A sua mensagem foi enviada com sucesso.",
+    "error": "Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos diretamente."
   },
   "InstagramPopup": {
-    "title": "Follow our news and discover our latest creations!",
-    "cta": "Join us"
+    "title": "Siga as nossas novidades e descubra as nossas últimas criações!",
+    "cta": "Junte-se a nós"
   }
 }

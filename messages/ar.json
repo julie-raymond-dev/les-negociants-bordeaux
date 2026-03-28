@@ -1,77 +1,87 @@
 {
   "Hero": {
-    "title": "LES NÉGOCIANTS"
+    "title": "LES NÉGOCIANTS",
+    "discover": "اكتشف عالمنا"
   },
   "Navigation": {
-    "info": "Information",
-    "story": "Our Story",
-    "menu_carte": "A La Carte Menu",
-    "menu_week": "Weekly Menu",
-    "wine_list": "Wine List",
-    "privatization": "Privatization",
-    "find_us": "Find Us",
-    "contact": "Contact",
-    "reserve": "Book a table"
+    "info": "معلومات",
+    "story": "قصتنا",
+    "menu_carte": "قائمة الطعام",
+    "menu_week": "قائمة الأسبوع",
+    "wine_list": "قائمة النبيذ",
+    "privatization": "المناسبات الخاصة",
+    "find_us": "موقعنا",
+    "contact": "اتصل بنا",
+    "reserve": "احجز طاولتك"
   },
   "Info": {
-    "title": "Information",
-    "subtitle1": "Discover our cuisine crafted with seasonal and local products.",
-    "subtitle2": "Our menu is designed to be convivial, gourmet, and gastronomic.",
-    "address_label": "Address",
+    "title": "معلومات",
+    "subtitle1": "اكتشف مطبخنا الراقي الذي يعتمد على المنتجات الموسمية والمحلية.",
+    "subtitle2": "صُممت قائمتنا لتكون جامعة بين الألفة، الرقي وفن الطهي.",
+    "address_label": "العنوان",
     "address_value": "3 rue de Guienne, 33000 Bordeaux",
-    "contact_label": "Contact",
+    "contact_label": "الاتصال",
     "contact_email": "restaurant@lesnegociants.fr",
     "contact_instagram": "@lesnegociants_bdx",
-    "hours_label": "Opening Hours",
-    "hours_value": "Open Tuesday to Saturday\n12:00 PM to 1:30 PM / 7:30 PM to 9:30 PM\nClosed Wednesday lunch.\nClosed Sunday and Monday."
+    "hours_label": "ساعات العمل",
+    "hours_value": "مفتوح من الثلاثاء إلى السبت\n12:00 م إلى 1:30 م / 7:30 م إلى 9:30 م\nمغلق يوم الأربعاء وقت الغداء.\nمغلق يومي الأحد والاثنين."
   },
   "Story": {
-    "title": "Our Story",
-    "p1": "Located in the historic heart of Bordeaux, facing the Grosse Cloche and a stone's throw from Place Fernand Lafargue,",
-    "p2": "« Les Négociants » is the realization of the dream of two restaurant enthusiasts, Florian and Julien.",
-    "p3": "Our establishment stands out with a concept blending tasting, sophistication, and conviviality, offering a flavorful and most gourmet culinary experience.",
-    "p4": "At « Les Négociants », we make it a point of honor to work with fresh and seasonal products, carefully selected to guarantee exceptional quality in every dish. Our bistronomic cuisine will delight the most demanding palates while respecting the authenticity and richness of the ingredients.",
-    "p5": "Our wine list, meticulously crafted with 250 references, reflects our love for wine and our desire to make you discover viticultural treasures. Each bottle has been chosen to enhance your meal and offer you a perfect pairing.",
-    "p6": "Join us at Les Négociants and let yourself be seduced by our universe."
+    "title": "قصتنا",
+    "p1": "يقع مطعمنا في القلب التاريخي لمدينة بوردو، مقابل برج الساعة الشهير (Grosse Cloche) وعلى بعد خطوات من ساحة فرناند لافارغ.",
+    "p2": "يعد « Les Négociants » تجسيداً لحلم مشترك بين شغوفين بقطاع المطاعم، فلوريان وجوليان.",
+    "p3": "يتميز مطعمنا بمفهوم يجمع بين فن التذوق والرقي وحسن الضيافة، مقدماً تجربة طهي غنية بالنكهات والتميز.",
+    "p4": "في « Les Négociants »، نولي أهمية قصوى للعمل مع المنتجات الطازجة والموسمية، المختارة بعناية لضمان جودة استثنائية لكل طبق. مطبخنا \"البيسترونوميك\" سيرضي أرقى الأذواق مع احترام أصالة المكونات وغناها.",
+    "p5": "تعكس قائمة النبيذ لدينا، التي تم إعدادها بدقة وتضم 250 نوعاً، حبنا لهذا الفن ورغبتنا في مساعدتكم على اكتشاف كنوز زراعة الكروم. لقد تم اختيار كل زجاجة بعناية لتعزيز وجبتكم وتوفير تناغم مثالي.",
+    "p6": "انضم إلينا في Les Négociants ودع عالمنا يأخذك في رحلة فريدة."
   },
   "MenuCarte": {
-    "title": "A LA CARTE MENU",
-    "subtitle": "( Served only in the EVENING from Tuesday to Saturday )",
-    "description": "With our chef Antoine and his assistant Louis, we offer a bistronomic cuisine with fresh and seasonal products. Enjoy French cuisine and the passion of our chef, driven by the pleasure of playing with textures and product variations.",
-    "starters": "STARTERS",
-    "mains": "MAIN COURSES",
-    "desserts": "DESSERTS"
+    "title": "قائمة الطعام",
+    "subtitle": "( تُقدم فقط في المساء من الثلاثاء إلى السبت )",
+    "description": "مع الشيف أنطوان ومساعده لويس، نقدم لكم مطبخاً يجمع بين فن الطهي العالي وأجواء البيسترو العصرية باستخدام منتجات طازجة وموسمية. استمتع بالمطبخ الفرنسي وشغف الشيف بالتلاعب بالقوام وتنوع المكونات.",
+    "starters": "المقبلات",
+    "mains": "الأطباق الرئيسية",
+    "desserts": "الحلويات",
+    "pdf_label": "اطلع على",
+    "pdf_button": "قائمة الطعام PDF"
   },
   "MenuWeek": {
-    "title": "OUR WEEKLY MENU",
-    "date_range": "FROM MARCH 24 TO 28, 2026",
-    "subtitle": "( LUNCH only from Tuesday to Saturday )",
-    "closed_info": "Closed Wednesday lunch"
+    "title": "قائمة الأسبوع لدينا",
+    "date_range": "من 24 إلى 28 مارس 2026",
+    "subtitle": "( فقط وقت الغداء من الثلاثاء إلى السبت )",
+    "closed_info": "مغلق يوم الأربعاء وقت الغداء",
+    "coming_soon": "قريباً",
+    "formula_full": "الوجبة الكاملة",
+    "formula_starter_main": "مقبلات + طبق رئيسي",
+    "formula_main_dessert": "طبق رئيسي + تحلية",
+    "pdf_label": "اطلع على",
+    "pdf_button": "قائمة الأسبوع PDF"
   },
   "Gallery": {
-    "title": "SOME DISHES FROM THE MENU",
-    "privatization_info": "Our lounge in total immersion in the wine cellar can be privatized for any type of event: up to 20 people for privatization",
-    "terrace_info": "Our terrace, shaded or sunny, it's up to you!"
+    "title": "بعض أطباقنا المختارة",
+    "swipe_instruction": "اسحب لاستكشاف أطباقنا",
+    "privatization_info": "صالتنا المتواجدة داخل قبو النبيذ متاحة للمناسبات الخاصة بكافة أنواعها: حتى 20 شخصاً.",
+    "terrace_info": "شرفتنا ترحب بكم تحت الظل أو تحت أشعة الشمس، الخيار لكم!"
   },
   "FindUs": {
-    "title": "Find Us",
-    "description": "Find us in the heart of Bordeaux at 3 rue de Guienne, near Place Fernand Lafargue and admire the Grosse Cloche from \" LES NÉGOCIANTS \""
+    "title": "موقعنا",
+    "description": "تجدوننا في قلب بوردو في 3 شارع دي غويين، بالقرب من ساحة فرناند لافارغ، حيث يمكنكم تأمل برج الساعة الشهير من خلال نوافذ \" LES NÉGOCIANTS \""
   },
   "Contact": {
-    "title": "Contact Us",
-    "description": "Do you have questions, suggestions, or comments? We would be delighted to hear from you! Fill out the form below and we will get back to you as soon as possible.",
-    "form_firstname": "First Name",
-    "form_lastname": "Last Name",
-    "form_email": "Email",
-    "form_message": "Message",
-    "form_submit": "Send",
-    "required": "(required)",
-    "sending": "Sending...",
-    "success": "Thank you! Your message has been sent successfully.",
-    "error": "An error occurred while sending. Please try again or contact us directly."
+    "title": "اتصل بنا",
+    "description": "هل لديكم أي أسئلة، اقتراحات أو ملاحظات؟ يسعدنا دائماً سماع آرائكم. يرجى ملء النموذج أدناه وسنقوم بالرد عليكم في أقرب وقت ممكن.",
+    "form_firstname": "الاسم الأول",
+    "form_lastname": "اسم العائلة",
+    "form_email": "البريد الإلكتروني",
+    "form_message": "الرسالة",
+    "form_submit": "إرسال",
+    "required": "(مطلوب)",
+    "sending": "جاري الإرسال...",
+    "success": "شكراً لك! تم إرسال رسالتك بنجاح.",
+    "error": "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة."
   },
   "InstagramPopup": {
-    "title": "Follow our news and discover our latest creations!",
-    "cta": "Join us"
+    "title": "تابعوا أخبارنا واكتشفوا أحدث إبداعاتنا!",
+    "cta": "انضم إلينا"
   }
 }

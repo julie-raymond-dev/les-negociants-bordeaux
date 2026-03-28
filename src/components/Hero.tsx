@@ -44,7 +44,7 @@ export default function Hero() {
               className="group relative overflow-hidden text-white text-[10px] font-black uppercase tracking-[0.4em] px-16 py-6 border border-white/20 rounded-full backdrop-blur-md transition-all duration-500"
             >
               <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <span className="relative z-10 group-hover:text-primary transition-colors">Découvrir l'univers</span>
+              <span className="relative z-10 group-hover:text-primary transition-colors">{t('discover')}</span>
             </motion.a>
           </div>
         </motion.div>

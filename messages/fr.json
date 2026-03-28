@@ -1,6 +1,7 @@
 {
   "Hero": {
-    "title": "LES NÉGOCIANTS"
+    "title": "LES NÉGOCIANTS",
+    "discover": "Découvrir l'univers"
   },
   "Navigation": {
     "info": "Informations",
@@ -40,16 +41,25 @@
     "description": "Avec notre chef Antoine et son adjoint Louis, nous vous proposons une cuisine bistronomique avec des produits frais et de saisons. Dégustez une cuisine française et la passion de notre chef, animée par le plaisir de jouer avec les textures et les déclinaisons de produits.",
     "starters": "LES ENTRÉES",
     "mains": "LES PLATS",
-    "desserts": "LES DESSERTS"
+    "desserts": "LES DESSERTS",
+    "pdf_label": "Consulter la",
+    "pdf_button": "Carte PDF"
   },
   "MenuWeek": {
     "title": "NOTRE MENU DE LA SEMAINE",
     "date_range": "DU 24 AU 28 MARS 2026",
     "subtitle": "( Uniquement le MIDI du Mardi au Samedi )",
-    "closed_info": "Fermé le mercredi midi"
+    "closed_info": "Fermé le mercredi midi",
+    "coming_soon": "À VENIR",
+    "formula_full": "Formule Complète",
+    "formula_starter_main": "Entrée + Plat",
+    "formula_main_dessert": "Plat + Dessert",
+    "pdf_label": "Consulter le",
+    "pdf_button": "Menu Semaine PDF"
   },
   "Gallery": {
     "title": "QUELQUES ASSIETTES À LA CARTE",
+    "swipe_instruction": "Glissez pour explorer nos assiettes",
     "privatization_info": "Notre salon en immersion totale dans la cave à vin qui peut être privatisé pour tout type d'évènement : jusqu'à 20 personnes pour une privatisation",
     "terrace_info": "Notre terrasse, ombragée ou ensoleillée, à vous de choisir !"
   },

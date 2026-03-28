@@ -105,8 +105,8 @@ export default function MenuCarte() {
                     <FileText size={28} />
                   </div>
                   <div className="flex flex-col items-start text-left">
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Consulter la</span>
-                    <span className="text-lg font-black uppercase tracking-tighter text-foreground">Carte PDF</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">{t('pdf_label')}</span>
+                    <span className="text-lg font-black uppercase tracking-tighter text-foreground">{t('pdf_button')}</span>
                   </div>
                 </a>
               </div>

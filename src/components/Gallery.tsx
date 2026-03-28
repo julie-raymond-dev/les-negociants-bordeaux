@@ -38,7 +38,7 @@ export default function Gallery() {
           <div className="text-center">
             <h2 className="heading-section mb-4">{t('title')}</h2>
             <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
-              Glissez pour explorer nos assiettes
+              {t('swipe_instruction')}
             </p>
           </div>
         </Reveal>
