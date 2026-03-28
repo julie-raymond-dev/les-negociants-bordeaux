@@ -4,11 +4,12 @@ import { motion, Variants } from 'framer-motion';
 import { ReactNode } from 'react';
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }
+    filter: 'blur(0px)',
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
   }
 };
 

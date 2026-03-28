@@ -45,6 +45,11 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ReservationProvider>
+              {/* Background Glows */}
+              <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-20 md:opacity-100">
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[150px]"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[150px]"></div>
+              </div>
               {children}
             </ReservationProvider>
           </ThemeProvider>

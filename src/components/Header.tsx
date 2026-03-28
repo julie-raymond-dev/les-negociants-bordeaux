@@ -49,15 +49,16 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 py-6 ${
+      className={`fixed top-0 left-0 right-0 z-50 py-2 transition-all duration-300 ${
         isLight 
           ? 'bg-white shadow-md text-black' 
-          : 'bg-black/20 backdrop-blur-sm text-white'
+          : 'bg-black/40 backdrop-blur-xl border-b border-white/5 text-white'
       }`}
     >
+
       <div className="container mx-auto px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-6 group">
-          <div className={`relative w-24 h-24 md:w-32 md:h-32 ${isLight ? 'invert' : ''}`}>
+          <div className={`relative w-16 h-16 md:w-24 md:h-24 ${isLight ? 'invert' : ''}`}>
             <Image 
               src="/logo-transparent-les-negociants.jpg" 
               alt="Logo Les Négociants" 
