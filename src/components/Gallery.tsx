@@ -1,43 +1,104 @@
-import {useTranslations} from 'next-intl';
+'use client';
+
+import { useTranslations } from 'next-intl';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { Reveal } from './Motion';
 
 export default function Gallery() {
   const t = useTranslations('Gallery');
+  const [activeIdx, setActiveIdx] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [constraints, setConstraints] = useState({ left: 0, right: 0 });
 
   const images = [
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", caption: "" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1777.jpg", caption: "" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1952.jpg", caption: "Noix de veau rôtie" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC2015.jpg", caption: "" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1889.jpg", caption: "Espadon snacké" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/08/IMG_2618.jpg", caption: t('privatization_info') },
+    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
+    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1777.jpg", title: "Oeuf Parfait" },
+    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1952.jpg", title: "Noix de veau rôtie" },
+    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC2015.jpg", title: "Assiette de fromages" },
+    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1889.jpg", title: "Espadon snacké" },
+    { url: "https://lesnegociants.fr/wp-content/uploads/2025/08/IMG_2618.jpg", title: "Notre Salon Privatisable" },
   ];
 
-  return (
-    <section className="py-20 bg-background transition-colors duration-300">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="heading-section mb-16">
-          {t('title')}
-        </h2>
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollWidth = containerRef.current.scrollWidth;
+      const offsetWidth = containerRef.current.offsetWidth;
+      setConstraints({ left: -(scrollWidth - offsetWidth + 40), right: 40 });
+    }
+  }, []);
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+  const x = useMotionValue(0);
+  
+  return (
+    <section className="py-section bg-background overflow-hidden relative">
+      <div className="container mx-auto px-6 mb-16">
+        <Reveal>
+          <div className="text-center">
+            <h2 className="heading-section mb-4">{t('title')}</h2>
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
+              Glissez pour explorer nos assiettes
+            </p>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="relative cursor-grab active:cursor-grabbing px-6 md:px-20">
+        <motion.div
+          ref={containerRef}
+          drag="x"
+          dragConstraints={constraints}
+          dragElastic={0.1}
+          style={{ x }}
+          className="flex gap-8 md:gap-12"
+        >
           {images.map((img, i) => (
-            <div key={i} className="group relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800">
+            <motion.div
+              key={i}
+              className="relative min-w-[300px] md:min-w-[500px] aspect-[4/5] md:aspect-[16/10] rounded-[40px] overflow-hidden group shadow-2xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
               <img 
                 src={img.url} 
-                alt={`Gallery image ${i}`}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                alt={img.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
               />
-              {img.caption && (
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <p className="text-white text-sm italic">{img.caption}</p>
-                </div>
-              )}
-            </div>
+              <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end">
+                <motion.h4 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="text-xl md:text-3xl font-black text-white uppercase tracking-tighter"
+                >
+                  {img.title}
+                </motion.h4>
+                {img.title.includes("Salon") && (
+                  <p className="text-white/60 text-xs md:text-sm mt-4 max-w-sm italic line-clamp-2 md:line-clamp-none">
+                    {t('privatization_info')}
+                  </p>
+                )}
+              </div>
+            </motion.div>
           ))}
+        </motion.div>
+      </div>
+
+      {/* Modern Progress Bar */}
+      <div className="container mx-auto px-6 mt-16">
+        <div className="max-w-xs mx-auto h-1 bg-border rounded-full overflow-hidden relative">
+          <motion.div 
+            className="absolute top-0 left-0 h-full bg-primary"
+            style={{ 
+              width: "100%",
+              scaleX: useTransform(x, [constraints.left, constraints.right], [1, 0]),
+              originX: 0
+            }}
+          />
         </div>
-        
-        <div className="mt-16 text-center italic text-foreground/60">
-          <p>{t('terrace_info')}</p>
+        <div className="mt-8 text-center text-[10px] font-black uppercase tracking-[0.4em] opacity-30 italic">
+          {t('terrace_info')}
         </div>
       </div>
     </section>
