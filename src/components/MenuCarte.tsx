@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Reveal, staggerContainer, fadeUp } from './Motion';
 import { FileText } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 interface MenuItemProps {
   name: string;
@@ -74,7 +75,7 @@ export default function MenuCarte() {
 
               <div className="shrink-0">
                 <a 
-                  href="/menu-carte.pdf" 
+                  href={siteConfig.assets.menuCartePdf} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group flex items-center gap-6 px-10 py-6 bg-background border-2 border-primary/20 hover:border-primary rounded-[30px] transition-all duration-500 shadow-xl hover:shadow-primary/10"

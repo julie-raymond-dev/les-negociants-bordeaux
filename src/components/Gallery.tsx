@@ -5,20 +5,15 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Reveal } from './Motion';
 
+import { siteConfig } from '@/config/site';
+
 export default function Gallery() {
   const t = useTranslations('Gallery');
   const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [constraints, setConstraints] = useState({ left: 0, right: 0 });
 
-  const images = [
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1777.jpg", title: "Oeuf Parfait" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1952.jpg", title: "Noix de veau rôtie" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC2015.jpg", title: "Assiette de fromages" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1889.jpg", title: "Espadon snacké" },
-    { url: "https://lesnegociants.fr/wp-content/uploads/2025/08/IMG_2618.jpg", title: "Notre Salon Privatisable" },
-  ];
+  const images = siteConfig.assets.gallery;
 
   useEffect(() => {
     if (containerRef.current) {

@@ -20,7 +20,15 @@ export const siteConfig = {
   
   assets: {
     logo: process.env.NEXT_PUBLIC_LOGO_PATH || "/logo-transparent-les-negociants.jpg",
-    heroBg: process.env.NEXT_PUBLIC_HERO_IMAGE || "",
+    heroBg: process.env.NEXT_PUBLIC_HERO_IMAGE || "https://lesnegociants.fr/wp-content/uploads/2024/07/IMG_1458-1-e1748335626467-1024x1014.jpeg",
+    storyImage: "/fallback-story.jpg",
+    menuCartePdf: "/menu-carte.pdf",
+    menuWeekPdf: "/menu-semaine.pdf",
+    gallery: [
+      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
+      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1777.jpg", title: "Oeuf Parfait" },
+      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1952.jpg", title: "Noix de veau rôtie" },
+    ]
   },
 
   languages: [

@@ -5,8 +5,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Reveal } from './Motion';
 
+import { siteConfig } from '@/config/site';
+
 export default function Story() {
   const t = useTranslations('Story');
+  const storyImage = siteConfig.assets.storyImage;
 
   return (
     <section id="notre-histoire" className="py-section bg-background text-foreground transition-colors duration-300">
@@ -18,7 +21,7 @@ export default function Story() {
                 initial={{ scale: 1.2, filter: 'blur(20px)' }}
                 whileInView={{ scale: 1, filter: 'blur(0px)' }}
                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                src="https://lesnegociants.fr/wp-content/uploads/2024/08/IMG_4603.jpg" 
+                src={storyImage} 
                 alt="Restaurant Interior"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
