@@ -66,5 +66,9 @@
     "form_message": "Message",
     "form_submit": "Send",
     "required": "(required)"
+  },
+  "InstagramPopup": {
+    "title": "Follow our news and discover our latest creations!",
+    "cta": "Join us"
   }
 }
