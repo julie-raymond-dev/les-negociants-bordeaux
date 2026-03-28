@@ -5,14 +5,41 @@ import { motion } from 'framer-motion';
 import { Reveal, staggerContainer, fadeUp } from './Motion';
 import { FileText } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { getMenuWeek, getSiteSettings } from '@/lib/supabase';
+import { useState, useEffect } from 'react';
 
 export default function MenuWeek() {
   const t = useTranslations('MenuWeek');
+  const [data, setData] = useState<any>(null);
+  const [pdfUrl, setPdfUrl] = useState(siteConfig.assets.menuWeekPdf);
+
+  useEffect(() => {
+    async function loadData() {
+      const weekData = await getMenuWeek();
+      if (weekData) setData(weekData);
+      
+      const settings = await getSiteSettings();
+      if (settings.menu_week_pdf) setPdfUrl(settings.menu_week_pdf);
+    }
+    loadData();
+  }, []);
 
   const menu = [
-    { type: "Entrée", name: "Velouté de potimarron", description: "Graines de courge et huile de truffe" },
-    { type: "Plat", name: "Filet de lieu noir", description: "Écrasé de pommes de terre à l'aneth, sauce vierge" },
-    { type: "Dessert", name: "Tartelette aux noix", description: "Caramel beurre salé" }
+    { 
+      type: "Entrée", 
+      name: data?.starter_name || "Velouté de potimarron", 
+      description: data?.starter_desc || "Graines de courge et huile de truffe" 
+    },
+    { 
+      type: "Plat", 
+      name: data?.main_name || "Filet de lieu noir", 
+      description: data?.main_desc || "Écrasé de pommes de terre à l'aneth, sauce vierge" 
+    },
+    { 
+      type: "Dessert", 
+      name: data?.dessert_name || "Tartelette aux noix", 
+      description: data?.dessert_desc || "Caramel beurre salé" 
+    }
   ];
 
   return (
@@ -26,7 +53,7 @@ export default function MenuWeek() {
               <div className="text-center md:text-left flex-1">
                 <h2 className="heading-section mb-4">{t('title')}</h2>
                 <p className="text-xl md:text-2xl font-bold uppercase tracking-widest mb-4">
-                  {t('date_range')}
+                  {data?.date_range || t('date_range')}
                 </p>
                 <p className="text-sm uppercase tracking-widest text-foreground/50">
                   {t('subtitle')} — {t('closed_info')}
@@ -35,7 +62,7 @@ export default function MenuWeek() {
 
               <div className="shrink-0">
                 <a 
-                  href={siteConfig.assets.menuWeekPdf} 
+                  href={pdfUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group flex items-center gap-6 px-10 py-6 bg-background border-2 border-primary/20 hover:border-primary rounded-[30px] transition-all duration-500 shadow-xl hover:shadow-primary/10"
@@ -87,21 +114,21 @@ export default function MenuWeek() {
           <Reveal>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-border">
               <div className="text-center">
-                <span className="text-3xl font-black block mb-1">24€</span>
+                <span className="text-3xl font-black block mb-1">{data?.price_full || '24'}€</span>
                 <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Formule Complète</span>
               </div>
               
               <div className="hidden md:block w-px bg-border"></div>
               
               <div className="text-center">
-                <span className="text-2xl font-black block mb-1 mt-1">19€</span>
+                <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half || '19'}€</span>
                 <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Entrée + Plat</span>
               </div>
 
               <div className="hidden md:block w-px bg-border"></div>
 
               <div className="text-center">
-                <span className="text-2xl font-black block mb-1 mt-1">19€</span>
+                <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half || '19'}€</span>
                 <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">Plat + Dessert</span>
               </div>
             </div>

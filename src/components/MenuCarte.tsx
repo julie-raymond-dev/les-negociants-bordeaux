@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Reveal, staggerContainer, fadeUp } from './Motion';
 import { FileText } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { getMenuCarte, getSiteSettings } from '@/lib/supabase';
+import { useState, useEffect } from 'react';
 
 interface MenuItemProps {
   name: string;
@@ -31,31 +33,50 @@ const MenuItem = ({ name, description, price }: MenuItemProps) => (
 
 export default function MenuCarte() {
   const t = useTranslations('MenuCarte');
+  const [items, setItems] = useState<any[]>([]);
+  const [pdfUrl, setPdfUrl] = useState(siteConfig.assets.menuCartePdf);
+
+  useEffect(() => {
+    async function loadData() {
+      const data = await getMenuCarte();
+      if (data && data.length > 0) setItems(data);
+      
+      const settings = await getSiteSettings();
+      if (settings.menu_carte_pdf) setPdfUrl(settings.menu_carte_pdf);
+    }
+    loadData();
+  }, []);
 
   const categories = [
     {
       title: t('starters'),
-      items: [
-        { name: "Asperges vertes des Landes", description: "Mousseline citronnée, noisettes torréfiées", price: "14" },
-        { name: "Oeuf parfait", description: "Crème de champignons, croûtons à l'ail", price: "12" },
-        { name: "Gravlax de truite", description: "Betterave, aneth et crème aigre", price: "15" },
-      ]
+      items: items.filter(i => i.category === 'starter').length > 0 
+        ? items.filter(i => i.category === 'starter')
+        : [
+            { name: "Asperges vertes des Landes", description: "Mousseline citronnée, noisettes torréfiées", price: "14" },
+            { name: "Oeuf parfait", description: "Crème de champignons, croûtons à l'ail", price: "12" },
+            { name: "Gravlax de truite", description: "Betterave, aneth et crème aigre", price: "15" },
+          ]
     },
     {
       title: t('mains'),
-      items: [
-        { name: "Noix de veau rôtie", description: "Millefeuille de butternut, condiment châtaigne", price: "28" },
-        { name: "Espadon snacké", description: "Mousseline de brocolis, noix et sauce chimichurri", price: "26" },
-        { name: "Risotto aux truffes", description: "Champignons sauvages, parmesan 24 mois", price: "24" },
-      ]
+      items: items.filter(i => i.category === 'main').length > 0 
+        ? items.filter(i => i.category === 'main')
+        : [
+            { name: "Noix de veau rôtie", description: "Millefeuille de butternut, condiment châtaigne", price: "28" },
+            { name: "Espadon snacké", description: "Mousseline de brocolis, noix et sauce chimichurri", price: "26" },
+            { name: "Risotto aux truffes", description: "Champignons sauvages, parmesan 24 mois", price: "24" },
+          ]
     },
     {
       title: t('desserts'),
-      items: [
-        { name: "Ganache chocolat noir", description: "Fleur de sel, huile d'olive de Provence", price: "10" },
-        { name: "Pavlova aux fruits exotiques", description: "Meringue française, sorbet mangue", price: "11" },
-        { name: "Assiette de fromages", description: "Sélection de notre crémier bordelais", price: "12" },
-      ]
+      items: items.filter(i => i.category === 'dessert').length > 0 
+        ? items.filter(i => i.category === 'dessert')
+        : [
+            { name: "Ganache chocolat noir", description: "Fleur de sel, huile d'olive de Provence", price: "10" },
+            { name: "Pavlova aux fruits exotiques", description: "Meringue française, sorbet mangue", price: "11" },
+            { name: "Assiette de fromages", description: "Sélection de notre crémier bordelais", price: "12" },
+          ]
     }
   ];
 
@@ -75,7 +96,7 @@ export default function MenuCarte() {
 
               <div className="shrink-0">
                 <a 
-                  href={siteConfig.assets.menuCartePdf} 
+                  href={pdfUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group flex items-center gap-6 px-10 py-6 bg-background border-2 border-primary/20 hover:border-primary rounded-[30px] transition-all duration-500 shadow-xl hover:shadow-primary/10"

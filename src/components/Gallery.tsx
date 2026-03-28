@@ -4,16 +4,22 @@ import { useTranslations } from 'next-intl';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Reveal } from './Motion';
-
 import { siteConfig } from '@/config/site';
+import { getGallery } from '@/lib/supabase';
 
 export default function Gallery() {
   const t = useTranslations('Gallery');
-  const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [constraints, setConstraints] = useState({ left: 0, right: 0 });
+  const [images, setImages] = useState<any[]>(siteConfig.assets.gallery);
 
-  const images = siteConfig.assets.gallery;
+  useEffect(() => {
+    async function loadData() {
+      const data = await getGallery();
+      if (data && data.length > 0) setImages(data);
+    }
+    loadData();
+  }, []);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -21,7 +27,7 @@ export default function Gallery() {
       const offsetWidth = containerRef.current.offsetWidth;
       setConstraints({ left: -(scrollWidth - offsetWidth + 40), right: 40 });
     }
-  }, []);
+  }, [images]);
 
   const x = useMotionValue(0);
   
@@ -69,18 +75,12 @@ export default function Gallery() {
                 >
                   {img.title}
                 </motion.h4>
-                {img.title.includes("Salon") && (
-                  <p className="text-white/60 text-xs md:text-sm mt-4 max-w-sm italic line-clamp-2 md:line-clamp-none">
-                    {t('privatization_info')}
-                  </p>
-                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Modern Progress Bar */}
       <div className="container mx-auto px-6 mt-16">
         <div className="max-w-xs mx-auto h-1 bg-border rounded-full overflow-hidden relative">
           <motion.div 

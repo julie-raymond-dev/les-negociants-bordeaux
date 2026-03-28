@@ -1,15 +1,23 @@
 'use client';
 
 import {useTranslations} from 'next-intl';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Reveal } from './Motion';
-
 import { siteConfig } from '@/config/site';
+import { getSiteSettings } from '@/lib/supabase';
+import { useState, useEffect } from 'react';
 
 export default function Story() {
   const t = useTranslations('Story');
-  const storyImage = siteConfig.assets.storyImage;
+  const [storyImage, setStoryImage] = useState(siteConfig.assets.storyImage);
+
+  useEffect(() => {
+    async function loadData() {
+      const settings = await getSiteSettings();
+      if (settings.story_image) setStoryImage(settings.story_image);
+    }
+    loadData();
+  }, []);
 
   return (
     <section id="notre-histoire" className="py-section bg-background text-foreground transition-colors duration-300">
