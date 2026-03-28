@@ -176,8 +176,12 @@ export default function AdminDashboard() {
       {/* Sidebar Navigation */}
       <aside className="w-full md:w-80 bg-muted border-r border-border p-8 flex flex-col">
         <div className="flex items-center gap-4 mb-16">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
-            <LayoutDashboard size={20} />
+          <div className="w-12 h-12 relative rounded-xl overflow-hidden border border-border bg-white shadow-sm">
+            <img 
+              src="/logo-transparent-les-negociants.jpg" 
+              alt="Logo Les Négociants" 
+              className="w-full h-full object-contain p-1 invert"
+            />
           </div>
           <span className="font-black tracking-widest text-lg uppercase">Dashboard</span>
         </div>
