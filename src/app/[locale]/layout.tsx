@@ -90,7 +90,6 @@ export default async function LocaleLayout({
         <link rel="canonical" href={`https://les-negociants-bordeaux.vercel.app/${locale}`} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <StructuredData />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ReservationProvider>
@@ -100,6 +99,7 @@ export default async function LocaleLayout({
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[150px]"></div>
               </div>
               {children}
+              <StructuredData />
             </ReservationProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
