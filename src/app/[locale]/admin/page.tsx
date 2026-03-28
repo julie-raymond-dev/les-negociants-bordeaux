@@ -10,6 +10,17 @@ import {
 
 import { supabase } from '@/lib/supabase';
 
+interface GalleryItem {
+  url: string;
+  title: string;
+}
+
+interface MenuItem {
+  name: string;
+  description: string;
+  price: string;
+}
+
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('carte');
   const [isUploading, setIsUploading] = useState(false);
@@ -18,9 +29,6 @@ export default function AdminDashboard() {
   const handleFileUpload = async (file: File, bucket: string) => {
     setIsUploading(true);
     try {
-      // Dans le futur, ici on fera : 
-      // const { data, error } = await supabase.storage.from(bucket).upload(file.name, file)
-      // On retournera l'URL publique
       console.log(`Upload du fichier ${file.name} dans le bucket ${bucket}...`);
       await new Promise(resolve => setTimeout(resolve, 1500)); // Simulation
       return `https://supabase-placeholder.com/${bucket}/${file.name}`;
@@ -30,43 +38,15 @@ export default function AdminDashboard() {
       setIsUploading(false);
     }
   };
-// ... (états existants)
-  const [media, setMedia] = useState({
-    storyImage: "https://lesnegociants.fr/wp-content/uploads/2024/08/IMG_4603.jpg",
-    gallery: [
-      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
-    ],
-    menuCartePdf: "/menu-carte.pdf",
-    menuWeekPdf: "/menu-semaine.pdf"
-  });
-
-  // État pour le nouvel item de la galerie
-  const [newGalleryItem, setNewGalleryItem] = useState({ url: "", title: "" });
-
-  const addGalleryItem = () => {
-    if (newGalleryItem.url && newGalleryItem.title) {
-      setMedia({
-        ...media,
-        gallery: [...media.gallery, newGalleryItem]
-      });
-      setNewGalleryItem({ url: "", title: "" });
-    }
-  };
-
-  const removeGalleryItem = (index: number) => {
-    const newGallery = media.gallery.filter((_, i) => i !== index);
-    setMedia({ ...media, gallery: newGallery });
-  };
-// ... (reste des fonctions)
 
   // États pour le Menu à la Carte (Simulés pour la structure)
-  const [starters, setStarters] = useState([
+  const [starters, setStarters] = useState<MenuItem[]>([
     { name: "Asperges vertes des Landes", description: "Mousseline citronnée, noisettes torréfiées", price: "14" },
   ]);
-  const [mains, setMains] = useState([
+  const [mains, setMains] = useState<MenuItem[]>([
     { name: "Noix de veau rôtie", description: "Millefeuille de butternut, condiment châtaigne", price: "28" },
   ]);
-  const [desserts, setDesserts] = useState([
+  const [desserts, setDesserts] = useState<MenuItem[]>([
     { name: "Ganache chocolat noir", description: "Fleur de sel, huile d'olive de Provence", price: "10" },
   ]);
 
@@ -85,6 +65,33 @@ export default function AdminDashboard() {
     dessert: "Tartelette aux noix du Périgord, caramel beurre salé",
     price: "24"
   });
+
+  const [media, setMedia] = useState({
+    storyImage: "https://lesnegociants.fr/wp-content/uploads/2024/08/IMG_4603.jpg",
+    gallery: [
+      { url: "https://lesnegociants.fr/wp-content/uploads/2025/11/DSC1860.jpg", title: "Asperges des Landes" },
+    ] as GalleryItem[],
+    menuCartePdf: "/menu-carte.pdf",
+    menuWeekPdf: "/menu-semaine.pdf"
+  });
+
+  // État pour le nouvel item de la galerie
+  const [newGalleryItem, setNewGalleryItem] = useState<GalleryItem>({ url: "", title: "" });
+
+  const addGalleryItem = () => {
+    if (newGalleryItem.url && newGalleryItem.title) {
+      setMedia({
+        ...media,
+        gallery: [...media.gallery, newGalleryItem]
+      });
+      setNewGalleryItem({ url: "", title: "" });
+    }
+  };
+
+  const removeGalleryItem = (index: number) => {
+    const newGallery = media.gallery.filter((_, i) => i !== index);
+    setMedia({ ...media, gallery: newGallery });
+  };
 
   const addItem = (type: string) => {
     const newItem = { name: "", description: "", price: "" };
@@ -210,17 +217,17 @@ export default function AdminDashboard() {
                 <PriceCard 
                   label="Entrée + Plat + Dessert" 
                   value={prices.full} 
-                  onChange={(v) => setPrices({...prices, full: v})} 
+                  onChange={(v: string) => setPrices({...prices, full: v})} 
                 />
                 <PriceCard 
                   label="Entrée + Plat" 
                   value={prices.starterMain} 
-                  onChange={(v) => setPrices({...prices, starterMain: v})} 
+                  onChange={(v: string) => setPrices({...prices, starterMain: v})} 
                 />
                 <PriceCard 
                   label="Plat + Dessert" 
                   value={prices.mainDessert} 
-                  onChange={(v) => setPrices({...prices, mainDessert: v})} 
+                  onChange={(v: string) => setPrices({...prices, mainDessert: v})} 
                 />
               </div>
             </motion.section>
@@ -246,17 +253,18 @@ export default function AdminDashboard() {
 
               <div className="bg-muted p-8 rounded-3xl border border-border space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <InputGroup label="Dates du menu (ex: 25 Mars — 29 Mars)" value={weekMenu.dateRange} onChange={(v) => setWeekMenu({...weekMenu, dateRange: v})} />
-                  <InputGroup label="Prix Formule Complète" value={weekMenu.price} onChange={(v) => setWeekMenu({...weekMenu, price: v})} suffix="€" />
+                  <InputGroup label="Dates du menu (ex: 25 Mars — 29 Mars)" value={weekMenu.dateRange} onChange={(v: string) => setWeekMenu({...weekMenu, dateRange: v})} />
+                  <InputGroup label="Prix Formule Complète" value={weekMenu.price} onChange={(v: string) => setWeekMenu({...weekMenu, price: v})} suffix="€" />
                 </div>
                 <div className="space-y-6">
-                  <InputGroup label="Entrée de la semaine" value={weekMenu.starter} onChange={(v) => setWeekMenu({...weekMenu, starter: v})} />
-                  <InputGroup label="Plat de la semaine" value={weekMenu.main} onChange={(v) => setWeekMenu({...weekMenu, main: v})} />
-                  <InputGroup label="Dessert de la semaine" value={weekMenu.dessert} onChange={(v) => setWeekMenu({...weekMenu, dessert: v})} />
+                  <InputGroup label="Entrée de la semaine" value={weekMenu.starter} onChange={(v: string) => setWeekMenu({...weekMenu, starter: v})} />
+                  <InputGroup label="Plat de la semaine" value={weekMenu.main} onChange={(v: string) => setWeekMenu({...weekMenu, main: v})} />
+                  <InputGroup label="Dessert de la semaine" value={weekMenu.dessert} onChange={(v: string) => setWeekMenu({...weekMenu, dessert: v})} />
                 </div>
               </div>
             </motion.section>
           )}
+
           {activeTab === 'media' && (
             <motion.section 
               key="media"
@@ -372,7 +380,7 @@ export default function AdminDashboard() {
   );
 }
 
-function FileUploadCard({ label, fileName, icon }: any) {
+function FileUploadCard({ label, fileName, icon }: { label: string, fileName: string, icon: any }) {
   return (
     <div className="bg-muted p-8 rounded-3xl border border-border flex flex-col items-center gap-6">
       <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
@@ -401,15 +409,15 @@ function TabButton({ active, onClick, icon, label }: { active: boolean, onClick:
   );
 }
 
-function MenuSection({ title, items, setItems, onAdd }: any) {
-  const updateItem = (index: number, field: string, value: string) => {
+function MenuSection({ title, items, setItems, onAdd }: { title: string, items: MenuItem[], setItems: any, onAdd: () => void }) {
+  const updateItem = (index: number, field: keyof MenuItem, value: string) => {
     const newItems = [...items];
     newItems[index] = { ...newItems[index], [field]: value };
     setItems(newItems);
   };
 
   const removeItem = (index: number) => {
-    setItems(items.filter((_: any, i: number) => i !== index));
+    setItems(items.filter((_, i) => i !== index));
   };
 
   return (
@@ -424,7 +432,7 @@ function MenuSection({ title, items, setItems, onAdd }: any) {
         </button>
       </div>
       <div className="space-y-4">
-        {items.map((item: any, i: number) => (
+        {items.map((item, i) => (
           <div key={i} className="bg-muted p-6 rounded-2xl border border-border flex gap-4 group">
             <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4">
               <div className="md:col-span-4">
@@ -466,7 +474,7 @@ function MenuSection({ title, items, setItems, onAdd }: any) {
   );
 }
 
-function PriceCard({ label, value, onChange }: any) {
+function PriceCard({ label, value, onChange }: { label: string, value: string, onChange: (v: string) => void }) {
   return (
     <div className="bg-muted p-8 rounded-3xl border border-border flex flex-col items-center gap-4">
       <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 text-center">{label}</span>
@@ -482,7 +490,7 @@ function PriceCard({ label, value, onChange }: any) {
   );
 }
 
-function InputGroup({ label, value, onChange, suffix }: any) {
+function InputGroup({ label, value, onChange, suffix }: { label: string, value: string, onChange: (v: string) => void, suffix?: string }) {
   return (
     <div className="space-y-2">
       <label className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/40 ml-1">{label}</label>
