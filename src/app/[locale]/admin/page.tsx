@@ -8,8 +8,28 @@ import {
   Calendar, Euro, ArrowLeft, LogOut, Settings, Image as ImageIcon, FileText, Upload
 } from 'lucide-react';
 
+import { supabase } from '@/lib/supabase';
+
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('carte');
+  const [isUploading, setIsUploading] = useState(false);
+
+  // Simulation d'upload sur Supabase
+  const handleFileUpload = async (file: File, bucket: string) => {
+    setIsUploading(true);
+    try {
+      // Dans le futur, ici on fera : 
+      // const { data, error } = await supabase.storage.from(bucket).upload(file.name, file)
+      // On retournera l'URL publique
+      console.log(`Upload du fichier ${file.name} dans le bucket ${bucket}...`);
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulation
+      return `https://supabase-placeholder.com/${bucket}/${file.name}`;
+    } catch (err) {
+      console.error("Erreur d'upload :", err);
+    } finally {
+      setIsUploading(false);
+    }
+  };
 // ... (états existants)
   const [media, setMedia] = useState({
     storyImage: "https://lesnegociants.fr/wp-content/uploads/2024/08/IMG_4603.jpg",
