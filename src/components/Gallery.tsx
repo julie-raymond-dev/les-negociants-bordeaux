@@ -32,7 +32,7 @@ export default function Gallery() {
   const x = useMotionValue(0);
   
   return (
-    <section className="py-section bg-background overflow-hidden relative">
+    <section id="galerie" className="py-section bg-background overflow-hidden relative">
       <div className="container mx-auto px-6 mb-16">
         <Reveal>
           <div className="text-center">

@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Info from '@/components/Info';
 import Story from '@/components/Story';
+import Privatization from '@/components/Privatization';
 import MenuCarte from '@/components/MenuCarte';
 import MenuWeek from '@/components/MenuWeek';
 import Gallery from '@/components/Gallery';
@@ -30,6 +31,8 @@ export default function HomePage() {
       <Gallery />
       <SectionSeparator />
       <WineList />
+      <SectionSeparator />
+      <Privatization />
       <SectionSeparator />
       <FindUs />
       <SectionSeparator />

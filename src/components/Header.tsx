@@ -42,9 +42,21 @@ export default function Header() {
     { name: t('story'), href: '#notre-histoire' },
     { name: t('menu_carte'), href: '#menu-carte' },
     { name: t('menu_week'), href: '#menu-semaine' },
+    { name: t('gallery'), href: '#galerie' },
     { name: t('wine_list'), href: '#carte-des-vins' },
+    { name: t('privatization'), href: '#privatisation' },
     { name: t('contact'), href: '#contact' },
   ];
+
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (pathname === '/') {
+      window.history.pushState(null, '', '/');
+    } else {
+      router.push('/');
+    }
+  };
 
   const isLight = theme === 'light';
 
@@ -58,7 +70,7 @@ export default function Header() {
         }`}
       >
         <div className="container mx-auto px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-6 group">
+          <Link href="/" onClick={scrollToTop} className="flex items-center gap-6 group">
             <div className={`relative w-16 h-16 md:w-24 md:h-24 ${isLight ? 'invert' : ''}`}>
               <Image 
                 src="/logo-transparent-les-negociants.jpg" 
@@ -73,9 +85,9 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden xl:flex items-center gap-10">
-            <div className="flex items-center gap-8 text-current">
+            <div className="flex items-center gap-6 text-current">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href} className="nav-link text-sm tracking-[0.25em]">{link.name}</a>
+                <a key={link.href} href={link.href} className="nav-link text-[10px] tracking-[0.15em] whitespace-nowrap">{link.name}</a>
               ))}
             </div>
             <div className={`h-6 w-px mx-2 ${isLight ? 'bg-black/10' : 'bg-white/20'}`}></div>
