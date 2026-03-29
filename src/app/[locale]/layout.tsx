@@ -9,6 +9,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import StructuredData from '@/components/StructuredData';
 import { siteConfig } from '@/config/site';
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -100,6 +101,7 @@ return (
               </div>
               {children}
               <StructuredData />
+              <Analytics />
             </ReservationProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
