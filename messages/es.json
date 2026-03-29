@@ -8,6 +8,7 @@
     "story": "Nuestra historia",
     "menu_carte": "Carta",
     "menu_week": "Menú de la semana",
+    "gallery": "Galería",
     "wine_list": "Carta de vinos",
     "privatization": "Privatización",
     "find_us": "Dónde estamos",
@@ -32,7 +33,7 @@
     "p2": "« Les Négociants » es la materialización del sueño de dos apasionados de la restauración, Florian y Julien.",
     "p3": "Nuestro establecimiento se distingue por un concepto que combina degustación, sofisticación y convivencia, ofreciendo una experiencia culinaria sabrosa y gourmet.",
     "p4": "En « Les Négociants », nos esmeramos en trabajar con productos frescos y de temporada, cuidadosamente seleccionados para garantizar una calidad excepcional en cada plato. Nuestra cocina bistronómica deleitará a los paladares más exigentes, respetando la autenticidad y la riqueza de los ingredientes.",
-    "p5": "Nuestra carta de vinos, minuciosamente elaborada con 250 referencias, refleja nuestro amor por el vino y nuestro deseo de hacerle descubrir tesoros vitivinícolas. Cada botella ha sido elegida para realzar su comida y ofrecerle un maridaje perfecto.",
+    "p5": "Nuestra carta de vinos, minuciosamente elaborada con 250 referencias, refleja nuestra amor por el vino y nuestro deseo de hacerle descubrir tesoros vitivinícolas. Cada botella ha sido elegida para realzar su comida y ofrecerle un maridaje perfecto.",
     "p6": "Acompáñenos en Les Négociants y déjese seducir por nuestro universo."
   },
   "MenuCarte": {
@@ -44,8 +45,8 @@
     "desserts": "POSTRES",
     "pdf_label": "Consulte la",
     "pdf_button": "Carta en PDF"
-    },
-    "MenuWeek": {
+  },
+  "MenuWeek": {
     "title": "NUESTRO MENÚ DE LA SEMANA",
     "date_range": "DEL 24 AL 28 DE MARZO DE 2026",
     "subtitle": "( Únicamente al MEDIODÍA de martes a sábado )",
@@ -56,13 +57,13 @@
     "formula_main_dessert": "Plato + Postre",
     "pdf_label": "Consulte el",
     "pdf_button": "Menú Semanal en PDF"
-    },
-    "Gallery": {
+  },
+  "Gallery": {
     "title": "ALGUNOS PLATOS DE LA CARTA",
     "swipe_instruction": "Deslice para explorar nuestros platos",
     "privatization_info": "Nuestro salón en inmersión total en la bodega, que puede privatizarse para cualquier tipo de evento: hasta 20 personas para una privatización",
     "terrace_info": "Nuestra terraza, a la sombra o al sol, ¡usted elige!"
-    },
+  },
   "FindUs": {
     "title": "Dónde estamos",
     "description": "Encuéntrenos en pleno corazón de Burdeos, en el número 3 de la rue de Guienne, cerca de la Place Fernand Lafargue y admire la Grosse Cloche desde \" LES NÉGOCIANTS \""
@@ -79,6 +80,57 @@
     "sending": "Enviando...",
     "success": "¡Gracias! Su mensaje ha sido enviado con éxito.",
     "error": "Ha ocurrido un error al enviar. Por favor, inténtelo de nuevo o contacte con nosotros directamente."
+  },
+  "WineList": {
+    "title": "La Selección del Sumiller",
+    "description": "Nuestra bodega alberga más de 250 referencias, desde joyas locales hasta grandes reservas, seleccionadas con pasión para realzar su experiencia culinaria.",
+    "cta": "Consultar la Carta de Vinos"
+  },
+  "Privatization": {
+    "title": "Organice sus comidas en Les Négociants",
+    "description": "Un lugar que se distingue por un concepto que combina degustación, sofisticación y convivencia, ofreciendo una experiencia culinaria sabrosa y gourmet.",
+    "situation_title": "Una ubicación perfecta",
+    "situation_desc": "En el corazón del centro histórico de la ciudad, frente a la Grosse Cloche y a dos pasos de la plaza Fernand Lafargue.",
+    "ambiances_title": "2 salas, 2 ambientes...",
+    "ambiances_desc": "La sala principal y nuestra bodega, más íntima.",
+    "restaurant_title": "El Restaurante",
+    "restaurant_subtitle": "Para sus comidas de negocios y privadas",
+    "restaurant_desc": "Un restaurante moderno donde todo el equipo le ofrece una cocina auténtica y un servicio agradable. Una carta de temporada con productos frescos.",
+    "restaurant_capacity": "Capacidad: 34 personas",
+    "cave_title": "La Cava",
+    "cave_subtitle": "Para sus comidas de negocios y privadas",
+    "cave_desc": "Situada bajo las antiguas piedras del restaurante, La Cava privada es un lugar aparte. Totalmente dedicada a comidas íntimas y momentos excepcionales.",
+    "cave_ambiance_title": "Ambiente y Decoración",
+    "cave_ambiance_1": "Luces tenues en los nichos, piedra bruta.",
+    "cave_ambiance_2": "Estanterías llenas de grandes reservas.",
+    "cave_ambiance_3": "Gran mesa de madera maciza.",
+    "cave_capacity": "Capacidad: 20 personas",
+    "menus_title": "Menú para Grupos",
+    "menus_help": "Se le presentará un menú detallado en función de la fecha de su evento. El menú elegido se sirve para toda la mesa.",
+    "menu1_name": "MENÚ n°1",
+    "menu1_price": "52€",
+    "menu1_desc": "3 platos (Entrante - Plato Principal - Postre)",
+    "menu2_name": "MENÚ n°2",
+    "menu2_price": "62€",
+    "menu2_desc": "4 platos (Entrante - Plato Principal - Queso - Postre)",
+    "menu3_name": "MENÚ n°3",
+    "menu3_price": "75€",
+    "menu3_desc": "5 platos (Entrante - Pescado - Carne - Queso - Postre)",
+    "drinks_title": "Paquetes de Bebidas",
+    "drinks_help": "Se le presentará una selección detallada en función del menú elegido.",
+    "drink1_price": "25€",
+    "drink1_desc": "3 copas de vino, Agua mineral, Bebida caliente",
+    "drink2_price": "35€",
+    "drink2_desc": "1 aperitivo, 3 copas de vino, Agua mineral, Bebida caliente",
+    "drink3_price": "42€",
+    "drink3_desc": "1 aperitivo, 4 copas de vino, Agua mineral, Bebida caliente",
+    "testimonials_title": "Ellos confían en nosotros...",
+    "conditions_title": "Condiciones para grupos",
+    "conditions_res_title": "Reserva",
+    "conditions_res_desc": "Se requiere un depósito del 50% para la validación definitiva de la reserva.",
+    "conditions_ann_title": "Cancelación",
+    "conditions_ann_desc": "Reembolso del depósito si la cancelación es > 7 días. Con menos de 48 horas de antelación, se facturará la totalidad de los menús.",
+    "cta": "Solicitar un presupuesto"
   },
   "InstagramPopup": {
     "title": "¡Siga nuestra actualidad y descubra nuestras últimas creaciones!",

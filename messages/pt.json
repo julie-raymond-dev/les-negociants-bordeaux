@@ -8,6 +8,7 @@
     "story": "A Nossa História",
     "menu_carte": "Menu à la carte",
     "menu_week": "Menu da semana",
+    "gallery": "Galeria",
     "wine_list": "Carta de vinhos",
     "privatization": "Privatização",
     "find_us": "Onde estamos",
@@ -44,8 +45,8 @@
     "desserts": "SOBREMESAS",
     "pdf_label": "Consulte a",
     "pdf_button": "Carta em PDF"
-    },
-    "MenuWeek": {
+  },
+  "MenuWeek": {
     "title": "O NOSSO MENU DA SEMANA",
     "date_range": "DE 24 A 28 DE MARÇO DE 2026",
     "subtitle": "( Apenas ao ALMOÇO de terça-feira a sábado )",
@@ -56,13 +57,13 @@
     "formula_main_dessert": "Prato + Sobremesa",
     "pdf_label": "Consulte o",
     "pdf_button": "Menu Semanal em PDF"
-    },
-    "Gallery": {
+  },
+  "Gallery": {
     "title": "ALGUNS PRATOS DA CARTA",
     "swipe_instruction": "Deslize para explorar os nossos pratos",
     "privatization_info": "A nossa sala em imersão total na garrafeira, que pode ser privatizada para todo o tipo de eventos: até 20 pessoas para uma privatização",
     "terrace_info": "A nossa esplanada, com sombra ou sol, a escolha é sua!"
-    },
+  },
   "FindUs": {
     "title": "Onde estamos",
     "description": "Encontre-nos no coração de Bordéus, no n.º 3 da rue de Guienne, perto da Place Fernand Lafargue e admire a Grosse Cloche a partir do \" LES NÉGOCIANTS \""
@@ -79,6 +80,57 @@
     "sending": "A enviar...",
     "success": "Obrigado! A sua mensagem foi enviada com sucesso.",
     "error": "Ocorreu um erro ao enviar. Por favor, tente novamente ou contacte-nos diretamente."
+    },
+  "WineList": {
+    "title": "A Seleção do Sommelier",
+    "description": "A nossa garrafeira alberga mais de 250 referências, desde preciosidades locais a grandes vinhos classificados, selecionados com paixão para sublimar a sua experiência culinária.",
+    "cta": "Consultar a Carta de Vinhos"
+  },
+  "Privatization": {
+    "title": "Organize as suas refeições no Les Négociants",
+    "description": "Um local que se distingue por um conceito que une degustação, sofisticação e convívio, oferecendo uma experiência culinaria saborosa e requintada.",
+    "situation_title": "Uma localização perfeita",
+    "situation_desc": "No coração do centro histórico da cidade, em frente à Grosse Cloche e a dois passos da praça Fernand Lafargue.",
+    "ambiances_title": "2 salas, 2 ambientes...",
+    "ambiances_desc": "A sala principal e a nossa garrafeira, mais intimista.",
+    "restaurant_title": "O Restaurante",
+    "restaurant_subtitle": "Para as suas refeições de negócios e privadas",
+    "restaurant_desc": "Um restaurante moderno onde toda a equipa lhe propõe uma cozinha autêntica e um serviço acolhedor. Uma carta sazonal com produtos frescos.",
+    "restaurant_capacity": "Capacidade: 34 pessoas",
+    "cave_title": "A Adega",
+    "cave_subtitle": "Para as suas refeições de negócios e privadas",
+    "cave_desc": "Situada sob as pedras antigas do restaurante, a Adega privada é um lugar à parte. Totalmente dedicada a refeições intimistas e momentos de exceção.",
+    "cave_ambiance_title": "Ambiente e Decoração",
+    "cave_ambiance_1": "Luzes suaves nos nichos, pedra bruta.",
+    "cave_ambiance_2": "Prateleiras repletas de grandes vinhos.",
+    "cave_ambiance_3": "Grande mesa em madeira maciça.",
+    "cave_capacity": "Capacidade: 20 pessoas",
+    "menus_title": "Menu de Grupo",
+    "menus_help": "Será apresentado um menu detalhado em função da data do seu evento. O menu escolhido é servido para toda a mesa.",
+    "menu1_name": "MENU n°1",
+    "menu1_price": "52€",
+    "menu1_desc": "3 serviços (Entrada - Prato - Sobremesa)",
+    "menu2_name": "MENU n°2",
+    "menu2_price": "62€",
+    "menu2_desc": "4 serviços (Entrada - Prato - Queijo - Sobremesa)",
+    "menu3_name": "MENU n°3",
+    "menu3_price": "75€",
+    "menu3_desc": "5 serviços (Entrada - Peixe - Carne - Queijo - Sobremesa)",
+    "drinks_title": "Pacotes de Bebidas",
+    "drinks_help": "Será apresentada uma seleção detalhada em função do menu escolhido.",
+    "drink1_price": "25€",
+    "drink1_desc": "3 copos de vinho, Água mineral, Bebida quente",
+    "drink2_price": "35€",
+    "drink2_desc": "1 aperitivo, 3 copos de vinho, Água mineral, Bebida quente",
+    "drink3_price": "42€",
+    "drink3_desc": "1 aperitivo, 4 copos de vinho, Água mineral, Bebida quente",
+    "testimonials_title": "Eles confiam em nós...",
+    "conditions_title": "Condições para grupos",
+    "conditions_res_title": "Reserva",
+    "conditions_res_desc": "É solicitado um sinal de 50% para a validação definitiva da reserva.",
+    "conditions_ann_title": "Cancelamento",
+    "conditions_ann_desc": "Reembolso do sinal se o cancelamento for feito com antecedência superior a 7 dias. Com menos de 48h de antecedência, a totalidade dos menus será faturada.",
+    "cta": "Pedir um orçamento"
   },
   "InstagramPopup": {
     "title": "Siga as nossas novidades e descubra as nossas últimas criações!",
