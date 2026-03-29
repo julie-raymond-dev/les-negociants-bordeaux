@@ -80,6 +80,11 @@
     "success": "Merci ! Votre message a été envoyé avec succès.",
     "error": "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement."
   },
+  "WineList": {
+    "title": "La Sélection du Sommelier",
+    "description": "Notre cave abrite plus de 250 références, allant des pépites locales aux grands crus classés, sélectionnées avec passion pour sublimer votre expérience culinaire.",
+    "cta": "Consulter la Carte des Vins"
+  },
   "InstagramPopup": {
     "title": "Suivez nos actualités et découvrez nos dernières créations !",
     "cta": "Nous rejoindre"

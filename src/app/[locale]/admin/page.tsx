@@ -40,7 +40,8 @@ export default function AdminDashboard() {
     storyImage: "",
     gallery: [] as GalleryItem[],
     menuCartePdf: "",
-    menuWeekPdf: ""
+    menuWeekPdf: "",
+    wineListPdf: ""
   });
 
   // --- Chargement initial ---
@@ -84,8 +85,9 @@ export default function AdminDashboard() {
         setMedia({
           storyImage: settings.story_image || "/gallery/fallback-story.jpg",
           gallery: galleryData.length > 0 ? galleryData : siteConfig.assets.gallery,
-          menuCartePdf: settings.menu_carte_pdf || "/menu-carte.pdf",
-          menuWeekPdf: settings.menu_week_pdf || "/menu-semaine.pdf"
+          menuCartePdf: settings.menu_carte_pdf || siteConfig.assets.menuCartePdf,
+          menuWeekPdf: settings.menu_week_pdf || siteConfig.assets.menuWeekPdf,
+          wineListPdf: settings.wine_list_pdf || siteConfig.assets.wineListPdf
         });
       } finally {
         setIsLoading(false);
@@ -285,7 +287,7 @@ export default function AdminDashboard() {
               {/* Section PDFs */}
               <div className="space-y-8">
                 <h3 className="text-xl font-black uppercase tracking-[0.2em] text-primary">Documents PDF</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <FileUploadCard 
                     label="Carte Complète" 
                     fileName={media.menuCartePdf} 
@@ -307,6 +309,17 @@ export default function AdminDashboard() {
                     }} 
                     isUploading={isSaving} 
                     icon={<Calendar size={32} />} 
+                  />
+                  <FileUploadCard 
+                    label="Carte des Vins" 
+                    fileName={media.wineListPdf} 
+                    onFileSelect={async (e: any) => {
+                      const url = await handleFileUpload(e.target.files[0], 'documents');
+                      await updateSiteSetting('wine_list_pdf', url);
+                      setMedia({...media, wineListPdf: url});
+                    }} 
+                    isUploading={isSaving} 
+                    icon={<Wine size={32} />} 
                   />
                 </div>
               </div>

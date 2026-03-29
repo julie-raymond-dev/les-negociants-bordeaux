@@ -5,6 +5,7 @@ import Story from '@/components/Story';
 import MenuCarte from '@/components/MenuCarte';
 import MenuWeek from '@/components/MenuWeek';
 import Gallery from '@/components/Gallery';
+import WineList from '@/components/WineList';
 import FindUs from '@/components/FindUs';
 import Contact from '@/components/Contact';
 import TheForkReservation from '@/components/TheForkReservation';
@@ -27,6 +28,8 @@ export default function HomePage() {
       <MenuWeek />
       <SectionSeparator />
       <Gallery />
+      <SectionSeparator />
+      <WineList />
       <SectionSeparator />
       <FindUs />
       <SectionSeparator />

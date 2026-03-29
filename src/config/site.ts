@@ -23,8 +23,9 @@ export const siteConfig = {
     logo: process.env.NEXT_PUBLIC_LOGO_PATH || "/logo-transparent-les-negociants.jpg",
     heroBg: process.env.NEXT_PUBLIC_HERO_IMAGE || "/gallery/hero-bg.jpg",
     storyImage: "/gallery/fallback-story.jpg",
-    menuCartePdf: "/menu-carte.pdf",
-    menuWeekPdf: "/menu-semaine.pdf",
+    menuCartePdf: process.env.NEXT_PUBLIC_MENU_CARTE_PDF || "/gallery/menu_carte_2026.pdf",
+    menuWeekPdf: process.env.NEXT_PUBLIC_MENU_WEEK_PDF || "/gallery/menu_semaine_2026.pdf",
+    wineListPdf: process.env.NEXT_PUBLIC_WINE_LIST_PDF || "/gallery/carte_vin_2026.pdf",
     gallery: [
       { url: "/gallery/1.jpg", title: "Asperges des Landes" },
       { url: "/gallery/2.jpg", title: "Oeuf Parfait" },
