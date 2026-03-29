@@ -549,11 +549,14 @@ export default function AdminDashboard() {
                   else if (activeTab === 'week') saveWeekMenu();
                   else if (activeTab === 'media') {
                     saveGallery();
-                    saveMediaSettings();
+                    saveSingleSiteSetting('story_image', media.storyImage, "Image Histoire enregistrée");
+                    saveSingleSiteSetting('menu_carte_pdf', media.menuCartePdf, "Menu Carte enregistré");
+                    saveSingleSiteSetting('menu_week_pdf', media.menuWeekPdf, "Menu Semaine enregistré");
+                    saveSingleSiteSetting('wine_list_pdf', media.wineListPdf, "Carte des vins enregistrée");
                   }
                 }}
                 disabled={isSaving}
-                className="bg-primary text-white px-8 py-3 rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+                className="bg-primary text-white px-8 py-3 rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2"
               >
                 {isSaving ? <Loader2 className="animate-spin" size={14} /> : <Save size={14} />}
                 Enregistrer maintenant
