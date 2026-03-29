@@ -152,9 +152,9 @@ export default function AdminDashboard() {
     
     // Si c'est un PDF, on utilise un nom plus propre pour l'URL
     if (file.type === 'application/pdf') {
-      if (file.name.toLowerCase().includes('vin')) fileName = 'carte-des-vins.pdf';
-      else if (file.name.toLowerCase().includes('week') || file.name.toLowerCase().includes('semaine')) fileName = 'menu-semaine.pdf';
-      else fileName = 'menu-carte.pdf';
+      if (file.name.toLowerCase().includes('vin')) fileName = 'carte_vin_2026.pdf';
+      else if (file.name.toLowerCase().includes('week') || file.name.toLowerCase().includes('semaine')) fileName = 'menu_semaine_2026.pdf';
+      else fileName = 'menu_carte_2026.pdf';
     }
 
     const { error } = await supabase.storage.from(bucket).upload(fileName, file, {
