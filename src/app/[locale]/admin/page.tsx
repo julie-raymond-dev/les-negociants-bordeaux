@@ -5,7 +5,7 @@ import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, Trash2, Save, LayoutDashboard, Utensils, 
-  Calendar, Euro, ArrowLeft, LogOut, Settings, Image as ImageIcon, FileText, Upload, Loader2, GripVertical, X, Wine
+  Calendar, Euro, ArrowLeft, LogOut, Settings, Image as ImageIcon, FileText, Upload, Loader2, GripVertical, X, Wine, CheckCircle2
 } from 'lucide-react';
 
 import { supabase, getMenuCarte, getMenuWeek, getGallery, getSiteSettings } from '@/lib/supabase';
@@ -30,6 +30,20 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('carte');
   const [isSaving, setIsSaving] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [notification, setNotification] = useState<{message: string, type: 'success' | 'info'} | null>(null);
+
+  // Prévenir la fermeture si modifs non enregistrées
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (hasUnsavedChanges) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [hasUnsavedChanges]);
 
   // --- États des données ---
   const [starters, setStarters] = useState<MenuItem[]>([]);
@@ -96,6 +110,12 @@ export default function AdminDashboard() {
     loadAllData();
   }, []);
 
+  // --- Fonctions utilitaires ---
+  const showNotification = (message: string, type: 'success' | 'info' = 'success') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 4000);
+  };
+
   // --- Fonctions de Sauvegarde ---
 
   const saveMenuCarte = async () => {
@@ -108,7 +128,8 @@ export default function AdminDashboard() {
         ...desserts.map((item, i) => ({ ...item, category: 'dessert', display_order: i + 200 }))
       ].map(({ id, ...rest }) => rest);
       await supabase.from('menu_carte').insert(allItems);
-      alert("Menu à la carte sauvegardé !");
+      setHasUnsavedChanges(false);
+      showNotification("Le Menu à la Carte (soir) a été mis à jour avec succès.");
     } finally {
       setIsSaving(false);
     }
@@ -118,7 +139,8 @@ export default function AdminDashboard() {
     setIsSaving(true);
     try {
       await supabase.from('menu_week').upsert({ id: 1, ...weekMenu });
-      alert("Menu de la semaine sauvegardé !");
+      setHasUnsavedChanges(false);
+      showNotification(`Menu de la semaine (${weekMenu.date_range}) enregistré.`);
     } finally {
       setIsSaving(false);
     }
@@ -144,25 +166,37 @@ export default function AdminDashboard() {
     return publicUrl;
   };
 
-  const updateSiteSetting = async (key: string, value: string) => {
-    await supabase.from('site_settings').upsert({ key, value });
-  };
-
-  // Gestion Galerie
-  const updateGalleryItemTitle = (index: number, title: string) => {
-    const newGallery = [...media.gallery];
-    newGallery[index].title = title;
-    setMedia({ ...media, gallery: newGallery });
+  const saveSingleSiteSetting = async (key: string, value: string, successMessage: string) => {
+    setIsSaving(true);
+    try {
+      await updateSiteSetting(key, value);
+      setHasUnsavedChanges(false);
+      showNotification(successMessage);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const saveGallery = async () => {
     setIsSaving(true);
     try {
-      // Pour simplifier, on vide et on ré-insère (ou on peut faire des updates individuels)
       await supabase.from('gallery').delete().neq('id', '00000000-0000-0000-0000-000000000000');
       const itemsToInsert = media.gallery.map(({ id, ...rest }) => rest);
       await supabase.from('gallery').insert(itemsToInsert);
-      alert("Galerie sauvegardée !");
+      setHasUnsavedChanges(false);
+      showNotification("La galerie photo a été mise à jour.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const saveGalleryItem = async (index: number) => {
+    setIsSaving(true);
+    try {
+      // Pour une granularité totale sur la galerie, on sauvegarde tout l'état actuel 
+      // car la structure simplifiée de la DB (delete/insert) l'impose
+      await saveGallery();
+      showNotification(`Image "${media.gallery[index].title || index + 1}" enregistrée.`);
     } finally {
       setIsSaving(false);
     }
@@ -173,10 +207,21 @@ export default function AdminDashboard() {
       ...media,
       gallery: [...media.gallery, { url: "/gallery/1.jpg", title: "Nouveau Plat" }]
     });
+    setHasUnsavedChanges(true);
   };
 
   const removeGalleryItem = (index: number) => {
     setMedia({ ...media, gallery: media.gallery.filter((_, i) => i !== index) });
+    setHasUnsavedChanges(true);
+  };
+
+  const updateSiteSetting = async (key: string, value: string) => {
+    await supabase.from('site_settings').upsert({ key, value });
+  };
+
+  const handleMediaChange = (field: string, value: any) => {
+    setMedia({ ...media, [field]: value });
+    setHasUnsavedChanges(true);
   };
 
   if (isLoading) return (
@@ -217,7 +262,7 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 p-8 md:p-16 max-w-6xl">
+      <main className="flex-1 p-8 md:p-16 max-w-6xl pb-32">
         <AnimatePresence mode="wait">
           
           {/* MENU A LA CARTE */}
@@ -233,9 +278,24 @@ export default function AdminDashboard() {
                 </button>
               </header>
               <div className="grid grid-cols-1 gap-12">
-                <MenuSection title="Entrées" items={starters} setItems={setStarters} onAdd={() => setStarters([...starters, { category: 'starter', name: "", description: "", price: "" }])} />
-                <MenuSection title="Plats" items={mains} setItems={setMains} onAdd={() => setMains([...mains, { category: 'main', name: "", description: "", price: "" }])} />
-                <MenuSection title="Desserts" items={desserts} setItems={setDesserts} onAdd={() => setDesserts([...desserts, { category: 'dessert', name: "", description: "", price: "" }])} />
+                <MenuSection 
+                  title="Entrées" 
+                  items={starters} 
+                  setItems={(items: any) => { setStarters(items); setHasUnsavedChanges(true); }} 
+                  onAdd={() => { setStarters([...starters, { category: 'starter', name: "", description: "", price: "" }]); setHasUnsavedChanges(true); }} 
+                />
+                <MenuSection 
+                  title="Plats" 
+                  items={mains} 
+                  setItems={(items: any) => { setMains(items); setHasUnsavedChanges(true); }} 
+                  onAdd={() => { setMains([...mains, { category: 'main', name: "", description: "", price: "" }]); setHasUnsavedChanges(true); }} 
+                />
+                <MenuSection 
+                  title="Desserts" 
+                  items={desserts} 
+                  setItems={(items: any) => { setDesserts(items); setHasUnsavedChanges(true); }} 
+                  onAdd={() => { setDesserts([...desserts, { category: 'dessert', name: "", description: "", price: "" }]); setHasUnsavedChanges(true); }} 
+                />
               </div>
             </motion.section>
           )}
@@ -255,30 +315,34 @@ export default function AdminDashboard() {
               <div className="bg-muted p-10 rounded-[40px] border border-border space-y-10">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.4em] text-primary ml-4">Dates du menu (ex: 24 AU 28 MARS 2026)</label>
-                  <input value={weekMenu.date_range} onChange={(e) => setWeekMenu({...weekMenu, date_range: e.target.value})} className="w-full bg-background border-2 border-border px-8 py-5 rounded-full font-black text-xl outline-none focus:border-primary transition-all" />
+                  <input 
+                    value={weekMenu.date_range} 
+                    onChange={(e) => { setWeekMenu({...weekMenu, date_range: e.target.value}); setHasUnsavedChanges(true); }} 
+                    className="w-full bg-background border-2 border-border px-8 py-5 rounded-full font-black text-xl outline-none focus:border-primary transition-all" 
+                  />
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                   <div className="space-y-6">
                     <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">01 ENTRÉE</span>
-                    <InputGroup label="Nom" value={weekMenu.starter_name} onChange={(v: string) => setWeekMenu({...weekMenu, starter_name: v})} />
-                    <InputGroup label="Description" value={weekMenu.starter_desc} onChange={(v: string) => setWeekMenu({...weekMenu, starter_desc: v})} />
+                    <InputGroup label="Nom" value={weekMenu.starter_name} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_name: v}); setHasUnsavedChanges(true); }} />
+                    <InputGroup label="Description" value={weekMenu.starter_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_desc: v}); setHasUnsavedChanges(true); }} />
                   </div>
                   <div className="space-y-6">
                     <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">02 PLAT</span>
-                    <InputGroup label="Nom" value={weekMenu.main_name} onChange={(v: string) => setWeekMenu({...weekMenu, main_name: v})} />
-                    <InputGroup label="Description" value={weekMenu.main_desc} onChange={(v: string) => setWeekMenu({...weekMenu, main_desc: v})} />
+                    <InputGroup label="Nom" value={weekMenu.main_name} onChange={(v: string) => { setWeekMenu({...weekMenu, main_name: v}); setHasUnsavedChanges(true); }} />
+                    <InputGroup label="Description" value={weekMenu.main_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, main_desc: v}); setHasUnsavedChanges(true); }} />
                   </div>
                   <div className="space-y-6">
                     <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">03 DESSERT</span>
-                    <InputGroup label="Nom" value={weekMenu.dessert_name} onChange={(v: string) => setWeekMenu({...weekMenu, dessert_name: v})} />
-                    <InputGroup label="Description" value={weekMenu.dessert_desc} onChange={(v: string) => setWeekMenu({...weekMenu, dessert_desc: v})} />
+                    <InputGroup label="Nom" value={weekMenu.dessert_name} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_name: v}); setHasUnsavedChanges(true); }} />
+                    <InputGroup label="Description" value={weekMenu.dessert_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_desc: v}); setHasUnsavedChanges(true); }} />
                   </div>
                 </div>
 
                 <div className="pt-10 border-t border-border flex flex-wrap gap-10 justify-center">
-                  <PriceCard label="Formule Complète" value={weekMenu.price_full} onChange={(v: string) => setWeekMenu({...weekMenu, price_full: v})} />
-                  <PriceCard label="Entrée + Plat / Plat + Dessert" value={weekMenu.price_half} onChange={(v: string) => setWeekMenu({...weekMenu, price_half: v})} />
+                  <PriceCard label="Formule Complète" value={weekMenu.price_full} onChange={(v: string) => { setWeekMenu({...weekMenu, price_full: v}); setHasUnsavedChanges(true); }} />
+                  <PriceCard label="Entrée + Plat / Plat + Dessert" value={weekMenu.price_half} onChange={(v: string) => { setWeekMenu({...weekMenu, price_half: v}); setHasUnsavedChanges(true); }} />
                 </div>
               </div>
             </motion.section>
@@ -291,9 +355,6 @@ export default function AdminDashboard() {
                   <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">Médias & Documents</h1>
                   <p className="text-foreground/40 font-bold uppercase tracking-widest text-xs text-primary">Gestion visuelle</p>
                 </div>
-                <button onClick={saveGallery} disabled={isSaving} className="bg-primary text-white px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs flex items-center gap-3 hover:scale-105 active:scale-95 disabled:opacity-50 transition-all shadow-lg shadow-primary/20">
-                  {isSaving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />} Sauvegarder tout
-                </button>
               </header>
 
               {/* Section PDFs */}
@@ -305,9 +366,9 @@ export default function AdminDashboard() {
                     fileName={media.menuCartePdf} 
                     onFileSelect={async (e: any) => {
                       const url = await handleFileUpload(e.target.files[0], 'documents');
-                      await updateSiteSetting('menu_carte_pdf', url);
-                      setMedia({...media, menuCartePdf: url});
+                      handleMediaChange('menuCartePdf', url);
                     }} 
+                    onSave={() => saveSingleSiteSetting('menu_carte_pdf', media.menuCartePdf, "Menu à la carte (PDF) enregistré.")}
                     isUploading={isSaving} 
                     icon={<FileText size={32} />} 
                   />
@@ -316,9 +377,9 @@ export default function AdminDashboard() {
                     fileName={media.menuWeekPdf} 
                     onFileSelect={async (e: any) => {
                       const url = await handleFileUpload(e.target.files[0], 'documents');
-                      await updateSiteSetting('menu_week_pdf', url);
-                      setMedia({...media, menuWeekPdf: url});
+                      handleMediaChange('menuWeekPdf', url);
                     }} 
+                    onSave={() => saveSingleSiteSetting('menu_week_pdf', media.menuWeekPdf, "Menu de la semaine (PDF) enregistré.")}
                     isUploading={isSaving} 
                     icon={<Calendar size={32} />} 
                   />
@@ -327,9 +388,9 @@ export default function AdminDashboard() {
                     fileName={media.wineListPdf} 
                     onFileSelect={async (e: any) => {
                       const url = await handleFileUpload(e.target.files[0], 'documents');
-                      await updateSiteSetting('wine_list_pdf', url);
-                      setMedia({...media, wineListPdf: url});
+                      handleMediaChange('wineListPdf', url);
                     }} 
+                    onSave={() => saveSingleSiteSetting('wine_list_pdf', media.wineListPdf, "Carte des vins (PDF) enregistrée.")}
                     isUploading={isSaving} 
                     icon={<Wine size={32} />} 
                   />
@@ -348,15 +409,23 @@ export default function AdminDashboard() {
                   </div>
                   <div className="flex-1 space-y-6">
                     <p className="text-xs font-bold text-foreground opacity-40 italic">L'image sera affichée dans la section "Notre Histoire".</p>
-                    <label className="inline-flex items-center gap-4 px-10 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] cursor-pointer hover:scale-105 transition-all shadow-xl shadow-primary/20">
-                      {isSaving ? <Loader2 className="animate-spin" size={16} /> : <Upload size={16} />}
-                      Remplacer l'image
-                      <input type="file" className="hidden" accept="image/*" onChange={async (e: any) => {
-                        const url = await handleFileUpload(e.target.files[0], 'images');
-                        await updateSiteSetting('story_image', url);
-                        setMedia({...media, storyImage: url});
-                      }} />
-                    </label>
+                    <div className="flex flex-wrap gap-4">
+                      <label className="inline-flex items-center gap-4 px-10 py-5 bg-background border-2 border-border text-foreground rounded-full font-black uppercase tracking-widest text-[10px] cursor-pointer hover:border-primary hover:text-primary transition-all shadow-lg">
+                        {isSaving ? <Loader2 className="animate-spin" size={16} /> : <Upload size={16} />}
+                        Remplacer l'image
+                        <input type="file" className="hidden" accept="image/*" onChange={async (e: any) => {
+                          const url = await handleFileUpload(e.target.files[0], 'images');
+                          handleMediaChange('storyImage', url);
+                        }} />
+                      </label>
+                      <button 
+                        onClick={() => saveSingleSiteSetting('story_image', media.storyImage, "L'image de l'histoire a été mise à jour.")}
+                        disabled={isSaving}
+                        className="inline-flex items-center gap-4 px-10 py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-xl shadow-primary/20"
+                      >
+                        <Save size={16} /> Sauvegarder l'image
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -367,12 +436,12 @@ export default function AdminDashboard() {
                 <div className="flex gap-8 overflow-x-auto pb-12 pt-4 snap-x scrollbar-hide px-2">
                   {media.gallery.map((img, i) => (
                     <div key={i} className="min-w-[300px] md:min-w-[400px] snap-center flex flex-col gap-6 group">
-                      <div className="relative aspect-[4/5] md:aspect-[16/10] rounded-[40px] overflow-hidden shadow-2xl border-2 border-border group-hover:border-primary transition-all duration-500">
+                      <div className="relative aspect-[4/5] md:aspect-[16/10] rounded-[40px] overflow-hidden shadow-2xl border-2 border-border group-hover:border-border transition-all duration-500">
                         <img src={img.url} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
                           <input 
                             value={img.title} 
-                            onChange={(e) => updateGalleryItemTitle(i, e.target.value)}
+                            onChange={(e) => { updateGalleryItemTitle(i, e.target.value); setHasUnsavedChanges(true); }}
                             className="bg-transparent border-b border-white/20 text-white font-black uppercase tracking-tighter text-xl md:text-2xl focus:border-primary outline-none py-2"
                             placeholder="Titre de l'image"
                           />
@@ -386,8 +455,16 @@ export default function AdminDashboard() {
                               const newGallery = [...media.gallery];
                               newGallery[i].url = url;
                               setMedia({...media, gallery: newGallery});
+                              setHasUnsavedChanges(true);
                             }} />
                           </label>
+                          <button 
+                            onClick={() => saveGalleryItem(i)}
+                            className="p-3 bg-primary text-white rounded-2xl hover:scale-110 transition-all shadow-xl"
+                            title="Sauvegarder cette carte"
+                          >
+                            <Save size={18} />
+                          </button>
                           <button onClick={() => removeGalleryItem(i)} className="p-3 bg-red-500 text-white rounded-2xl hover:scale-110 transition-all shadow-xl">
                             <Trash2 size={18} />
                           </button>
@@ -415,6 +492,76 @@ export default function AdminDashboard() {
           )}
         </AnimatePresence>
       </main>
+
+      {/* Notifications Toasts */}
+      <AnimatePresence>
+        {notification && (
+          <motion.div 
+            initial={{ opacity: 0, y: 50, x: '-50%' }}
+            animate={{ opacity: 1, y: 0, x: '-50%' }}
+            exit={{ opacity: 0, y: 20, x: '-50%' }}
+            className="fixed bottom-10 left-1/2 z-[200] min-w-[300px]"
+          >
+            <div className={`flex items-center gap-4 p-6 rounded-[30px] shadow-2xl border ${
+              notification.type === 'success' 
+                ? 'bg-primary text-white border-white/20' 
+                : 'bg-muted text-foreground border-border'
+            }`}>
+              <div className="w-10 h-10 bg-white/20 rounded-2xl flex items-center justify-center">
+                <CheckCircle2 size={20} />
+              </div>
+              <p className="font-black uppercase tracking-widest text-[10px] flex-1">{notification.message}</p>
+              <button onClick={() => setNotification(null)} className="opacity-50 hover:opacity-100 transition-opacity">
+                <X size={16} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Barre de modifications non enregistrées */}
+      <AnimatePresence>
+        {hasUnsavedChanges && (
+          <motion.div 
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            className="fixed bottom-0 left-0 right-0 z-[150] bg-foreground text-background p-6 flex flex-col md:flex-row items-center justify-center gap-6 shadow-[0_-20px_50px_rgba(0,0,0,0.2)]"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-8 h-8 bg-primary/20 rounded-xl flex items-center justify-center text-primary animate-pulse">
+                <Settings size={16} />
+              </div>
+              <p className="font-black uppercase tracking-[0.2em] text-[10px]">
+                Vous avez des modifications non enregistrées
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => window.location.reload()} 
+                className="px-6 py-3 text-[10px] font-black uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity"
+              >
+                Annuler
+              </button>
+              <button 
+                onClick={() => {
+                  if (activeTab === 'carte') saveMenuCarte();
+                  else if (activeTab === 'week') saveWeekMenu();
+                  else if (activeTab === 'media') {
+                    saveGallery();
+                    saveMediaSettings();
+                  }
+                }}
+                disabled={isSaving}
+                className="bg-primary text-white px-8 py-3 rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+              >
+                {isSaving ? <Loader2 className="animate-spin" size={14} /> : <Save size={14} />}
+                Enregistrer maintenant
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -483,9 +630,9 @@ function PriceCard({ label, value, onChange }: any) {
   );
 }
 
-function FileUploadCard({ label, fileName, onFileSelect, isUploading, icon }: any) {
+function FileUploadCard({ label, fileName, onFileSelect, onSave, isUploading, icon }: any) {
   return (
-    <div className="bg-muted p-10 rounded-[40px] border border-border flex flex-col items-center gap-8 group hover:border-primary/30 transition-all">
+    <div className="bg-muted p-10 rounded-[40px] border border-border flex flex-col items-center gap-8 group hover:border-primary/30 transition-all relative">
       <div className="w-20 h-20 bg-primary/10 rounded-[25px] flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
         {icon}
       </div>
@@ -493,11 +640,24 @@ function FileUploadCard({ label, fileName, onFileSelect, isUploading, icon }: an
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 block mb-2">{label}</span>
         <span className="text-xs font-bold text-foreground truncate max-w-[200px] block opacity-60 italic">{fileName || "Aucun fichier"}</span>
       </div>
-      <label className="w-full bg-background border-2 border-border py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:border-primary hover:text-primary transition-all cursor-pointer shadow-lg hover:shadow-primary/5">
-        {isUploading ? <Loader2 className="animate-spin" size={16} /> : <Upload size={16} />}
-        {fileName ? "Remplacer le PDF" : "Envoyer le PDF"}
-        <input type="file" className="hidden" accept=".pdf" onChange={onFileSelect} disabled={isUploading} />
-      </label>
+      <div className="w-full flex flex-col gap-3">
+        <label className="w-full bg-background border-2 border-border py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:border-primary hover:text-primary transition-all cursor-pointer shadow-lg hover:shadow-primary/5">
+          {isUploading ? <Loader2 className="animate-spin" size={16} /> : <Upload size={16} />}
+          {fileName ? "Remplacer le PDF" : "Envoyer le PDF"}
+          <input type="file" className="hidden" accept=".pdf" onChange={onFileSelect} disabled={isUploading} />
+        </label>
+        
+        {fileName && (
+          <button 
+            onClick={onSave}
+            disabled={isUploading}
+            className="w-full bg-primary text-white py-5 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20 disabled:opacity-50"
+          >
+            {isUploading ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
+            Enregistrer ce PDF
+          </button>
+        )}
+      </div>
     </div>
   );
 }

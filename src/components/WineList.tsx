@@ -4,9 +4,26 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Wine, ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { useEffect, useState } from 'react';
+import { getSiteSettings } from '@/lib/supabase';
 
 export default function WineList() {
   const t = useTranslations('WineList');
+  const [pdfUrl, setPdfUrl] = useState(siteConfig.assets.wineListPdf);
+
+  useEffect(() => {
+    async function loadWineList() {
+      try {
+        const settings = await getSiteSettings();
+        if (settings.wine_list_pdf) {
+          setPdfUrl(settings.wine_list_pdf);
+        }
+      } catch (err) {
+        console.error("Erreur lors du chargement de la carte des vins :", err);
+      }
+    }
+    loadWineList();
+  }, []);
 
   return (
     <section id="carte-des-vins" className="relative py-32 overflow-hidden">
@@ -41,7 +58,7 @@ export default function WineList() {
             </p>
 
             <a 
-              href={siteConfig.assets.wineListPdf}
+              href={pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-4 px-12 py-6 bg-primary text-white font-black uppercase tracking-[0.2em] text-xs rounded-full shadow-2xl transition-all duration-500 hover:scale-105 active:scale-95"

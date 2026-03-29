@@ -42,6 +42,7 @@ export default function Header() {
     { name: t('story'), href: '#notre-histoire' },
     { name: t('menu_carte'), href: '#menu-carte' },
     { name: t('menu_week'), href: '#menu-semaine' },
+    { name: t('wine_list'), href: '#carte-des-vins' },
     { name: t('contact'), href: '#contact' },
   ];
 
