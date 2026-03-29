@@ -36,7 +36,7 @@ export default function Privatization() {
   return (
     <section id="privatisation" className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
-
+        
         {/* En-tête de section */}
         <Reveal>
           <div className="max-w-4xl mx-auto text-center mb-24">
@@ -62,7 +62,7 @@ export default function Privatization() {
         {/* Dualité : Restaurant vs Cave */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32">
           {/* Bloc Restaurant */}
-          <motion.div
+          <motion.div 
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
@@ -92,7 +92,7 @@ export default function Privatization() {
           </motion.div>
 
           {/* Bloc Cave */}
-          <motion.div
+          <motion.div 
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
@@ -105,17 +105,17 @@ export default function Privatization() {
             <div className="p-10 md:p-16">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h3 className="text-3xl font-black uppercase tracking-tighter mb-2 text-white">{t('cave_title')}</h3>
+                  <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">{t('cave_title')}</h3>
                   <p className="text-primary font-bold uppercase tracking-widest text-[10px]">{t('cave_subtitle')}</p>
                 </div>
-                <div className="bg-white/10 px-6 py-3 rounded-full border border-white/10 font-black text-[10px] uppercase tracking-widest text-white">
+                <div className="bg-background/10 px-6 py-3 rounded-full border border-current font-black text-[10px] uppercase tracking-widest">
                   {t('cave_capacity')}
                 </div>
               </div>
-              <p className="text-white/60 leading-relaxed mb-8">{t('cave_desc')}</p>
+              <p className="opacity-70 leading-relaxed mb-8">{t('cave_desc')}</p>
               <ul className="space-y-4">
                 {[t('cave_ambiance_1'), t('cave_ambiance_2'), t('cave_ambiance_3')].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-white/80">
+                  <li key={i} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest opacity-90">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full"></div> {item}
                   </li>
                 ))}
@@ -126,13 +126,13 @@ export default function Privatization() {
 
         {/* Témoignages */}
         <Reveal>
-          <div className="mb-32 bg-muted/50 p-12 md:p-20 rounded-[60px] border border-border relative">
+          <div className="mb-32 bg-white p-12 md:p-20 rounded-[60px] border border-border relative text-black shadow-xl">
             <MessageSquare className="absolute top-10 right-10 text-primary opacity-10" size={80} />
-            <h3 className="heading-section mb-16 text-center">{t('testimonials_title')}</h3>
+            <h3 className="heading-section mb-16 text-center text-primary">{t('testimonials_title')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
               {testimonials.map((item, i) => (
                 <div key={i} className="space-y-6">
-                  <p className="text-lg italic leading-relaxed text-foreground/80">"{item.text}"</p>
+                  <p className="text-lg italic leading-relaxed opacity-80">"{item.text}"</p>
                   <div>
                     <p className="font-black uppercase tracking-widest text-xs">{item.author}</p>
                     <p className="text-[10px] font-bold text-primary uppercase tracking-widest">{item.role}</p>
@@ -152,12 +152,12 @@ export default function Privatization() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {menus.map((menu, i) => (
-                <motion.div
+                <motion.div 
                   key={i}
                   whileHover={{ y: -10 }}
                   className={`${menu.color} p-10 rounded-[40px] border border-primary/10 flex flex-col justify-between aspect-square`}
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Option 0{i + 1}</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Option 0{i+1}</span>
                   <div>
                     <p className="text-4xl font-black mb-2">{menu.price}</p>
                     <p className="font-black uppercase tracking-widest text-[10px] text-primary">{menu.name}</p>
@@ -189,26 +189,26 @@ export default function Privatization() {
           <div className="bg-foreground text-background p-12 md:p-20 rounded-[60px] shadow-2xl relative overflow-hidden">
             <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[60%] bg-primary/10 rounded-full blur-[120px]"></div>
             <div className="relative z-10">
-              <h3 className="text-white text-3xl font-black uppercase tracking-tighter mb-16 text-center">{t('conditions_title')}</h3>
+              <h3 className="text-3xl font-black uppercase tracking-tighter mb-16 text-center">{t('conditions_title')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
                 <div className="space-y-6">
                   <div className="flex items-center gap-4 text-primary">
                     <Calendar size={24} />
                     <h4 className="font-black uppercase tracking-widest text-sm">{t('conditions_res_title')}</h4>
                   </div>
-                  <p className="text-white/60 leading-relaxed italic">{t('conditions_res_desc')}</p>
+                  <p className="opacity-70 leading-relaxed italic">{t('conditions_res_desc')}</p>
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4 text-primary">
                     <Info size={24} />
                     <h4 className="font-black uppercase tracking-widest text-sm">{t('conditions_ann_title')}</h4>
                   </div>
-                  <p className="text-white/60 leading-relaxed italic">{t('conditions_ann_desc')}</p>
+                  <p className="opacity-70 leading-relaxed italic">{t('conditions_ann_desc')}</p>
                 </div>
               </div>
               <div className="mt-20 text-center">
-                <a
-                  href="#contact"
+                <a 
+                  href="#contact" 
                   className="inline-flex items-center gap-4 px-12 py-6 bg-primary text-white font-black uppercase tracking-[0.3em] text-xs rounded-full shadow-2xl hover:scale-105 transition-all"
                 >
                   {t('cta')}
