@@ -41,8 +41,10 @@ return {
   metadataBase: new URL(siteConfig.urls.base),
   title,
   description,
-  keywords: ["restaurant bordeaux", "bistronomie bordeaux", "grosse cloche bordeaux", "manger bordeaux centre", "vins bordeaux"],
-  authors: [{ name: "Les Négociants" }],
+  verification: {
+    google: "TiJE57cM0vDm72OzeE70hc2mx0oII9GVbib4ZPQTHSo",
+  },
+  keywords: ["restaurant bordeaux", "bistronomie bordeaux", "grosse cloche bordeaux", "manger bordeaux centre", "vins bordeaux"],  authors: [{ name: "Les Négociants" }],
   openGraph: {
     title,
     description,
