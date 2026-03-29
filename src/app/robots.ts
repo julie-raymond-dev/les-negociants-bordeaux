@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/config/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/login'],
     },
-    sitemap: 'https://les-negociants-bordeaux.vercel.app/sitemap.xml',
+    sitemap: `${siteConfig.urls.base}/sitemap.xml`,
   };
 }

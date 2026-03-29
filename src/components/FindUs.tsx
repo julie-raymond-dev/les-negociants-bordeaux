@@ -1,4 +1,5 @@
 import {useTranslations} from 'next-intl';
+import { siteConfig } from '@/config/site';
 
 export default function FindUs() {
   const t = useTranslations('FindUs');
@@ -17,7 +18,7 @@ export default function FindUs() {
 
         <div className="relative h-[400px] rounded-lg overflow-hidden shadow-2xl border border-border">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.312585356814!2d-0.5742220233732016!3d44.83556717516151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527cf37ae29eb%3A0x44b08d72577ffa0f!2sLes%20N%C3%A9gociants%20-%20Restaurant!5e0!3m2!1sfr!2sfr!4v1746724362635!5m2!1sfr!2sfr" 
+            src={siteConfig.urls.googleMapsEmbed} 
             width="100%" 
             height="100%" 
             style={{ border: 0, filter: 'grayscale(1) contrast(1.2) opacity(0.8)' }} 

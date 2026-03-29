@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useReservation } from '@/context/ReservationContext';
+import { siteConfig } from '@/config/site';
 
 export default function TheForkReservation() {
   const { isOpen, openModal, closeModal } = useReservation();
@@ -40,7 +41,7 @@ export default function TheForkReservation() {
             </span>
             <iframe
               id="thefork-widget"
-              src="https://widget.thefork.com/096aa36a-702a-4adb-af6b-2ca004cf5a52"
+              src={siteConfig.urls.theFork}
               className="w-full h-full border-0"
               allowFullScreen
             ></iframe>

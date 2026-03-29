@@ -65,6 +65,7 @@ export default function Header() {
                 fill
                 className="object-contain"
                 priority
+                sizes="(max-width: 768px) 64px, 96px"
               />
             </div>
           </Link>

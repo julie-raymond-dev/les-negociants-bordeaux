@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { MapPin, Mail, Instagram, Clock, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal, staggerContainer, fadeUp } from './Motion';
+import { siteConfig } from '@/config/site';
 
 interface InfoItemProps {
   icon: LucideIcon;
@@ -56,7 +57,7 @@ export default function Info() {
                 <a href={`mailto:${t('contact_email')}`} className="hover:text-primary transition-colors underline decoration-primary/20 underline-offset-8">
                   {t('contact_email')}
                 </a>
-                <a href="https://instagram.com/lesnegociants_bdx" target="_blank" rel="noopener noreferrer" className="text-lg text-foreground/60 hover:text-primary transition-colors flex items-center gap-2">
+                <a href={siteConfig.urls.instagram} target="_blank" rel="noopener noreferrer" className="text-lg text-foreground/60 hover:text-primary transition-colors flex items-center gap-2">
                   <Instagram size={14} /> {t('contact_instagram')}
                 </a>
               </div>

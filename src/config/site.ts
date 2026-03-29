@@ -6,9 +6,10 @@ export const siteConfig = {
   instagramHandle: "@lesnegociants_bdx",
   
   urls: {
-    instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
-    theFork: process.env.NEXT_PUBLIC_THEFORK_URL || "",
-    googleMapsEmbed: process.env.NEXT_PUBLIC_MAPS_EMBED_URL || "",
+    base: process.env.NEXT_PUBLIC_BASE_URL || "https://les-negociants-bordeaux.vercel.app",
+    instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com/lesnegociants_bdx",
+    theFork: process.env.NEXT_PUBLIC_THEFORK_URL || "https://widget.thefork.com/096aa36a-702a-4adb-af6b-2ca004cf5a52",
+    googleMapsEmbed: process.env.NEXT_PUBLIC_MAPS_EMBED_URL || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.312585356814!2d-0.5742220233732016!3d44.83556717516151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527cf37ae29eb%3A0x44b08d72577ffa0f!2sLes%20N%C3%A9gociants%20-%20Restaurant!5e0!3m2!1sfr!2sfr!4v1746724362635!5m2!1sfr!2sfr",
   },
   
   emailjs: {

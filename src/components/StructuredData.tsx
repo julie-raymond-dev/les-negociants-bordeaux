@@ -1,15 +1,16 @@
 import Script from 'next/script';
+import { siteConfig } from '@/config/site';
 
 export default function StructuredData() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    "name": "Les Négociants",
-    "image": "https://les-negociants-bordeaux.vercel.app/gallery/hero-bg.jpg",
+    "name": siteConfig.name,
+    "image": `${siteConfig.urls.base}/gallery/hero-bg.jpg`,
     "description": "Restaurant bistronomique au coeur du quartier historique bordelais face à la Grosse Cloche.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "3 rue de Guienne",
+      "streetAddress": siteConfig.address.split(',')[0],
       "addressLocality": "Bordeaux",
       "postalCode": "33000",
       "addressCountry": "FR"
@@ -19,7 +20,7 @@ export default function StructuredData() {
       "latitude": 44.8355,
       "longitude": -0.5742
     },
-    "url": "https://les-negociants-bordeaux.vercel.app",
+    "url": siteConfig.urls.base,
     "telephone": "+33556000000",
     "openingHoursSpecification": [
       {
