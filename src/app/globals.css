@@ -51,6 +51,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+code, pre {
+  font-family: var(--font-mono);
+}
+
 /* Base Typography Classes for Consistency */
 @layer components {
   .heading-hero {

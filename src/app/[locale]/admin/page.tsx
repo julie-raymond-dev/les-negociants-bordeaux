@@ -5,7 +5,7 @@ import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, Trash2, Save, LayoutDashboard, Utensils, 
-  Calendar, Euro, ArrowLeft, LogOut, Settings, Image as ImageIcon, FileText, Upload, Loader2, GripVertical, X
+  Calendar, Euro, ArrowLeft, LogOut, Settings, Image as ImageIcon, FileText, Upload, Loader2, GripVertical, X, Wine
 } from 'lucide-react';
 
 import { supabase, getMenuCarte, getMenuWeek, getGallery, getSiteSettings } from '@/lib/supabase';
@@ -125,8 +125,20 @@ export default function AdminDashboard() {
   };
 
   const handleFileUpload = async (file: File, bucket: string) => {
-    const fileName = `${Date.now()}-${file.name}`;
-    const { error } = await supabase.storage.from(bucket).upload(fileName, file);
+    // Utiliser un nom de fichier fixe selon le type pour écraser l'ancien proprement
+    let fileName = `${Date.now()}-${file.name}`;
+    
+    // Si c'est un PDF, on utilise un nom plus propre pour l'URL
+    if (file.type === 'application/pdf') {
+      if (file.name.toLowerCase().includes('vin')) fileName = 'carte-des-vins.pdf';
+      else if (file.name.toLowerCase().includes('week') || file.name.toLowerCase().includes('semaine')) fileName = 'menu-semaine.pdf';
+      else fileName = 'menu-carte.pdf';
+    }
+
+    const { error } = await supabase.storage.from(bucket).upload(fileName, file, {
+      upsert: true
+    });
+    
     if (error) throw error;
     const { data: { publicUrl } } = supabase.storage.from(bucket).getPublicUrl(fileName);
     return publicUrl;
