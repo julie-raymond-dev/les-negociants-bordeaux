@@ -231,6 +231,12 @@ export default function AdminDashboard() {
     setHasUnsavedChanges(true);
   };
 
+  const updateGalleryItemTitle = (index: number, title: string) => {
+    const newGallery = [...media.gallery];
+    newGallery[index].title = title;
+    setMedia({ ...media, gallery: newGallery });
+  };
+
   if (isLoading) return (
     <div className="min-h-screen bg-background flex items-center justify-center">
       <Loader2 className="animate-spin text-primary" size={48} />
