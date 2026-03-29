@@ -26,21 +26,30 @@ export default function MenuWeek() {
 
   const menu = [
     { 
-      type: "Entrée", 
-      name: data?.starter_name || "Velouté de potimarron", 
-      description: data?.starter_desc || "Graines de courge et huile de truffe" 
+      type: "Entrées", 
+      options: [
+        { name: data?.starter_name, description: data?.starter_desc },
+        { name: data?.starter_name_2, description: data?.starter_desc_2 }
+      ].filter(o => o.name)
     },
     { 
-      type: "Plat", 
-      name: data?.main_name || "Filet de lieu noir", 
-      description: data?.main_desc || "Écrasé de pommes de terre à l'aneth, sauce vierge" 
+      type: "Plats", 
+      options: [
+        { name: data?.main_name, description: data?.main_desc },
+        { name: data?.main_name_2, description: data?.main_desc_2 }
+      ].filter(o => o.name)
     },
     { 
-      type: "Dessert", 
-      name: data?.dessert_name || "Tartelette aux noix", 
-      description: data?.dessert_desc || "Caramel beurre salé" 
+      type: "Desserts", 
+      options: [
+        { name: data?.dessert_name, description: data?.dessert_desc },
+        { name: data?.dessert_name_2, description: data?.dessert_desc_2 }
+      ].filter(o => o.name)
     }
   ];
+
+  // Si pas de données encore chargées, on affiche rien ou un loader pour éviter le flash de mauvaises données
+  if (!data) return null;
 
   return (
     <section id="menu-semaine" className="py-section bg-muted">
@@ -85,26 +94,30 @@ export default function MenuWeek() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="space-y-8 mb-16"
+            className="space-y-12 mb-16"
           >
-            {menu.map((item, i) => (
+            {menu.map((category, i) => (
               <motion.div 
                 key={i} 
                 variants={fadeUp} 
-                className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-border pb-8 last:border-0"
+                className="flex flex-col md:flex-row gap-6 md:gap-12 border-b border-border pb-12 last:border-0"
               >
                 <div className="md:w-32 shrink-0">
-                  <span className="text-xs font-black uppercase tracking-[0.2em] text-primary">
-                    {item.type}
+                  <span className="text-sm font-black uppercase tracking-[0.3em] text-primary">
+                    {category.type}
                   </span>
                 </div>
-                <div>
-                  <h3 className="text-lg md:text-xl font-bold mb-2">
-                    {item.name}
-                  </h3>
-                  <p className="text-foreground/60 italic">
-                    {item.description}
-                  </p>
+                <div className="flex-1 space-y-8">
+                  {category.options.map((option, idx) => (
+                    <div key={idx} className="space-y-2">
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight">
+                        {option.name}
+                      </h3>
+                      <p className="text-foreground/60 italic leading-relaxed">
+                        {option.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
@@ -114,22 +127,22 @@ export default function MenuWeek() {
           <Reveal>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-border">
               <div className="text-center">
-                <span className="text-3xl font-black block mb-1">{data?.price_full || '24'}€</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">{t('formula_full')}</span>
+                <span className="text-3xl font-black block mb-1">{data?.price_full}€</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-foreground/50">{t('formula_full')}</span>
               </div>
               
               <div className="hidden md:block w-px bg-border"></div>
               
               <div className="text-center">
-                <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half || '19'}€</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">{t('formula_starter_main')}</span>
+                <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half}€</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-foreground/50">{t('formula_starter_main')}</span>
               </div>
 
               <div className="hidden md:block w-px bg-border"></div>
 
               <div className="text-center">
-                <span className="text-2xl font-black block mb-1 mt-1">{data?.price_half || '19'}€</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-foreground/50">{t('formula_main_dessert')}</span>
+                <span className="text-2xl font-black block mb-1 mt-1">{data?.price_single}€</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-foreground/50">Plat Seul</span>
               </div>
             </div>
           </Reveal>

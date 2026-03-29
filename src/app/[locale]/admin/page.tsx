@@ -87,12 +87,19 @@ export default function AdminDashboard() {
             date_range: "24 AU 28 MARS 2026",
             starter_name: "Velouté de potimarron",
             starter_desc: "Graines de courge et huile de truffe",
+            starter_name_2: "",
+            starter_desc_2: "",
             main_name: "Filet de lieu noir",
             main_desc: "Écrasé de pommes de terre à l'aneth, sauce vierge",
+            main_name_2: "",
+            main_desc_2: "",
             dessert_name: "Tartelette aux noix",
             dessert_desc: "Caramel beurre salé",
+            dessert_name_2: "",
+            dessert_desc_2: "",
             price_full: "24",
-            price_half: "19"
+            price_half: "19",
+            price_single: "15"
           });
         }
 
@@ -324,25 +331,44 @@ export default function AdminDashboard() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                   <div className="space-y-6">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">01 ENTRÉE</span>
-                    <InputGroup label="Nom" value={weekMenu.starter_name} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_name: v}); setHasUnsavedChanges(true); }} />
-                    <InputGroup label="Description" value={weekMenu.starter_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_desc: v}); setHasUnsavedChanges(true); }} />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">01 ENTRÉES</span>
+                    <div className="p-6 bg-background/50 rounded-3xl border border-border space-y-4">
+                      <InputGroup label="Option 1 - Nom" value={weekMenu.starter_name} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_name: v}); setHasUnsavedChanges(true); }} />
+                      <InputGroup label="Option 1 - Description" value={weekMenu.starter_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_desc: v}); setHasUnsavedChanges(true); }} />
+                    </div>
+                    <div className="p-6 bg-background/50 rounded-3xl border border-border space-y-4">
+                      <InputGroup label="Option 2 - Nom" value={weekMenu.starter_name_2} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_name_2: v}); setHasUnsavedChanges(true); }} />
+                      <InputGroup label="Option 2 - Description" value={weekMenu.starter_desc_2} onChange={(v: string) => { setWeekMenu({...weekMenu, starter_desc_2: v}); setHasUnsavedChanges(true); }} />
+                    </div>
                   </div>
                   <div className="space-y-6">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">02 PLAT</span>
-                    <InputGroup label="Nom" value={weekMenu.main_name} onChange={(v: string) => { setWeekMenu({...weekMenu, main_name: v}); setHasUnsavedChanges(true); }} />
-                    <InputGroup label="Description" value={weekMenu.main_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, main_desc: v}); setHasUnsavedChanges(true); }} />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">02 PLATS</span>
+                    <div className="p-6 bg-background/50 rounded-3xl border border-border space-y-4">
+                      <InputGroup label="Option 1 - Nom" value={weekMenu.main_name} onChange={(v: string) => { setWeekMenu({...weekMenu, main_name: v}); setHasUnsavedChanges(true); }} />
+                      <InputGroup label="Option 1 - Description" value={weekMenu.main_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, main_desc: v}); setHasUnsavedChanges(true); }} />
+                    </div>
+                    <div className="p-6 bg-background/50 rounded-3xl border border-border space-y-4">
+                      <InputGroup label="Option 2 - Nom" value={weekMenu.main_name_2} onChange={(v: string) => { setWeekMenu({...weekMenu, main_name_2: v}); setHasUnsavedChanges(true); }} />
+                      <InputGroup label="Option 2 - Description" value={weekMenu.main_desc_2} onChange={(v: string) => { setWeekMenu({...weekMenu, main_desc_2: v}); setHasUnsavedChanges(true); }} />
+                    </div>
                   </div>
                   <div className="space-y-6">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">03 DESSERT</span>
-                    <InputGroup label="Nom" value={weekMenu.dessert_name} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_name: v}); setHasUnsavedChanges(true); }} />
-                    <InputGroup label="Description" value={weekMenu.dessert_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_desc: v}); setHasUnsavedChanges(true); }} />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/40 block border-b border-border pb-2">03 DESSERTS</span>
+                    <div className="p-6 bg-background/50 rounded-3xl border border-border space-y-4">
+                      <InputGroup label="Option 1 - Nom" value={weekMenu.dessert_name} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_name: v}); setHasUnsavedChanges(true); }} />
+                      <InputGroup label="Option 1 - Description" value={weekMenu.dessert_desc} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_desc: v}); setHasUnsavedChanges(true); }} />
+                    </div>
+                    <div className="p-6 bg-background/50 rounded-3xl border border-border space-y-4">
+                      <InputGroup label="Option 2 - Nom" value={weekMenu.dessert_name_2} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_name_2: v}); setHasUnsavedChanges(true); }} />
+                      <InputGroup label="Option 2 - Description" value={weekMenu.dessert_desc_2} onChange={(v: string) => { setWeekMenu({...weekMenu, dessert_desc_2: v}); setHasUnsavedChanges(true); }} />
+                    </div>
                   </div>
                 </div>
 
                 <div className="pt-10 border-t border-border flex flex-wrap gap-10 justify-center">
                   <PriceCard label="Formule Complète" value={weekMenu.price_full} onChange={(v: string) => { setWeekMenu({...weekMenu, price_full: v}); setHasUnsavedChanges(true); }} />
                   <PriceCard label="Entrée + Plat / Plat + Dessert" value={weekMenu.price_half} onChange={(v: string) => { setWeekMenu({...weekMenu, price_half: v}); setHasUnsavedChanges(true); }} />
+                  <PriceCard label="Plat Seul" value={weekMenu.price_single} onChange={(v: string) => { setWeekMenu({...weekMenu, price_single: v}); setHasUnsavedChanges(true); }} />
                 </div>
               </div>
             </motion.section>
