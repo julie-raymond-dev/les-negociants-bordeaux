@@ -38,13 +38,13 @@ export default function Header() {
   if (!mounted) return null;
 
   const navLinks = [
-    { name: t('info'), href: '#informations' },
     { name: t('story'), href: '#notre-histoire' },
     { name: t('menu_carte'), href: '#menu-carte' },
     { name: t('menu_week'), href: '#menu-semaine' },
     { name: t('gallery'), href: '#galerie' },
     { name: t('wine_list'), href: '#carte-des-vins' },
     { name: t('privatization'), href: '#privatisation' },
+    { name: t('info'), href: '#informations' },
     { name: t('contact'), href: '#contact' },
   ];
 
