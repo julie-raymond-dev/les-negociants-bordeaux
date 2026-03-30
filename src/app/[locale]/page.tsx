@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Info from '@/components/Info';
 import Story from '@/components/Story';
 import Privatization from '@/components/Privatization';
 import MenuCarte from '@/components/MenuCarte';
@@ -30,8 +29,6 @@ export default function HomePage() {
       <WineList />
       <SectionSeparator />
       <Privatization />
-      <SectionSeparator />
-      <Info />
       <SectionSeparator />
       <FindUs />
       <SectionSeparator />

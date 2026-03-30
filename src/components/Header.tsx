@@ -44,7 +44,7 @@ export default function Header() {
     { name: t('gallery'), href: '#galerie' },
     { name: t('wine_list'), href: '#carte-des-vins' },
     { name: t('privatization'), href: '#privatisation' },
-    { name: t('info'), href: '#informations' },
+    { name: t('find_us'), href: '#nous-trouver' },
     { name: t('contact'), href: '#contact' },
   ];
 
