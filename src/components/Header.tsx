@@ -29,7 +29,18 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
   const { openModal } = useReservation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isLangOpen && !(event.target as Element).closest('.lang-selector')) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isLangOpen]);
 
   useEffect(() => {
     setMounted(true);
@@ -123,19 +134,30 @@ export default function Header() {
           {/* Mobile controls */}
           <div className="flex items-center gap-2 xl:hidden">
             {/* Drapeau TOUJOURS dehors */}
-            <div className="relative group">
-              <button className="p-2">
+            <div className="relative lang-selector">
+              <button 
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="p-2 flex items-center gap-1"
+              >
                 <span className="text-2xl">{languageNames[locale].flag}</span>
+                <ChevronDown size={14} className={`transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div className="absolute right-0 top-full mt-2 w-40 bg-white border border-gray-200 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden py-2 z-50 text-black">
+              <div 
+                className={`absolute right-0 top-full mt-2 w-56 bg-background border border-border rounded-2xl shadow-2xl transition-all duration-300 overflow-hidden py-2 z-50 ${
+                  isLangOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
+              >
                 {routing.locales.map((l) => (
                   <button
                     key={l}
-                    onClick={() => router.replace(pathname, {locale: l})}
-                    className={`w-full text-left px-6 py-3 text-[10px] font-black uppercase tracking-widest flex items-center gap-4 active:bg-primary active:text-white ${locale === l ? 'bg-gray-100 text-primary' : 'text-black'}`}
+                    onClick={() => {
+                      router.replace(pathname, {locale: l});
+                      setIsLangOpen(false);
+                    }}
+                    className={`w-full text-left px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-4 active:bg-primary active:text-white transition-colors ${locale === l ? 'bg-foreground/5 text-primary' : 'text-foreground'}`}
                   >
-                    <span className="text-xl">{languageNames[l].flag}</span>
-                    <span>{l}</span>
+                    <span className="text-2xl">{languageNames[l].flag}</span>
+                    <span>{languageNames[l].name}</span>
                   </button>
                 ))}
               </div>
@@ -145,7 +167,10 @@ export default function Header() {
               <Lightbulb size={24} fill={!isLight ? 'currentColor' : 'none'} />
             </button>
             
-            <button className="p-2 text-current ml-2" onClick={() => setIsMenuOpen(true)}>
+            <button className="p-2 text-current ml-2" onClick={() => {
+              setIsMenuOpen(true);
+              setIsLangOpen(false);
+            }}>
               <Menu size={28} />
             </button>
           </div>
