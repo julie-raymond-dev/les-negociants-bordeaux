@@ -37,66 +37,76 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const title = titles[locale] || titles.fr;
   const description = descriptions[locale] || descriptions.fr;
-return {
-  metadataBase: new URL(siteConfig.urls.base),
-  title,
-  description,
-  verification: {
-    google: "TiJE57cM0vDm72OzeE70hc2mx0oII9GVbib4ZPQTHSo",
-  },
-  keywords: ["restaurant bordeaux", "bistronomie bordeaux", "grosse cloche bordeaux", "manger bordeaux centre", "vins bordeaux"],  authors: [{ name: "Les Négociants" }],
-  openGraph: {
+
+  return {
+    metadataBase: new URL(siteConfig.urls.base),
     title,
     description,
-    url: siteConfig.urls.base,
-    siteName: 'Les Négociants Bordeaux',
-    images: [
-      {
-        url: '/gallery/hero-bg.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Restaurant Les Négociants Bordeaux',
+    verification: {
+      google: "TiJE57cM0vDm72OzeE70hc2mx0oII9GVbib4ZPQTHSo",
+    },
+    keywords: ["restaurant bordeaux", "bistronomie bordeaux", "grosse cloche bordeaux", "manger bordeaux centre", "vins bordeaux"],
+    authors: [{ name: "Les Négociants" }],
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])),
+        'x-default': '/fr',
       },
-    ],
-    locale: locale,
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
-    images: ['/gallery/hero-bg.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  }
-};
+    },
+    openGraph: {
+      title,
+      description,
+      url: siteConfig.urls.base,
+      siteName: 'Les Négociants Bordeaux',
+      images: [
+        {
+          url: '/gallery/hero-bg.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Restaurant Les Négociants Bordeaux',
+        },
+      ],
+      locale: locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/gallery/hero-bg.jpg'],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    }
+  };
 }
 
 export default async function LocaleLayout({
-children,
-params
+  children,
+  params
 }: {
-children: React.ReactNode;
-params: Promise<{locale: string}>;
+  children: React.ReactNode;
+  params: Promise<{locale: string}>;
 }) {
-const {locale} = await params;
-if (!routing.locales.includes(locale as any)) {
-  notFound();
-}
+  const {locale} = await params;
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
 
-const messages = await getMessages();
+  const messages = await getMessages();
 
-return (
-  <html lang={locale} suppressHydrationWarning>
-    <head>
-      <link rel="canonical" href={`${siteConfig.urls.base}/${locale}`} />
-    </head>
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
-      <NextIntlClientProvider messages={messages}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme={false}>
-          <ReservationProvider>              {/* Background Glows */}
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        {/* Metadata handles canonical and alternates */}
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme={false}>
+            <ReservationProvider>
+              {/* Background Glows */}
               <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-20 md:opacity-100">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[150px]"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[150px]"></div>
