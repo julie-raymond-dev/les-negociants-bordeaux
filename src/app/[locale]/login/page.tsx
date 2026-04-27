@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, ArrowLeft, Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from '@/i18n/routing';
+import { supabase } from '@/lib/supabase';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -18,19 +19,20 @@ export default function LoginPage() {
     setError('');
     setIsLoggingIn(true);
 
-    // Identifiants configurés dans le .env
-    const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+    try {
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    // Simulation d'une petite attente pour le ressenti
-    await new Promise(resolve => setTimeout(resolve, 800));
-
-    if (email === adminEmail && password === adminPassword) {
-      // Stockage temporaire d'un flag de connexion (très basique pour l'instant)
-      localStorage.setItem('is_admin', 'true');
-      router.push('/admin');
-    } else {
-      setError('Identifiants incorrects. Veuillez réessayer.');
+      if (authError) {
+        setError('Identifiants incorrects ou accès refusé.');
+        setIsLoggingIn(false);
+      } else {
+        router.push('/admin');
+      }
+    } catch (err) {
+      setError('Une erreur est survenue lors de la connexion.');
       setIsLoggingIn(false);
     }
   };

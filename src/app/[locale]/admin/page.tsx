@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Link } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, Trash2, Save, LayoutDashboard, Utensils, 
@@ -32,6 +32,23 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [notification, setNotification] = useState<{message: string, type: 'success' | 'info'} | null>(null);
+  const router = useRouter();
+
+  // --- Vérification de l'authentification ---
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.push('/login');
+      }
+    };
+    checkAuth();
+  }, [router]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push('/login');
+  };
 
   // Prévenir la fermeture si modifs non enregistrées
   useEffect(() => {
@@ -268,9 +285,12 @@ export default function AdminDashboard() {
           <Link href="/" className="flex items-center gap-4 px-4 py-3 text-sm font-bold opacity-50 hover:opacity-100 transition-opacity">
             <ArrowLeft size={18} /> Retour au site
           </Link>
-          <Link href="/login" className="flex items-center gap-4 px-4 py-3 text-sm font-bold text-red-500 hover:bg-red-500/10 rounded-xl transition-all">
+          <button 
+            onClick={handleLogout}
+            className="w-full flex items-center gap-4 px-4 py-3 text-sm font-bold text-red-500 hover:bg-red-500/10 rounded-xl transition-all text-left"
+          >
             <LogOut size={18} /> Déconnexion
-          </Link>
+          </button>
         </div>
       </aside>
 
