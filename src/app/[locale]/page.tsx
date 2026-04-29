@@ -11,7 +11,7 @@ import Contact from '@/components/Contact';
 import TheForkReservation from '@/components/TheForkReservation';
 import FloatingActions from '@/components/FloatingActions';
 import SectionSeparator from '@/components/SectionSeparator';
-import { Github, Globe } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -50,16 +50,7 @@ export default function HomePage() {
               className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 hover:text-primary transition-all group"
             >
               <Github size={14} className="group-hover:scale-110 transition-transform" />
-              <span>julie-raymond-dev</span>
-            </a>
-            <a
-              href={process.env.NEXT_PUBLIC_PORTFOLIO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] opacity-40 hover:opacity-100 hover:text-primary transition-all group"
-            >
-              <Globe size={14} className="group-hover:scale-110 transition-transform" />
-              <span>Pichaud Studio</span>
+              <span>Julie Raymond</span>
             </a>
           </div>
         </div>
